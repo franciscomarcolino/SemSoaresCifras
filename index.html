@@ -21,12 +21,12 @@
 </head>
 <body>
 
-<h2>Conteúdo externo carregado 3:</h2>
+<h2>Conteúdo da coluna esquerda do site externo:</h2>
 <div id="conteudoExterno">Carregando...</div>
 
 <script>
-const urlExterna = 'https://www.cifraclub.com.br/alphaville/big-in-japan/#key=5'; // URL do site
-const seletorDiv = '.cifra-column--left'; // Seletor da div que deseja extrair
+const urlExterna = 'https://www.cifraclub.com.br/alphaville/big-in-japan/#key=5'; // substitua pela URL real
+const seletorDiv = '.cifra-column--left'; // classe da div que você quer extrair
 
 async function carregarConteudo() {
   const container = document.getElementById('conteudoExterno');
@@ -43,7 +43,7 @@ async function carregarConteudo() {
     // Seleciona a div desejada
     const divExterna = doc.querySelector(seletorDiv);
 
-    if(divExterna) {
+    if (divExterna) {
       container.innerHTML = divExterna.innerHTML;
     } else {
       throw new Error('Div não encontrada no site externo.');
@@ -62,7 +62,3 @@ carregarConteudo();
 
 </body>
 </html>
-
-
-
-
