@@ -24,41 +24,96 @@
 <h2>Conteúdo da coluna esquerda do site externo:</h2>
 <div id="conteudoExterno">Carregando...</div>
 
-<script>
-const urlExterna = 'https://www.cifraclub.com.br/alphaville/big-in-japan/#key=5'; // substitua pela URL real
-const seletorDiv = '.cifra-column--left'; // classe da div que você quer extrair
+<div class="cifra-column--left">
+  <pre class="cifra">
+<strong>Intro</strong>
+(1ª Sequência)
+E|---------------P.| m.--------------|
+B|--------------------------------|
+G|4--------4*------4--------6*-4*-|
+D|--5-3-3-5----------5-3-3-5------|
+A|--------------------------------|
+E|--------------------------------|
+E|--------------------------------|
 
-async function carregarConteudo() {
-  const container = document.getElementById('conteudoExterno');
+(2ª Sequência)
+E|-------------------P.| m.--------------------|
+B|------------------------------------------|
+G|4--------4-----------4---------6*-6*-4*-4*|
+D|--5-3-3-5-5-3*-3-5~----5-3-3-5------------|
+A|------------------------------------------|
+E|------------------------------------------|
+E|------------------------------------------|
 
-  try {
-    // Tenta buscar o HTML do site externo
-    const response = await fetch(urlExterna);
-    const html = await response.text();
+(3ª Sequência)
+E|---------P.| m.--------|
+B|---------------------3---*-3~-----6----*-6~----|
+G|4--------4-----------6b8*-6b8~--9b11*-9b11~|
+D|--5-3-3-5-5-3*-3-5~----------------------------|
+A|-----------------------------------------------|
+E|-----------------------------------------------|
+E|-----------------------------------------------|
 
-    // Cria um DOM temporário para manipular
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
+<strong>Verso</strong>
+Bm
+Winter's cityside
+G                         A                             F#
+Crystal bits of snowflakes all around my head and in the wind
+Bm
+I had no illusions
+G                   A                               F#
+That I'd ever find a glimpse of summer's heatwaves in your eyes
 
-    // Seleciona a div desejada
-    const divExterna = doc.querySelector(seletorDiv);
+Bm      G              A            F#m         G
+You did what you did to me, now it's history I see
+          Em             F#
+Here's my comeback on the road again
+Bm          G                A
+Things will happen while they can
+       F#m               G                Em             F#
+I will wait here for my man tonight, it's easy when you're big in Japan
 
-    if (divExterna) {
-      container.innerHTML = divExterna.innerHTML;
-    } else {
-      throw new Error('Div não encontrada no site externo.');
-    }
-  } catch (err) {
-    console.warn('Não foi possível carregar via fetch. Usando iframe como fallback.', err);
+                       Bm     G
+When you're big in Japan, tonight
+             A       F#m              G            Em               F#
+Big in Japan, be tight, big in Japan where the eastern sea's so blue
+           Bm       G               A                  F#m
+Big in Japan, alright, pay, then I'll sleep by your side
+               G               Em       F#                        Bm
+Things are easy when you're big in Japan, when you're big in Japan
 
-    // Fallback: iframe carregando a página inteira
-    container.innerHTML = `<iframe src="${urlExterna}"></iframe>`;
-  }
-}
+(interlúdio 2x) Bm  G  A  F#m  G  Em  F#
 
-// Executa a função
-carregarConteudo();
-</script>
+Bm
+Neon on my naked skin
+G                         A               F#
+Passing silhouettes of strange illuminated mannequins
+Bm
+Shall I stay here at the zoo
+G                       A                    F#
+Or shall I go and change my point of view for other ugly scenes
+
+Bm      G              A            F#m         G
+You did what you did to me, now it's history I see
+          Em             F#
+Here's my comeback on the road again
+Bm          G                A
+Things will happen while they can
+       F#m                G                Em             F#
+I will wait here for my man tonight, it's easy when you're big in Japan
+
+                       Bm     G
+When you're big in Japan, tonight
+             A       F#m              G            Em               F#
+Big in Japan, be tight, big in Japan where the eastern sea's so blue
+           Bm       G               A                  F#m
+Big in Japan, alright, pay, then I'll sleep by your side
+               G               Em       F#                        Bm
+Things are easy when you're big in Japan, when you're big in Japan
+  </pre>
+</div>
+
 
 </body>
 </html>
+
