@@ -4,21 +4,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cifras da Banda Sem Soares</title>
+  <title>Cifras da Banda</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
   <div class="container mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6 text-center">Cifras da Banda Sem Soares</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center">Site SemSoares</h1>
     <div id="song-list" class="space-y-4"></div>
   </div>
 
   <script>
+    // Dados embutidos para teste
+    const songs = [
       {
         title: 'Tempo Perdido',
         band: 'Legião Urbana',
-        lyrics: 'D  A  Bm  G  D  A  G',
-        lyrics: 'Tom: Ab',
+        lyrics: 'Todos os dias quando acordo\nNão tenho mais o tempo que passou\nMas tenho muito tempo\nTemos todo o tempo do mundo...',
         chords: 'D  A  Bm  G  D  A  G',
         spotify: 'https://open.spotify.com/intl-pt/track/7MnT7msJZg3XBAS0OTfGrB?si=c01e73354f0e4c01'
       }
@@ -51,21 +52,8 @@
             <button onclick='showDetails((index + 1) % songs.length)' class='bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded'>Próxima</button>
           </div>
         </div>
-        <div style="width:800px; height:600px; border:1px solid #ccc;">
-    <iframe src="https://www.globo.com" 
-            style="width:100%; height:100%; border:none;">
-    </iframe>
-</div>
       `;
     }
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
