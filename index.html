@@ -13,135 +13,52 @@
     <div id="song-list" class="space-y-4"></div>
   </div>
 
-<div class="cifra-column--left">
-                
+      {
+        title: 'Tempo Perdido',
+        band: 'Legião Urbana',
+        lyrics: 'D  A  Bm  G  D  A  G',
+        lyrics: 'Tom: Ab
+                <br> [Intro] G# Cm7  A#m7 C#/D#
+                <br> G#                Cm7
+                Know it sounds funny but',
+        chords: 'D  A  Bm  G  D  A  G',
+        spotify: 'https://open.spotify.com/intl-pt/track/7MnT7msJZg3XBAS0OTfGrB?si=c01e73354f0e4c01'
+      }
+    ];
 
+    const list = document.getElementById('song-list');
 
-<div><div class="cifra_cnt g-fix cifra-mono"><div id="js-marketing-card-wrapper"></div><div class="bandsintownButton bandsintownButton--songAbove pub" id="js-bandsintownAds--songAbove"><div class="bandsintown-replacementAd" id="js-bandsintown-replacement"><div id="pub-cc-bandsintown--song_above" class="pub with-refresh"></div></div></div><span id="cifra_tom">Tom: <a class="js-modal-trigger" href="#" title="alterar o tom">D</a> </span><span data-cy="song-tuning" id="cifra_afi"></span><span data-cy="song-capo" id="cifra_capo"></span>
-        
-        <pre>[Intro]  
+    songs.forEach((song, index) => {
+      const item = document.createElement('div');
+      item.className = 'p-4 bg-white rounded-xl shadow hover:shadow-lg transition';
+      item.innerHTML = `
+        <h2 class='text-xl font-semibold text-blue-600 hover:underline cursor-pointer'>${song.title}</h2>
+        <p class='text-gray-600'>${song.band}</p>
+      `;
+      item.onclick = () => showDetails(index);
+      list.appendChild(item);
+    });
 
-<span class="tablatura">(1° Seqüência)
-<span class="cnt">E|---------------------P.|- m-.-------------------|
-B|---------------------------------------------|---
-G|15------------15*------15------------17*-15*-|---
-D|---16-14-14-16------------16-14-14-16--------|---
-A|---------------------------------------------|---
-E|---------------------------------------------|---
-                                         </span></span>
-
-<span class="tablatura">(2° Seqüência)
-<span class="cnt">E|-----------------------------P.|- m-.---------------------------|
-B|-------------------------------------------------------------|---
-G|15------------15---------------15-------------17*-17*-15*-15*|---
-D|---16-14-14-16--16-14*-14-16~-----16-14-14-16----------------|---
-A|-------------------------------------------------------------|---
-E|-------------------------------------------------------------|---
-                                                   </span></span>
-
-<span class="tablatura">(3° Seqüência)
-<span class="cnt">E|--------------P-.-| -m.-----------|-------------------------
-B|-------------------------------14---*-14~-----8----*-8~----|
-G|15------------15---------------17b19*-17b19~--20b22*-20b22~|
-D|---16-14-14-16--16-14*-14-16~------------------------------|
-A|-----------------------------------------------------------|
-E|-----------------------------------------------------------|
-                                                     </span></span>
-
-<b>Bm</b>
-Winter's cityside
-<b>G</b>                         <b>A</b>                             <b>F#</b>
-Crystal bits of snowflakes all around my head and in the wind
-<b>Bm</b>
-I had no illusions
-<b>G</b>                   <b>A</b>                               <b>F#</b>
-That I'd ever find a glimps of summer's heatwaves in your eyes
-
-<b>Bm</b>      <b>G</b>              <b>A</b>            <b>F#m</b>        <b>G</b>
-You did what you did to me, now it's history I see
-          <b>Em</b>              <b>F#</b>
-Here's my comeback on the road again
-<b>Bm</b>          <b>G</b>                <b>A</b>
-Things will happen while they can
-       <b>F#m</b>              <b>G</b>                <b>Em</b>             <b>F#</b>
-I will wait here for my man tonight, it's easy when your big in Japan
-
-                   <b>Bm</b>     <b>G</b>
-When your big in japan, tonight
-         <b>A</b>       <b>F#m</b>             <b>G</b>            <b>Em</b>               <b>F#</b>
-Big in japan, be tight, big in Japan where the eastern sea's so blue
-       <b>Bm</b>       <b>G</b>               <b>A</b>                  <b>F#m</b>
-Big in japan, alright, pay, then I'll sleep by your side
-           <b>G</b>               <b>Em</b>       <b>F#</b>                        <b>Bm</b>
-Things are easy when you're big in Japan, when you're big in Japan
-
-(interlúdio 2x) <b>Bm</b>  <b>G</b>  <b>A</b>  <b>F#m</b> <b>G</b>  <b>Em</b>  <b>F#</b>
-
-<b>Bm</b>
-Neon on my naked skin
-<b>G</b>                         <b>A</b>               <b>F#</b>
-Passing silhouettes of strange illuminated mannequins
-<b>Bm</b>
-Shall I stay here at the zoo
-<b>G</b>                       <b>A</b>                    <b>F#</b>
-Or shall I go and change my point of view for other ugly scenes
-
-<b>Bm</b>      <b>G</b>              <b>A</b>            <b>F#m</b>        <b>G</b>
-You did what you did to me, now it's history I see
-          <b>Em</b>              <b>F#</b>
-Here's my comeback on the road again
-<b>Bm</b>          <b>G</b>                <b>A</b>
-Things will happen while they can
-       <b>F#m</b>               <b>G</b>                <b>Em</b>             <b>F#</b>
-I will wait here for my man tonight, it's easy when your big in Japan
-
-                   <b>Bm</b>     <b>G</b>
-When your big in japan, tonight
-         <b>A</b>       <b>F#m</b>             <b>G</b>            <b>Em</b>               <b>F#</b>
-Big in japan, be tight, big in japan where the eastern sea's so blue
-       <b>Bm</b>       <b>G</b>               <b>A</b>                  <b>F#m</b>
-Big in japan, alright, pay, then I'll sleep by your side
-           <b>G</b>               <b>Em</b>       <b>F#</b>                        <b>Bm</b>
-Things are easy when you're big in japan, when you're big in Japan</pre>
-        
-        
-        <input type="hidden" data-cy="song-tuningValue" value="E A D G B E"></div></div>
-
-
-
-
-
-
-
-
-
-<script type="text/x-handlebars-template" id="js-offerCard">
-    <a
-        href="<% href %>"
-        target="_blank"
-        class="offerCard"
-        <% #campaign %>
-        data-campaign="<% campaign %>"
-        <% /campaign %>
-    >
-        <picture class="offerCard-thumb">
-            <source
-                srcset="/static/img/desktop/<% image.1x %> 1x, /static/img/desktop/<% image.2x %> 2x"
-            />
-            <img
-                src="/static/img/desktop/<% image.1x %>"
-                alt="<% image.alt %>"
-            />
-        </picture><div class="offerCard-content"><span><% title %></span><p><% description %></p></div><i class="offerCard-arrow"></i></a></script>
-
-
-
-
-
-
-            </div>
+    function showDetails(index) {
+      const song = songs[index];
+      document.body.innerHTML = `
+        <div class='container mx-auto p-6'>
+          <h1 class='text-3xl font-bold mb-2'>${song.title}</h1>
+          <h2 class='text-xl text-gray-600 mb-4'>${song.band}</h2>
+          <pre class='bg-gray-100 p-4 rounded overflow-x-auto whitespace-pre-wrap mb-6'>${song.lyrics}</pre>
+          <pre class='bg-gray-900 text-white p-4 rounded overflow-x-auto whitespace-pre mb-6'>${song.chords}</pre>
+          <a href='${song.spotify}' target='_blank' class='text-green-600 underline mb-6 block'>🎧 Ouvir no Spotify</a>
+          <div class='flex justify-between'>
+            <button onclick='location.reload()' class='bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded'>Voltar</button>
+            <button onclick='showDetails((index + 1) % songs.length)' class='bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded'>Próxima</button>
+          </div>
+        </div>
+      `;
+    }
+  </script>
 </body>
 </html>
+
 
 
 
