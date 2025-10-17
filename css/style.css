@@ -3,7 +3,7 @@
   --bg-color: #0e0e0e;
   --card-bg: #1a1a1a;
   --text-color: #f5f5f5;
-  --accent: #00e5ff; /* cor mais clara e contrastante */
+  --accent: #00e5ff; /* cor clara e contrastante */
   --accent-hover: #26ffff;
 }
 
@@ -15,60 +15,57 @@ body {
   text-align: center;
 }
 
-/* === HEADER E NAV === */
+/* === HEADER CENTRALIZADO === */
 header {
   background: #111;
   color: var(--text-color);
-  padding: 0.5rem 1rem;
+  padding: 1rem 1rem 0.5rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   position: sticky;
   top: 0;
   z-index: 10;
   box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  flex-wrap: wrap;
 }
 
-header .left {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-header img.logo {
-  height: 42px;
-  width: 42px;
+/* Logo e título */
+header .logo {
+  height: 64px;
+  width: 64px;
   border-radius: 50%;
   object-fit: cover;
+  margin-bottom: 0.4rem;
 }
 
-/* Em telas pequenas o logo e o título diminuem */
-@media (max-width: 600px) {
-  header img.logo {
-    height: 32px;
-    width: 32px;
-  }
-  header h1 {
-    font-size: 1rem;
-  }
-}
-
-/* Título */
 header h1 {
   font-size: 1.4rem;
-  margin: 0;
+  margin: 0.3rem 0 0.8rem 0;
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  justify-content: center;
 }
 
-/* Navegação */
+/* Em telas pequenas o logo diminui */
+@media (max-width: 600px) {
+  header .logo {
+    height: 48px;
+    width: 48px;
+  }
+  header h1 {
+    font-size: 1.1rem;
+  }
+}
+
+/* === NAV (abaixo do logo e título) === */
 nav {
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 0.8rem;
 }
 
 nav a {
@@ -159,37 +156,4 @@ button {
   color: #000;
   border: none;
   border-radius: 5px;
-  padding: 0.6rem 1.2rem;
-  cursor: pointer;
-  margin: 0.3rem;
-  font-weight: 600;
-}
-
-button:hover {
-  background: var(--accent-hover);
-}
-
-/* === LINKS === */
-a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* === ÍCONES === */
-svg.lucide {
-  vertical-align: middle;
-}
-
-/* === FOOTER === */
-footer {
-  margin-top: 2rem;
-  padding: 1rem;
-  background: #111;
-  font-size: 0.9rem;
-  color: #aaa;
-}
+  padding: 0.6rem
