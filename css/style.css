@@ -22,26 +22,36 @@ header {
   padding: 1rem 1rem 0.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: center; /* centro no eixo vertical */
+  justify-content: center; /* centro no eixo horizontal */
   position: sticky;
   top: 0;
   z-index: 10;
   box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  text-align: center; /* garante centralização do conteúdo interno */
+  width: 100%;
 }
 
-/* Logo e título */
+/* Área do logo e título agrupada */
+header .logo-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 header .logo {
-  height: 64px;
-  width: 64px;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 0.4rem;
+  margin: 0 auto;
 }
 
 header h1 {
   font-size: 1.4rem;
-  margin: 0.3rem 0 0.8rem 0;
+  margin: 0.4rem 0 0.8rem 0;
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -51,21 +61,22 @@ header h1 {
 /* Em telas pequenas o logo diminui */
 @media (max-width: 600px) {
   header .logo {
-    height: 48px;
-    width: 48px;
+    height: 100px;
+    width: 100px;
   }
   header h1 {
     font-size: 1.1rem;
   }
 }
 
-/* === NAV (abaixo do logo e título) === */
+/* === NAV === */
 nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.2rem;
   margin-bottom: 0.8rem;
+  width: 100%;
 }
 
 nav a {
@@ -156,4 +167,37 @@ button {
   color: #000;
   border: none;
   border-radius: 5px;
-  padding: 0.6rem
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  margin: 0.3rem;
+  font-weight: 600;
+}
+
+button:hover {
+  background: var(--accent-hover);
+}
+
+/* === LINKS === */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* === ÍCONES === */
+svg.lucide {
+  vertical-align: middle;
+}
+
+/* === FOOTER === */
+footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #111;
+  font-size: 0.9rem;
+  color: #aaa;
+}
