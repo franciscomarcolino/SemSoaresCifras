@@ -3,40 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | Cifras da Banda - Sem Soares</title>
+  <title>Home | Cifras da Banda</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <header>
-    <h1>Cifras da Banda</h1>
+    <div class="left">
+      <img src="img/logo.png" alt="Logo da Banda" class="logo">
+      <h1><i data-lucide="music"></i> Cifras da Banda</h1>
+    </div>
+
+    <nav>
+      <a href="index.html"><i data-lucide="home"></i> Home</a>
+      <a href="cifras.html"><i data-lucide="guitar"></i> Cifras</a>
+      <a href="eventos.html"><i data-lucide="calendar-days"></i> Eventos</a>
+      <a href="ensaios.html"><i data-lucide="drum"></i> Ensaios</a>
+    </nav>
   </header>
 
   <main class="home-container">
     <a href="cifras.html" class="home-card" style="background-image: url('https://images.pexels.com/photos/7520788/pexels-photo-7520788.jpeg');">
       <div class="overlay">
+        <i data-lucide="guitar"></i>
         <h2>Cifras</h2>
       </div>
     </a>
 
     <a href="eventos.html" class="home-card" style="background-image: url('https://images.pexels.com/photos/1387174/pexels-photo-1387174.jpeg');">
       <div class="overlay">
+        <i data-lucide="calendar-days"></i>
         <h2>Eventos</h2>
       </div>
     </a>
 
     <a href="ensaios.html" class="home-card" style="background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4');">
       <div class="overlay">
+        <i data-lucide="drum"></i>
         <h2>Ensaios</h2>
       </div>
     </a>
   </main>
 
   <footer>
-    <p>© 2025 Banda Sem Soares - Todos os direitos reservados</p>
+    <p>© 2025 Banda - Todos os direitos reservados</p>
   </footer>
+
+  <script>lucide.createIcons();</script>
 </body>
 </html>
-
-
-
-
