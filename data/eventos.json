@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "nome": "Culto de Domingo",
+    "data": "2025-10-20",
+    "hora": "19:00",
+    "local": "Igreja Central",
+    "musicas": ["Alvo Mais Que a Neve", "Grandes Coisas"]
+  },
+  {
+    "id": 2,
+    "nome": "Encontro de Louvor",
+    "data": "2025-11-02",
+    "hora": "18:30",
+    "local": "Salão da Comunidade",
+    "musicas": ["Grandes Coisas"]
+  }
+]

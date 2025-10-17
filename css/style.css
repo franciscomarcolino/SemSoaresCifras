@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+}
+
+header {
+  padding: 1rem;
+  background: #222;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+main {
+  padding: 1rem;
+}
+
+footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #222;
+  font-size: 0.9rem;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.home-card {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.home-card:hover {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.8rem;
+}
+
+.overlay h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.list-item {
+  background: #222;
+  margin: 0.5rem auto;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.list-item:hover {
+  background: #333;
+}
+
+button {
+  background: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #004999;
+}
