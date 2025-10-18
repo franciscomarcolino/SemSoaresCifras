@@ -181,7 +181,7 @@ button:hover {
 #velocidadeScroll
 {
   width: 300px;           /* largura */
-  height: 25px;           /* altura */
+  height: 50px;           /* altura */
   background-color: var(--accent); /* cor de fundo */
   color: var(--accent-hover);            /* cor do texto */
  }

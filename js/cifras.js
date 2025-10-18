@@ -62,18 +62,25 @@ document.addEventListener('DOMContentLoaded', () => {
   let rafId = null;
   let lastTs = null;
   let pxPorSegundo = parseInt(slider.value, 10);
+  let acumulado = 0; // para subpixels
 
   const scroller = () => (document.scrollingElement || document.documentElement || document.body);
   const estaNoFim = () => (window.innerHeight + (scroller().scrollTop || window.scrollY) >= scroller().scrollHeight - 1);
 
   function step(ts) {
     if (!running) return;
+
     if (!lastTs) lastTs = ts;
     const delta = ts - lastTs;
     lastTs = ts;
 
-    const px = (pxPorSegundo * delta) / 1000;
-    scroller().scrollTop += px;
+    // acumula subpixels
+    acumulado += (pxPorSegundo * delta) / 1000;
+    const px = Math.floor(acumulado);
+    if (px >= 1) {
+      scroller().scrollTop += px;
+      acumulado -= px;
+    }
 
     if (estaNoFim()) {
       parar();
@@ -95,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!running) return;
     running = false;
     lastTs = null;
+    acumulado = 0;
     if (rafId !== null) {
       cancelAnimationFrame(rafId);
       rafId = null;
@@ -112,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const pauseOnUser = (e) => {
-    // Ignora o botão e seus filhos
+    // ignora cliques/toques no botão
     if (e.target.closest('#rolarBtn')) return;
     if (running) parar();
   };
