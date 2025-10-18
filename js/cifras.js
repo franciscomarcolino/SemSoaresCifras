@@ -18,7 +18,8 @@ function exibirLista() {
   cifras.forEach((cifra, i) => {
     const div = document.createElement('div');
     div.className = 'list-item';
-    div.innerHTML = `<strong>${cifra.titulo}</strong><br><em>${cifra.acordes}</em>`;
+    // Exibe título + banda + acordes
+    div.innerHTML = `<strong>${cifra.titulo}</strong> - <em>${cifra.banda}</em><br><em>${cifra.acordes}</em>`;
     div.onclick = () => abrirCifra(i);
     listaDiv.appendChild(div);
   });
