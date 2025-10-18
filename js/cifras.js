@@ -1,97 +1,141 @@
+// -----------------------
+// CIFRAS.JS
+// -----------------------
+
+let cifras = [];
 let indiceAtual = 0;
-let ensaioAtual = null;
 
-// Abrir cifra
+// Carrega cifras do JSON
+async function carregarCifras() {
+    if (cifras.length) return; // já carregadas
+    const resp = await fetch('data/cifras.json');
+    cifras = await resp.json();
+    cifras.sort((a, b) => a.titulo.localeCompare(b.titulo));
+}
+
+// Abrir cifra a partir da página de ensaio
 function abrirCifraDoEnsaio(musica, ensaio) {
-    ensaioAtual = ensaio;
+    abrirCifraInterna(cifras.find(c => c.id === musica.idCifra || c.titulo === musica.nome));
+}
 
-    const cifra = window.cifras.find(c => c.id === musica.idCifra || c.titulo === musica.nome);
-    if (!cifra) {
-        alert("Cifra não encontrada.");
-        return;
-    }
+// Abrir cifra detalhada (genérico)
+function abrirCifra(cifraOuIndice) {
+    let cifra;
+    if (typeof cifraOuIndice === 'number') {
+        indiceAtual = cifraOuIndice;
+        cifra = cifras[indiceAtual];
+    } else cifra = cifraOuIndice;
+
+    abrirCifraInterna(cifra);
+}
+
+// Função interna de abrir cifra e renderizar
+function abrirCifraInterna(cifra) {
+    if (!cifra) return alert("Cifra não encontrada.");
 
     const detalheDiv = document.getElementById('detalhe-cifra');
     const container = document.getElementById('acorde-letra-container');
-
     detalheDiv.style.display = 'block';
     container.innerHTML = '';
+    container.style.display = 'block';
+    container.style.minHeight = '200px';
+
     document.getElementById('titulo-cifra').textContent = cifra.titulo;
     document.getElementById('banda-cifra').textContent = cifra.banda;
     document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
 
-    if (cifra.versos) {
-        cifra.versos.forEach(v => {
+    if (cifra.versos && cifra.versos.length) {
+        cifra.versos.forEach(verso => {
             const versoDiv = document.createElement('div');
             versoDiv.className = 'verso';
 
-            if (v.acordes) {
+            if (verso.acordes?.trim()) {
                 const acordesDiv = document.createElement('div');
                 acordesDiv.className = 'linha-acordes';
-                acordesDiv.textContent = v.acordes;
+                acordesDiv.textContent = verso.acordes;
                 versoDiv.appendChild(acordesDiv);
             }
 
             const letraDiv = document.createElement('div');
             letraDiv.className = 'linha-letra';
-            letraDiv.textContent = v.letra;
+            letraDiv.textContent = verso.letra;
             versoDiv.appendChild(letraDiv);
 
             container.appendChild(versoDiv);
         });
     }
 
-    // Inicializa scroll automático
-    initScrollAutomatico();
+    // Scroll automático
+    iniciarScrollDetalhe();
 
-    // Botão voltar
-    const btnVoltar = document.getElementById('btn-voltar-ensaio');
-    btnVoltar.addEventListener('click', () => {
-        document.getElementById('detalhe-cifra').style.display = 'none';
-        container.innerHTML = '';
-    });
-
-    lucide.createIcons();
+    if (document.getElementById('btn-voltar-ensaio')) {
+        document.getElementById('btn-voltar-ensaio').onclick = () => {
+            detalheDiv.style.display = 'none';
+            document.getElementById('lista-ensaios').style.display = 'block';
+        };
+    }
 }
 
-// Scroll automático reutilizável
-function initScrollAutomatico() {
+// -----------------------
+// Scroll automático
+// -----------------------
+function iniciarScrollDetalhe() {
     const botao = document.getElementById('rolarBtn');
     const slider = document.getElementById('velocidadeScroll');
     if (!botao || !slider) return;
 
-    let running = false, rafId = null, lastTs = null, acumulado = 0;
-    let pxPorSegundo = parseInt(slider.value,10);
+    let running = false;
+    let rafId = null;
+    let lastTs = null;
+    let acumulado = 0;
+    let pxPorSegundo = parseInt(slider.value, 10);
 
-    const scroller = () => (document.scrollingElement || document.documentElement || document.body);
-    const estaNoFim = () => (window.innerHeight + (scroller().scrollTop || window.scrollY) >= scroller().scrollHeight-1);
-
-    function step(ts) {
+    const scroller = () => document.getElementById('acorde-letra-container');
+    const step = ts => {
         if (!running) return;
         if (!lastTs) lastTs = ts;
         const delta = ts - lastTs;
         lastTs = ts;
 
-        acumulado += (pxPorSegundo * delta)/1000;
+        acumulado += (pxPorSegundo * delta) / 1000;
         const px = Math.floor(acumulado);
-        if(px>=1){ scroller().scrollTop += px; acumulado -= px; }
-
-        if(estaNoFim()){ parar(); return; }
+        if (px >= 1) {
+            scroller().scrollTop += px;
+            acumulado -= px;
+        }
         rafId = requestAnimationFrame(step);
-    }
+    };
 
-    function iniciar(){ if(running) return; running=true; lastTs=null; rafId=requestAnimationFrame(step); botao.textContent='Parar Scroll'; }
-    function parar(){ if(!running) return; running=false; lastTs=null; acumulado=0; if(rafId!==null) cancelAnimationFrame(rafId); rafId=null; botao.textContent='Ativar Scroll'; }
+    const iniciar = () => {
+        if (running) return;
+        running = true;
+        lastTs = null;
+        rafId = requestAnimationFrame(step);
+        botao.textContent = 'Parar Scroll';
+    };
 
-    botao.addEventListener('click',()=>{ if(running) parar(); else iniciar(); });
-    slider.addEventListener('input', e=>{ pxPorSegundo=parseInt(e.target.value,10); });
+    const parar = () => {
+        running = false;
+        lastTs = null;
+        acumulado = 0;
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = null;
+        botao.textContent = 'Ativar Scroll';
+    };
 
-    ['touchstart','touchmove','wheel','mousedown'].forEach(evt=>window.addEventListener(evt,e=>{ if(e.target.closest('#rolarBtn')) return; if(running) parar(); },{passive:true}));
-    document.addEventListener('visibilitychange',()=>{ if(document.hidden) parar(); });
+    botao.onclick = () => (running ? parar() : iniciar);
+    slider.oninput = e => pxPorSegundo = parseInt(e.target.value, 10);
+
+    ['touchstart','touchmove','wheel','mousedown'].forEach(evt =>
+        window.addEventListener(evt, () => running && parar(), {passive:true})
+    );
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) running && parar();
+    });
 }
 
-// Inicializa
-document.addEventListener('DOMContentLoaded', async () => {
-    const resp = await fetch('data/cifras.json');
-    window.cifras = await resp.json();
-});
+// -----------------------
+// Inicialização
+// -----------------------
+document.addEventListener('DOMContentLoaded', carregarCifras);

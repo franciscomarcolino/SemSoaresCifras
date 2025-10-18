@@ -1,30 +1,38 @@
-let cifras = []; 
-let indiceAtual = 0;
-let ensaioAtual = null;
+// -----------------------
+// ENSAIOS.JS
+// -----------------------
 
-// Carrega cifras
+// Função de carregar cifras antes dos ensaios
 async function carregarCifras() {
+    if (window.cifras && cifras.length) return; // já carregadas
     const resp = await fetch('data/cifras.json');
-    cifras = await resp.json();
+    window.cifras = await resp.json();
+    cifras.sort((a, b) => a.titulo.localeCompare(b.titulo));
 }
 
-// Carrega ensaios
+// Carrega ensaios e exibe lista
 async function carregarEnsaios() {
+    await carregarCifras(); // garante cifras carregadas antes
     const resp = await fetch('data/ensaios.json');
     const ensaios = await resp.json();
     const container = document.getElementById('lista-ensaios');
 
-    ensaios.sort((a,b)=> new Date(a.data) - new Date(b.data));
+    // Ordena por data
+    ensaios.sort((a, b) => new Date(a.data) - new Date(b.data));
+
     mostrarLista(ensaios, container);
 }
 
+// Mostra lista de ensaios
 function mostrarLista(ensaios, container) {
     container.innerHTML = '';
+
     ensaios.forEach(ensaio => {
         const div = document.createElement('div');
         div.className = 'list-item';
 
-        const cancelado = ensaio.status?.toLowerCase() === 'cancelado';
+        const cancelado = ensaio.status?.toLowerCase() === 'cancelado' || 
+                          ensaio.local?.toLowerCase().includes('cancel');
         const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
         const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
 
@@ -33,43 +41,42 @@ function mostrarLista(ensaios, container) {
             <span class="${statusClass}">${statusTexto}</span>
             <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
         `;
+
         div.addEventListener('click', () => mostrarDetalhe(ensaio, ensaios, container));
         container.appendChild(div);
     });
 }
 
+// Mostra detalhe do ensaio + setlist
 function mostrarDetalhe(ensaio, ensaios, container) {
     container.innerHTML = '';
-    ensaioAtual = ensaio;
 
-    const detalheDiv = document.getElementById('detalhe-cifra');
-    const listaContainer = container;
+    const detalheDiv = document.createElement('div');
+    detalheDiv.className = 'list-item detalhe-ensaio';
 
-    // Renderiza lista de músicas do ensaio
-    let musicasHtml = ensaio.musicas.length
+    const cancelado = ensaio.status?.toLowerCase() === 'cancelado' || 
+                      ensaio.local?.toLowerCase().includes('cancel');
+    const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
+    const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
+
+    const musicasHtml = ensaio.musicas.length
         ? `<ul>${ensaio.musicas.map(m => 
-            `<li><a href="#" onclick='abrirCifraDoEnsaio({idCifra:${m.idCifra},nome:"${m.nome}"}, ${JSON.stringify(ensaio)})'>${m.nome}</a></li>`
+            `<li><a href="#" onclick="abrirCifraDoEnsaio({idCifra:${m.idCifra},nome:'${m.nome}'}, ${JSON.stringify(ensaio)})">${m.nome}</a></li>`
           ).join('')}</ul>`
         : `<p><em>Sem músicas cadastradas.</em></p>`;
 
-    listaContainer.innerHTML = `
+    detalheDiv.innerHTML = `
         <h2>🎵 Ensaio de ${ensaio.data}</h2>
-        <span class="${ensaio.status === 'cancelado' ? 'status-cancelado' : 'status-ativo'}">
-          ${ensaio.status === 'cancelado' ? '❌ Cancelado' : '✅ Ativo'}
-        </span>
+        <span class="${statusClass}">${statusTexto}</span>
         <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
         <h3>Setlist</h3>
         ${musicasHtml}
-        <button id="btn-voltar-lista"><i data-lucide="chevron-left"></i> Voltar</button>
     `;
 
-    document.getElementById('btn-voltar-lista').addEventListener('click', () => mostrarLista(ensaioAtual, container));
-    detalheDiv.style.display = 'none';
-    lucide.createIcons();
+    container.appendChild(detalheDiv);
+
+    if (window.lucide) lucide.createIcons();
 }
 
 // Inicializa
-document.addEventListener('DOMContentLoaded', async () => {
-    await carregarCifras();
-    carregarEnsaios();
-});
+document.addEventListener('DOMContentLoaded', carregarEnsaios);
