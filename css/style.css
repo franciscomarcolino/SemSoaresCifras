@@ -61,8 +61,8 @@ header h1 {
 /* Em telas pequenas o logo diminui */
 @media (max-width: 600px) {
   header .logo {
-    height: 75px;
-    width: 75px;
+    height: 100px;
+    width: 100px;
   }
   header h1 {
     font-size: 1.1rem;
@@ -201,4 +201,5 @@ footer {
   font-size: 0.9rem;
   color: #aaa;
 }
+
 
