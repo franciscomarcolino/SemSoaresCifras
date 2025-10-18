@@ -68,12 +68,21 @@ function exibirLista(filtro = '') {
 
 // Abre a cifra detalhada
 function abrirCifra(indice) {
+	
+	
     indiceAtual = indice;
     const cifra = cifras[indice];
+	
+	document.getElementById('detalhe-cifra').style.display = 'block';
+	const container = document.getElementById('acorde-letra-container');
+	container.innerHTML = ''; // limpa
+	// depois adicionar os versos
 
+	document.getElementById('acorde-letra-container').style.display = 'block';	
     document.getElementById('titulo-cifra').textContent = cifra.titulo;
     document.getElementById('banda-cifra').textContent = cifra.banda;
-    document.getElementById('link-cifra').href = cifra.linkCifra || '#';
+    document.getElementById('acordes-cifra').textContent = cifra.acordes; // todos os acordes da música
+    document.getElementById('link-cifra').href = cifra.linkCifra;
 
     const container = document.getElementById('acorde-letra-container');
     container.innerHTML = ''; // limpa versos anteriores
@@ -85,7 +94,6 @@ function abrirCifra(indice) {
 
             const acordesDiv = document.createElement('div');
             acordesDiv.className = 'linha-acordes';
-            // Mantém apenas a cor de acordes se houver acordes visíveis
             acordesDiv.textContent = verso.acordes || '';
 
             const letraDiv = document.createElement('div');
@@ -98,6 +106,8 @@ function abrirCifra(indice) {
         });
     }
 
+    // Torna a cifra visível
+    container.style.display = 'block';
     document.getElementById('lista-cifras').style.display = 'none';
     document.getElementById('detalhe-cifra').style.display = 'block';
 }

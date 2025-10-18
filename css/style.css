@@ -280,4 +280,18 @@ footer {
     margin-left: 10px;
 }
 
+#acorde-letra-container {
+    display: block;
+    min-height: 200px; /* ou o que for adequado */
+    width: 100%;
+    text-align: center;
+    font-family: monospace;
+    white-space: pre;
+    font-size: 20px;
+    overflow-x: auto; /* caso a cifra seja larga */
+}
+
+
+
+
 
