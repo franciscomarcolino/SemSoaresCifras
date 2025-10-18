@@ -47,7 +47,7 @@ function mostrarDetalhe(ensaio, ensaios, container) {
   const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
 
   const musicasHtml = ensaio.musicas.length
-    ? `<ul>${ensaio.musicas.map(m => `<li><a href="${m.link}" target="_blank">${m.nome}</a></li>`).join('')}</ul>`
+    ? `<ul>${ensaio.musicas.map(m => `<li>${m.nome}</li>`).join('')}</ul>`
     : `<p><em>Sem músicas cadastradas.</em></p>`;
 
   detalheDiv.innerHTML = `
