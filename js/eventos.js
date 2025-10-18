@@ -1,6 +1,3 @@
-let eventos = [];
-let ocultarPassados = false;
-
 async function carregarEventos() {
   const resp = await fetch('data/eventos.json');
   eventos = await resp.json();
@@ -12,11 +9,8 @@ function renderizar() {
   container.innerHTML = '';
 
   const agora = new Date();
-
-  // Ordena por data
   let lista = [...eventos].sort((a, b) => new Date(a.data) - new Date(b.data));
 
-  // Filtra eventos passados se necessário
   if (ocultarPassados) {
     lista = lista.filter(ev => new Date(ev.data) >= agora);
   }
@@ -28,13 +22,13 @@ function renderizar() {
       <strong>${ev.nome}</strong><br>
       📅 ${ev.data} ⏰ ${ev.hora}<br>
       📍 ${ev.local}<br>
-      🎵<br> ${ev.musicas.join('<br>')}
+      🎵<br> 
+      ${ev.musicas.map(m => `<strong>${m.titulo}</strong> <em>(${m.artista})</em>`).join('<br>')}
     `;
     container.appendChild(div);
   });
 }
 
-// Botão de ocultar/mostrar eventos passados com ícone
 document.getElementById('btn-ocultar').onclick = () => {
   ocultarPassados = !ocultarPassados;
   
@@ -45,7 +39,7 @@ document.getElementById('btn-ocultar').onclick = () => {
   `;
 
   renderizar();
-  lucide.createIcons(); // Atualiza o ícone
+  lucide.createIcons();
 };
 
 carregarEventos();
