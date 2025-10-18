@@ -1,3 +1,5 @@
+let ensaioAtual = null; // objeto global para referência na cifra
+
 async function carregarEnsaios() {
     const resp = await fetch('data/ensaios.json');
     const ensaios = await resp.json();
@@ -33,6 +35,7 @@ function mostrarLista(ensaios, container) {
 }
 
 function mostrarDetalhe(ensaio, ensaios, container) {
+    ensaioAtual = ensaio; // define globalmente o ensaio atual
     container.innerHTML = '';
 
     const detalheDiv = document.createElement('div');
@@ -45,7 +48,7 @@ function mostrarDetalhe(ensaio, ensaios, container) {
 
     const musicasHtml = ensaio.musicas.length
         ? `<ul>${ensaio.musicas.map(m => 
-            `<li><a href="#" onclick="abrirCifraDoEnsaio({idCifra: ${m.idCifra}, nome: '${m.nome}'}, ${JSON.stringify(ensaio)})">${m.nome}</a></li>`
+            `<li><a href="#" onclick="abrirCifraDoEnsaio({idCifra: ${m.idCifra}, nome: '${m.nome}'}, ensaioAtual)">${m.nome}</a></li>`
           ).join('')}</ul>`
         : `<p><em>Sem músicas cadastradas.</em></p>`;
 
@@ -60,8 +63,10 @@ function mostrarDetalhe(ensaio, ensaios, container) {
 
     container.appendChild(detalheDiv);
 
+    // Inicializa ícones Lucide
     if (window.lucide) lucide.createIcons();
 
+    // Botão voltar para lista de ensaios
     document.getElementById('btn-anterior').addEventListener('click', () => {
         mostrarLista(ensaios, container);
     });
