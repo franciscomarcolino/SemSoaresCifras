@@ -17,7 +17,7 @@
 
     <nav>
       <a href="index.html"><i data-lucide="home"></i> Home</a>
-      <a href="cifras.html"><i data-lucide="guitar"></i> Cifras</a>
+      <a href="cifras.html" class="ativo"><i data-lucide="guitar"></i> Cifras</a>
       <a href="eventos.html"><i data-lucide="calendar-days"></i> Eventos</a>
       <a href="ensaios.html"><i data-lucide="drum"></i> Ensaios</a>
     </nav>
@@ -29,20 +29,18 @@
         <i class="fa fa-search"></i>
         <input type="text" id="filtro-cifras" placeholder="Buscar música ou banda...">
       </div>
+      <!-- Lista de cifras gerada dinamicamente -->
     </div>
 
     <div id="detalhe-cifra" style="display:none;">
       <h2 id="titulo-cifra"></h2>
       <p><strong>Banda:</strong> <span id="banda-cifra"></span></p>
-
-      <div id="scrollControls" style="text-align:center;">
-        <div style="white-space:pre-wrap; text-align:center;">Velocidade do scroll</div>
+      <div id="scrollControls" style="text-align: center;">
+        <div style="white-space: pre-wrap; text-align: center;">Velocidade do scroll</div>
         <input type="range" id="velocidadeScroll" min="30" max="300" value="30">
       </div>
-      <button id="rolarBtn">Ativar Scroll</button>
-
+      <button id="rolarBtn">Scroll automático</button>
       <div id="acorde-letra-container"></div>
-
       <p><a id="link-cifra" target="_blank"><i data-lucide="youtube"></i> Ver no YouTube</a></p>
       <button id="btn-anterior"><i data-lucide="chevron-left"></i> Anterior</button>
       <button id="btn-proxima"><i data-lucide="chevron-right"></i> Próxima</button>

@@ -1,37 +1,69 @@
-// -----------------------
-// CIFRAS.JS
-// -----------------------
-
 let cifras = [];
 let indiceAtual = 0;
 
-// Carrega cifras do JSON
+// Carrega o JSON de cifras
 async function carregarCifras() {
-    if (cifras.length) return; // já carregadas
-    const resp = await fetch('data/cifras.json');
-    cifras = await resp.json();
-    cifras.sort((a, b) => a.titulo.localeCompare(b.titulo));
+    try {
+        const resp = await fetch('data/cifras.json');
+        cifras = await resp.json();
+        cifras.sort((a, b) => a.titulo.localeCompare(b.titulo));
+        console.log('Cifras carregadas:', cifras);
+    } catch (err) {
+        console.error('Erro ao carregar cifras:', err);
+    }
 }
 
-// Abrir cifra a partir da página de ensaio
-function abrirCifraDoEnsaio(musica, ensaio) {
-    abrirCifraInterna(cifras.find(c => c.id === musica.idCifra || c.titulo === musica.nome));
+// Exibe lista de cifras na página de cifras
+function exibirLista(filtro = '') {
+    const listaDiv = document.getElementById('lista-cifras');
+    const detalheDiv = document.getElementById('detalhe-cifra');
+    listaDiv.style.display = 'block';
+    detalheDiv.style.display = 'none';
+
+    let listaContainer = document.getElementById('cifras-lista-container');
+    if (!listaContainer) {
+        listaContainer = document.createElement('div');
+        listaContainer.id = 'cifras-lista-container';
+        listaDiv.appendChild(listaContainer);
+    }
+
+    const filtroLower = filtro.toLowerCase();
+    const cifrasFiltradas = cifras.filter(c =>
+        c.titulo.toLowerCase().includes(filtroLower) ||
+        (c.banda && c.banda.toLowerCase().includes(filtroLower))
+    );
+
+    listaContainer.innerHTML = '';
+
+    cifrasFiltradas.forEach((cifra, i) => {
+        const div = document.createElement('div');
+        div.className = 'list-item';
+
+        const acordesUnicos = Array.from(new Set(
+            cifra.versos
+                .map(v => v.acordes)
+                .filter(a => a && a.trim() !== "")
+                .join(' ')
+                .split(/\s+/)
+        ));
+
+        div.innerHTML = `<strong>${cifra.titulo}</strong> - <em>${cifra.banda}</em> <span class="acordes-resumo">${acordesUnicos.join(' ')}</span>`;
+        div.onclick = () => abrirCifra(i);
+        listaContainer.appendChild(div);
+    });
+
+    if (cifrasFiltradas.length === 0) {
+        const msg = document.createElement('p');
+        msg.textContent = 'Nenhuma música encontrada.';
+        msg.style.textAlign = 'center';
+        listaContainer.appendChild(msg);
+    }
 }
 
-// Abrir cifra detalhada (genérico)
-function abrirCifra(cifraOuIndice) {
-    let cifra;
-    if (typeof cifraOuIndice === 'number') {
-        indiceAtual = cifraOuIndice;
-        cifra = cifras[indiceAtual];
-    } else cifra = cifraOuIndice;
-
-    abrirCifraInterna(cifra);
-}
-
-// Função interna de abrir cifra e renderizar
-function abrirCifraInterna(cifra) {
-    if (!cifra) return alert("Cifra não encontrada.");
+// Abrir cifra detalhada (para a página de cifras ou ensaios)
+function abrirCifra(indice, ensaio = null) {
+    indiceAtual = indice;
+    const cifra = cifras[indice];
 
     const detalheDiv = document.getElementById('detalhe-cifra');
     const container = document.getElementById('acorde-letra-container');
@@ -44,12 +76,13 @@ function abrirCifraInterna(cifra) {
     document.getElementById('banda-cifra').textContent = cifra.banda;
     document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
 
-    if (cifra.versos && cifra.versos.length) {
+    // Renderiza versos
+    if (cifra.versos && cifra.versos.length > 0) {
         cifra.versos.forEach(verso => {
             const versoDiv = document.createElement('div');
             versoDiv.className = 'verso';
 
-            if (verso.acordes?.trim()) {
+            if (verso.acordes && verso.acordes.trim() !== '') {
                 const acordesDiv = document.createElement('div');
                 acordesDiv.className = 'linha-acordes';
                 acordesDiv.textContent = verso.acordes;
@@ -65,21 +98,37 @@ function abrirCifraInterna(cifra) {
         });
     }
 
-    // Scroll automático
-    iniciarScrollDetalhe();
+    // Botões de navegação
+    document.getElementById('btn-proxima').onclick = () => {
+        indiceAtual = (indiceAtual + 1) % cifras.length;
+        abrirCifra(indiceAtual);
+    };
+    document.getElementById('btn-anterior').onclick = () => {
+        indiceAtual = (indiceAtual - 1 + cifras.length) % cifras.length;
+        abrirCifra(indiceAtual);
+    };
 
-    if (document.getElementById('btn-voltar-ensaio')) {
-        document.getElementById('btn-voltar-ensaio').onclick = () => {
+    // Scroll automático
+    initScrollAutomatico();
+
+    // Voltar para lista (quando abrir via setlist do ensaio)
+    if (ensaio) {
+        const btnVoltar = document.createElement('button');
+        btnVoltar.textContent = 'Voltar';
+        btnVoltar.style.marginTop = '10px';
+        btnVoltar.onclick = () => {
             detalheDiv.style.display = 'none';
-            document.getElementById('lista-ensaios').style.display = 'block';
+            container.innerHTML = '';
+            mostrarDetalheEnsaio(ensaio); // função do ensaios.js
         };
+        container.appendChild(btnVoltar);
     }
+
+    lucide.createIcons();
 }
 
-// -----------------------
 // Scroll automático
-// -----------------------
-function iniciarScrollDetalhe() {
+function initScrollAutomatico() {
     const botao = document.getElementById('rolarBtn');
     const slider = document.getElementById('velocidadeScroll');
     if (!botao || !slider) return;
@@ -87,11 +136,13 @@ function iniciarScrollDetalhe() {
     let running = false;
     let rafId = null;
     let lastTs = null;
-    let acumulado = 0;
     let pxPorSegundo = parseInt(slider.value, 10);
+    let acumulado = 0;
 
-    const scroller = () => document.getElementById('acorde-letra-container');
-    const step = ts => {
+    const scroller = () => (document.scrollingElement || document.documentElement || document.body);
+    const estaNoFim = () => (window.innerHeight + (scroller().scrollTop || window.scrollY) >= scroller().scrollHeight - 1);
+
+    function step(ts) {
         if (!running) return;
         if (!lastTs) lastTs = ts;
         const delta = ts - lastTs;
@@ -103,39 +154,45 @@ function iniciarScrollDetalhe() {
             scroller().scrollTop += px;
             acumulado -= px;
         }
-        rafId = requestAnimationFrame(step);
-    };
 
-    const iniciar = () => {
+        if (estaNoFim()) {
+            parar();
+            return;
+        }
+        rafId = requestAnimationFrame(step);
+    }
+
+    function iniciar() {
         if (running) return;
         running = true;
         lastTs = null;
         rafId = requestAnimationFrame(step);
         botao.textContent = 'Parar Scroll';
-    };
+    }
 
-    const parar = () => {
+    function parar() {
+        if (!running) return;
         running = false;
         lastTs = null;
         acumulado = 0;
-        if (rafId) cancelAnimationFrame(rafId);
+        if (rafId !== null) cancelAnimationFrame(rafId);
         rafId = null;
         botao.textContent = 'Ativar Scroll';
-    };
+    }
 
-    botao.onclick = () => (running ? parar() : iniciar);
-    slider.oninput = e => pxPorSegundo = parseInt(e.target.value, 10);
+    botao.onclick = () => { running ? parar() : iniciar(); };
+    slider.oninput = (e) => { pxPorSegundo = parseInt(e.target.value, 10); };
 
-    ['touchstart','touchmove','wheel','mousedown'].forEach(evt =>
-        window.addEventListener(evt, () => running && parar(), {passive:true})
-    );
-
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) running && parar();
-    });
+    ['touchstart','touchmove','wheel','mousedown'].forEach(evt => window.addEventListener(evt, () => { if (running) parar(); }, { passive:true }));
+    document.addEventListener('visibilitychange', () => { if(document.hidden) parar(); });
 }
 
-// -----------------------
-// Inicialização
-// -----------------------
-document.addEventListener('DOMContentLoaded', carregarCifras);
+// Inicializa
+document.addEventListener('DOMContentLoaded', async () => {
+    await carregarCifras();
+    const filtroInput = document.getElementById('filtro-cifras');
+    if(filtroInput){
+        filtroInput.addEventListener('input', e => exibirLista(e.target.value));
+        exibirLista();
+    }
+});
