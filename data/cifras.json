@@ -57,29 +57,43 @@
 ,
     {
   "id": 2,
-  "titulo": "Tempo Perdido 2BB",
-  "banda": "Legiao Urbana",
-  "linkYoutube": "",
+  "titulo": "Big in Japan",
+  "banda": "Alphaville",
+  "linkYoutube": "https://www.youtube.com/watch?v=9vKqVkMQHKk",
   "versos": [
     {
-      "acordes": "C Am7",
-      "letra": "Todos os dias quando acordo"
+      "acordes": "Dm Bb C Am Bb Gm A",
+      "letra": "Winter's cityside, Crystal bits of snowflakes all around my head and in the wind..."
     },
     {
-      "acordes": "Bm Em",
-      "letra": "Não tenho mais o tempo que passou"
+      "acordes": "Dm Bb C Am Bb Gm A",
+      "letra": "You did what you did to me, now it's history I see..."
     },
     {
-      "acordes": "C Am7",
-      "letra": "Mas tenho muito tempo"
+      "acordes": "Dm Bb C Am Bb Gm A",
+      "letra": "Here's my comeback on the road again..."
     },
     {
-      "acordes": "Bm Em",
-      "letra": "Temos todo o tempo do mundo"
+      "acordes": "Dm Bb C Am Bb Gm A",
+      "letra": "Things will happen while they can..."
+    }
+  ],
+  "tablaturas": [
+    {
+      "sequencia": 1,
+      "tab": "E|---------------P.| m.--------------|\nB|--------------------------------|\nG|6--------6*------6--------8*-6*-|\nD|--7-5-5-7----------7-5-5-7------|\nA|--------------------------------|\nE|--------------------------------|"
+    },
+    {
+      "sequencia": 2,
+      "tab": "E|-------------------P.| m.--------------------|\nB|------------------------------------------|\nG|6--------6-----------6---------8*-8*-6*-6*|\nD|--7-5-5-7-7-5*-5-7~----7-5-5-7------------|\nA|------------------------------------------|\nE|------------------------------------------|"
+    },
+    {
+      "sequencia": 3,
+      "tab": "E|---------P.| m.--------|\nB|---------------------5---*-5~-----8----*-8~----|\nG|6--------6-----------8b10*-8b10~--11b13*-11b13~|\nD|--7-5-5-7-7-5*-5-7~----------------------------|\nA|-----------------------------------------------|\nE|-----------------------------------------------|"
     }
   ]
 }
 
+
   
 ]
-
