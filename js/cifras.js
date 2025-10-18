@@ -43,7 +43,8 @@ function exibirLista(filtro = '') {
     cifrasFiltradas.forEach((cifra, i) => {
         const div = document.createElement('div');
         div.className = 'list-item';
-        div.innerHTML = `<strong>${cifra.titulo}</strong> - <em>${cifra.banda}</em>`;
+        // Exibe título, banda e todos os acordes resumidos
+        div.innerHTML = `<strong>${cifra.titulo}</strong> - <em>${cifra.banda}</em> <span style="color:gray;">[${cifra.versos.map(v => v.acordes).filter(a => a).join(' ')}]</span>`;
         div.onclick = () => abrirCifra(i);
         listaContainer.appendChild(div);
     });
@@ -56,45 +57,35 @@ function exibirLista(filtro = '') {
     }
 }
 
-// Abre a cifra detalhada com acorde sobre letra
-async function abrirCifra(indice) {
+// Abre a cifra detalhada sem filtros, mantendo todo o conteúdo
+function abrirCifra(indice) {
     indiceAtual = indice;
     const cifra = cifras[indice];
 
     document.getElementById('titulo-cifra').textContent = cifra.titulo;
     document.getElementById('banda-cifra').textContent = cifra.banda;
-    document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
+    document.getElementById('link-cifra').href = cifra.linkCifra || "#";
 
     const container = document.getElementById('acorde-letra-container');
-    container.innerHTML = 'Carregando cifra...'; // Mensagem enquanto carrega
+    container.innerHTML = ''; // limpa versos anteriores
 
-    try {
-        const res = await fetch(cifra.linkCifra);
-        const htmlText = await res.text();
+    if (cifra.versos && cifra.versos.length > 0) {
+        cifra.versos.forEach(verso => {
+            const versoDiv = document.createElement('div');
+            versoDiv.className = 'verso';
 
-        // Cria DOM temporário para parsear
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlText, "text/html");
+            // Mostra o conteúdo completo do verso, combinando acordes e letra
+            versoDiv.textContent = (verso.acordes ? verso.acordes + ' ' : '') + verso.letra;
 
-        // Seleciona a div da cifra
-        const cifraDiv = doc.querySelector('div.cifra-column--left');
-        if (!cifraDiv) {
-            container.innerHTML = "<p>Cifra não encontrada.</p>";
-        } else {
-            // Insere o conteúdo completo da cifra
-            container.innerHTML = cifraDiv.innerHTML;
-        }
-
-    } catch (err) {
-        console.error("Erro ao carregar cifra:", err);
-        container.innerHTML = "<p>Erro ao carregar a cifra.</p>";
+            container.appendChild(versoDiv);
+        });
+    } else {
+        container.textContent = 'Erro ao carregar a cifra.';
     }
 
-    // Mostra o detalhe e oculta a lista
     document.getElementById('lista-cifras').style.display = 'none';
     document.getElementById('detalhe-cifra').style.display = 'block';
 }
-
 
 // Botões de navegação
 document.getElementById('btn-proxima').onclick = () => {
@@ -112,9 +103,7 @@ function voltarLista() {
     exibirLista(filtroAtual);
 }
 
-// -----------------------
-// Scroll automático
-// -----------------------
+// Scroll automático (mantém seu código atual)
 document.addEventListener('DOMContentLoaded', () => {
     const botao = document.getElementById('rolarBtn');
     const slider = document.getElementById('velocidadeScroll');
