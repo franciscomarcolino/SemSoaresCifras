@@ -6,23 +6,50 @@ async function carregarCifras() {
   cifras = await resposta.json();
   cifras.sort((a, b) => a.titulo.localeCompare(b.titulo));
   exibirLista();
+
+  // 🔍 adiciona evento para filtrar conforme o usuário digita
+  const filtroInput = document.getElementById('filtro-cifras');
+  if (filtroInput) {
+    filtroInput.addEventListener('input', e => {
+      exibirLista(e.target.value);
+    });
+  }
 }
 
-function exibirLista() {
+function exibirLista(filtro = '') {
   const listaDiv = document.getElementById('lista-cifras');
   const detalheDiv = document.getElementById('detalhe-cifra');
   listaDiv.style.display = 'block';
   detalheDiv.style.display = 'none';
-  listaDiv.innerHTML = '';
 
-  cifras.forEach((cifra, i) => {
+  // Mantém o campo de busca, caso já exista
+  const filtroContainer = document.getElementById('filtro-container');
+  listaDiv.innerHTML = '';
+  if (filtroContainer) listaDiv.appendChild(filtroContainer);
+
+  // 🔍 aplica o filtro, se houver texto digitado
+  const filtroLower = filtro.toLowerCase();
+  const cifrasFiltradas = cifras.filter(c =>
+    c.titulo.toLowerCase().includes(filtroLower) ||
+    (c.banda && c.banda.toLowerCase().includes(filtroLower))
+  );
+
+  // Gera os itens da lista filtrada
+  cifrasFiltradas.forEach((cifra, i) => {
     const div = document.createElement('div');
     div.className = 'list-item';
-    // Exibe título + banda + acordes
     div.innerHTML = `<strong>${cifra.titulo}</strong> - <em>${cifra.banda}</em><br><em>${cifra.acordes}</em>`;
     div.onclick = () => abrirCifra(i);
     listaDiv.appendChild(div);
   });
+
+  // Se não houver resultados
+  if (cifrasFiltradas.length === 0) {
+    const msg = document.createElement('p');
+    msg.textContent = 'Nenhuma música encontrada.';
+    msg.style.textAlign = 'center';
+    listaDiv.appendChild(msg);
+  }
 }
 
 function abrirCifra(indice) {
@@ -43,15 +70,20 @@ document.getElementById('btn-proxima').onclick = () => {
 };
 
 document.getElementById('btn-anterior').onclick = () => {
-  indiceAtual = (indiceAtual - 1) % cifras.length;
+  indiceAtual = (indiceAtual - 1 + cifras.length) % cifras.length;
   abrirCifra(indiceAtual);
 };
 
 function voltarLista() {
-  exibirLista();
+  const filtroAtual = document.getElementById('filtro-cifras')?.value || '';
+  exibirLista(filtroAtual);
 }
 
 carregarCifras();
+
+
+//
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const botao = document.getElementById('rolarBtn');

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cifras</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -23,14 +24,18 @@
 </header>
 
   <main id="cifras-container">
-    <div id="lista-cifras"></div>
+    <div id="lista-cifras">
+	<!-- 🔍 Campo de busca com ícone -->
+    <div id="filtro-container"><i class="fa fa-search"></i><input type="text" id="filtro-cifras" placeholder="Buscar música ou banda..."></div>
+    <!-- A lista de cifras é gerada dinamicamente pelo JS -->
+  </div>
     <div id="detalhe-cifra" style="display:none;">
 	<h2 id="titulo-cifra"></h2>
 	<p><strong>Banda:</strong> <span id="banda-cifra"></span></p>
 	<p><strong>Acordes:</strong> <span id="acordes-cifra"></span></p><br>
 	<div id="scrollControls" style="text-align: center;">
 		<br>
-		<div style="white-space: pre-wrap; text-align: center;">Velocidade</div>
+		<div style="white-space: pre-wrap; text-align: center;">Velocidade do scroll</div>
 		<input type="range" id="velocidadeScroll" min="30" max="300" value="30">	
 	</div>
 	<br>
@@ -50,5 +55,3 @@
   <script>lucide.createIcons();</script>
 </body>
 </html>
-
-

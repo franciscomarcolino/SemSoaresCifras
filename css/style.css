@@ -210,3 +210,36 @@ footer {
   font-size: 0.9rem;
   color: #aaa;
 }
+
+#filtro-container {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  margin: 15px auto;
+}
+
+#filtro-container input {
+  width: 100%;
+  padding: 10px 10px 10px 38px; /* espaço pro ícone */
+  border-radius: 8px;
+  border: none;
+  background: #222;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 255, 0, 0.2);
+}
+
+#filtro-container i {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #f4c430; /* tom de amarelo próximo do seu logo */
+  font-size: 16px;
+  pointer-events: none;
+}
+
+#filtro-container input::placeholder {
+  color: #aaa;
+}
