@@ -4,9 +4,7 @@
     "data": "2025-10-19",
     "hora": "N/A",
     "local": "CANCELADO",
-    "musicas": [
-      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
+    "musicas": [     
     ]
   },
   {
@@ -15,7 +13,8 @@
     "hora": "14:00",
     "local": "Sede da Banda",
     "musicas": [
-      { "nome": "Outra Música", "link": "https://www.youtube.com/watch?v=example3" }
+      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
+      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
     ]
   },
   {
