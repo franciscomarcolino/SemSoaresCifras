@@ -112,12 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const pauseOnUser = (e) => {
-    // Ignora se o evento veio do botão
-    if (botao.contains(e.target)) return;
+    // Ignora o botão e seus filhos
+    if (e.target.closest('#rolarBtn')) return;
     if (running) parar();
   };
 
-  ['touchstart', 'touchmove', 'wheel', 'pointerdown'].forEach(evt =>
+  ['touchstart', 'touchmove', 'wheel', 'mousedown'].forEach(evt =>
     window.addEventListener(evt, pauseOnUser, { passive: true })
   );
 
