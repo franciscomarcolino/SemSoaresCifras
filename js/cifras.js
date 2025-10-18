@@ -1,4 +1,4 @@
-let cifras = [];
+let cifras = []; 
 let indiceAtual = 0;
 
 // Carrega o JSON de cifras
@@ -68,48 +68,49 @@ function exibirLista(filtro = '') {
 
 // Abre a cifra detalhada
 function abrirCifra(indice) {
-	
-	
     indiceAtual = indice;
     const cifra = cifras[indice];
-	
-	document.getElementById('detalhe-cifra').style.display = 'block';
-	const container = document.getElementById('acorde-letra-container');
-	container.innerHTML = ''; // limpa
-	// depois adicionar os versos
 
-	document.getElementById('acorde-letra-container').style.display = 'block';	
-    document.getElementById('titulo-cifra').textContent = cifra.titulo;
-    document.getElementById('banda-cifra').textContent = cifra.banda;
-    document.getElementById('acordes-cifra').textContent = cifra.acordes; // todos os acordes da música
-    document.getElementById('link-cifra').href = cifra.linkCifra;
+    // 1️⃣ Mostra a div de detalhe e garante altura mínima
+    const detalheDiv = document.getElementById('detalhe-cifra');
+    detalheDiv.style.display = 'block';
 
     const container = document.getElementById('acorde-letra-container');
     container.innerHTML = ''; // limpa versos anteriores
+    container.style.display = 'block';
+    container.style.minHeight = '200px';
 
+    // 2️⃣ Preenche título, banda e link
+    document.getElementById('titulo-cifra').textContent = cifra.titulo;
+    document.getElementById('banda-cifra').textContent = cifra.banda;
+    document.getElementById('link-cifra').href = cifra.linkCifra;
+
+    // 3️⃣ Renderiza versos detalhados
     if (cifra.versos && cifra.versos.length > 0) {
         cifra.versos.forEach(verso => {
             const versoDiv = document.createElement('div');
             versoDiv.className = 'verso';
 
-            const acordesDiv = document.createElement('div');
-            acordesDiv.className = 'linha-acordes';
-            acordesDiv.textContent = verso.acordes || '';
+            // Linha de acordes só se houver acordes
+            if (verso.acordes && verso.acordes.trim() !== '') {
+                const acordesDiv = document.createElement('div');
+                acordesDiv.className = 'linha-acordes';
+                acordesDiv.textContent = verso.acordes;
+                versoDiv.appendChild(acordesDiv);
+            }
 
+            // Linha da letra
             const letraDiv = document.createElement('div');
             letraDiv.className = 'linha-letra';
-            letraDiv.textContent = verso.letra || '';
-
-            versoDiv.appendChild(acordesDiv);
+            letraDiv.textContent = verso.letra;
             versoDiv.appendChild(letraDiv);
+
             container.appendChild(versoDiv);
         });
     }
 
-    // Torna a cifra visível
-    container.style.display = 'block';
+    // 4️⃣ Esconde a lista
     document.getElementById('lista-cifras').style.display = 'none';
-    document.getElementById('detalhe-cifra').style.display = 'block';
 }
 
 // Botões de navegação

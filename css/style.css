@@ -289,6 +289,8 @@ footer {
     white-space: pre;
     font-size: 20px;
     overflow-x: auto; /* caso a cifra seja larga */
+	font-family: monospace;
+    white-space: pre;    
 }
 
 
