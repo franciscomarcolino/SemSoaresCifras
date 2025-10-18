@@ -1,3 +1,6 @@
+let eventos = [];
+let ocultarPassados = false;
+
 async function carregarEventos() {
   const resp = await fetch('data/eventos.json');
   eventos = await resp.json();
@@ -31,7 +34,7 @@ function renderizar() {
 
 document.getElementById('btn-ocultar').onclick = () => {
   ocultarPassados = !ocultarPassados;
-  
+
   const btn = document.getElementById('btn-ocultar');
   btn.innerHTML = `
     <i data-lucide="${ocultarPassados ? 'eye' : 'eye-off'}"></i> 
