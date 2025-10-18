@@ -42,8 +42,8 @@ header .logo-group {
 }
 
 header .logo {
-  height: 100px;
-  width: 100px;
+  height: 300px;
+  width: 300px;
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto;
@@ -61,8 +61,8 @@ header h1 {
 /* Em telas pequenas o logo diminui */
 @media (max-width: 600px) {
   header .logo {
-    height: 100px;
-    width: 100px;
+    height: 300px;
+    width: 300px;
   }
   header h1 {
     font-size: 1.1rem;

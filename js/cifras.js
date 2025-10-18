@@ -28,6 +28,7 @@ function abrirCifra(indice) {
   indiceAtual = indice;
   const cifra = cifras[indice];
   document.getElementById('titulo-cifra').textContent = cifra.titulo;
+  document.getElementById('banda-cifra').textContent = cifra.banda;
   document.getElementById('acordes-cifra').textContent = cifra.acordes;
   document.getElementById('letra-cifra').textContent = cifra.letra;
   document.getElementById('link-cifra').href = cifra.linkYoutube;

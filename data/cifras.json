@@ -1,13 +1,15 @@
 [
   {
     "id": 1,
-    "titulo": "Alvo Mais Que a Neve",
+	"banda": "Jota Quest",
+    "titulo": "Do seu lado",
     "acordes": "G  D  Em  C",
     "letra": "Senhor Jesus, Tu és meu Salvador...",
     "linkYoutube": "https://www.youtube.com/watch?v=example"
   },
   {
     "id": 2,
+	"banda": "Jota Quest",
     "titulo": "Grandes Coisas",
     "acordes": "C  G  Am  F",
     "letra": "Grandes coisas estão por vir...",
