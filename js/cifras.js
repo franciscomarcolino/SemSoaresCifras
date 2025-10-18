@@ -57,37 +57,40 @@ function exibirLista(filtro = '') {
 }
 
 // Abre a cifra detalhada com acorde sobre letra
-function abrirCifra(indice) {
+async function abrirCifra(indice) {
     indiceAtual = indice;
     const cifra = cifras[indice];
 
     document.getElementById('titulo-cifra').textContent = cifra.titulo;
     document.getElementById('banda-cifra').textContent = cifra.banda;
-    document.getElementById('link-cifra').href = cifra.linkYoutube;
+    document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
 
     const container = document.getElementById('acorde-letra-container');
-    container.innerHTML = ''; // limpa versos anteriores
+    container.innerHTML = 'Carregando cifra...'; // Mensagem enquanto carrega
 
-    // Renderiza versos detalhados
-    if (cifra.versos && cifra.versos.length > 0) {
-        cifra.versos.forEach(verso => {
-            const versoDiv = document.createElement('div');
-            versoDiv.className = 'verso';
+    try {
+        const res = await fetch(cifra.linkCifra);
+        const htmlText = await res.text();
 
-            const acordesDiv = document.createElement('div');
-            acordesDiv.className = 'linha-acordes';
-            acordesDiv.textContent = verso.acordes;
+        // Cria DOM temporário para parsear
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, "text/html");
 
-            const letraDiv = document.createElement('div');
-            letraDiv.className = 'linha-letra';
-            letraDiv.textContent = verso.letra;
+        // Seleciona a div da cifra
+        const cifraDiv = doc.querySelector('div.cifra-column--left');
+        if (!cifraDiv) {
+            container.innerHTML = "<p>Cifra não encontrada.</p>";
+        } else {
+            // Insere o conteúdo completo da cifra
+            container.innerHTML = cifraDiv.innerHTML;
+        }
 
-            versoDiv.appendChild(acordesDiv);
-            versoDiv.appendChild(letraDiv);
-            container.appendChild(versoDiv);
-        });
+    } catch (err) {
+        console.error("Erro ao carregar cifra:", err);
+        container.innerHTML = "<p>Erro ao carregar a cifra.</p>";
     }
 
+    // Mostra o detalhe e oculta a lista
     document.getElementById('lista-cifras').style.display = 'none';
     document.getElementById('detalhe-cifra').style.display = 'block';
 }
