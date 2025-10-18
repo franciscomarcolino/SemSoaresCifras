@@ -1,7 +1,7 @@
 [
     {
   "id": 1,
-  "titulo": "Tempo Perdido 1AA",
+  "titulo": "Tempo Perdido 1AA1",
   "banda": "Legião Urbana",
   "linkYoutube": "",
   "versos": [
@@ -29,7 +29,7 @@
 ,
     {
   "id": 2,
-  "titulo": "Tempo Perdido 2BB",
+  "titulo": "Tempo Perdido 2BB2",
   "banda": "Legiao Urbana",
   "linkYoutube": "",
   "versos": [
@@ -54,4 +54,5 @@
 
   
 ]
+
 
