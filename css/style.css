@@ -3,11 +3,12 @@
   --bg-color: #0e0e0e;
   --card-bg: #1a1a1a;
   --text-color: #f5f5f5;
-  --logo-text-color:#b39700;
-  --accent: #b39700; /* cor clara e contrastante */
+  --logo-text-color: #b39700;
+  --accent: #b39700;
   --accent-hover: #ffe86e;
 }
 
+/* === BODY === */
 body {
   margin: 0;
   font-family: 'Segoe UI', Arial, sans-serif;
@@ -24,16 +25,14 @@ header {
   padding: 1rem 1rem 0.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center; /* centro no eixo vertical */
-  justify-content: center; /* centro no eixo horizontal */
+  align-items: center;
+  justify-content: center;
   position: sticky;
   top: 0;
   z-index: 10;
   box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  text-align: center; /* garante centralização do conteúdo interno */
 }
 
-/* Área do logo e título agrupada */
 header .logo-group {
   display: flex;
   flex-direction: column;
@@ -52,14 +51,13 @@ header .logo {
 
 header h1 {
   font-size: 1.4rem;
-  margin: 0.4rem 0 0.8rem 0;
+  margin: 0.4rem 0 0.8rem;
   display: flex;
   align-items: center;
   gap: 0.4rem;
   justify-content: center;
 }
 
-/* Em telas pequenas o logo diminui */
 @media (max-width: 600px) {
   header .logo {
     height: 100px;
@@ -145,205 +143,35 @@ nav a:hover {
   font-size: 1.5rem;
 }
 
-/* === LISTAS === */
-.list-item {
-  background: var(--card-bg);
-  margin: 0.5rem auto;
-  padding: 1rem;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 600px;
-  text-align: left;
-  transition: background 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-}
-
-.list-item:hover {
-  background: #222;
-}
-
-/* === BOTÕES === */
-button {
-  background: var(--accent);
-  color: #000;
-  border: none;
-  border-radius: 5px;
-  padding: 0.6rem 1.2rem;
-  cursor: pointer;
-  margin: 0.3rem;
-  font-weight: 600;
-}
-
-button:hover {
-  background: var(--accent-hover);
-}
-
-#velocidadeScroll
-{
-  width: 300px;           /* largura */
-  height: 50px;           /* altura */
-  background-color: var(--accent); /* cor de fundo */
-  color: var(--accent-hover);            /* cor do texto */
- }
-
-/* === LINKS === */
-a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* === ÍCONES === */
-svg.lucide {
-  vertical-align: middle;
-}
-
-/* === FOOTER === */
-footer {
-  margin-top: 2rem;
-  padding: 1rem;
-  background: #111;
-  font-size: 0.9rem;
-  color: #aaa;
-}
-
-/* === FILTRO === */
-#filtro-container {
+/* === LISTAS E DETALHE DE ENSAIOS === */
+.list-item,
+.detalhe-ensaio {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-  max-width: 320px;
-  margin: 15px auto;
-}
-
-#filtro-container input {
-  width: 100%;
-  padding: 10px 10px 10px 38px; /* espaço pro ícone */
-  border-radius: 8px;
-  border: none;
-  background: #222;
-  color: #fff;
-  font-size: 16px;
-  outline: none;
-  box-shadow: 0 0 5px rgba(255, 255, 0, 0.2);
-}
-
-#filtro-container i {
-  position: absolute;
-  top: 50%;
-  left: 12px;
-  transform: translateY(-50%);
-  color: var(--accent); /* tom de amarelo próximo do seu logo */
-  font-size: 16px;
-  pointer-events: none;
-}
-
-#filtro-container input::placeholder {
-  color: #aaa;
-}
-
-@media (max-width: 480px) {
-  #filtro-container {
-    width: 95%;
-    max-width: none;
-    margin: 10px auto;
-  }
-}
-
-/* Container de cada verso */
-.verso {
-    margin-bottom: 10px;
-}
-
-.linha-acordes {
-    color: #f1c40f; /* cor diferenciada para acordes */
-    font-family: monospace;
-    white-space: pre;
-    text-align: center;
-}
-
-.linha-letra {
-    color: #fff; /* cor da letra */
-    font-family: monospace;
-    white-space: pre;
-    text-align: center;
-}
-
-.acordes-resumo {
-    color: #f1c40f;
-    margin-left: 10px;
-}
-
-#acorde-letra-container {
-    display: block;
-    min-height: 200px; /* ou o que for adequado */
-    width: 100%;
-    text-align: center;
-    font-family: monospace;
-    white-space: pre;
-    font-size: 20px;
-    overflow-x: auto; /* caso a cifra seja larga */
-	font-family: monospace;
-    white-space: pre;    
-}
-
-/* Nome do evento maior */
-.evento-nome {
-  font-size: 1.8em;
-  display: block;
-  margin-bottom: 0.5em;
-  color: var(--text-color);
-}
-
-/* Espaçamento entre data, hora e local */
-.evento-data,
-.evento-hora,
-.evento-local {
-  margin-right: 15px;
-  font-size: 1em;
-  color: #ccc; /* mais visível no fundo escuro */
-}
-
-/* Destaque do Setlist */
-.setlist {
-  font-weight: bold;
-  font-size: 1.1em;
-  margin-bottom: 0.3em;
-  display: block;
-  color: var(--accent);
-}
-
-/* Cada música/linha permanece em linha própria, título em negrito e artista em itálico */
-.list-item {
   background: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
   margin: 0.5rem auto;
-  padding: 1rem;
-  border-radius: 10px;
-  width: 90%;
   max-width: 600px;
+  width: 90%;
   text-align: left;
-  transition: background 0.2s ease;
   box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  transition: background 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
 }
 
-.list-item:hover {
+.list-item:hover,
+.detalhe-ensaio:hover {
   background: #222;
+  transform: translateY(-2px);
 }
 
-/* === Tela de detalhe ensaio /* === Detalhe do Ensaio (versão aprimorada) === */
-/* === Título do ensaio (lista e detalhe) === */
 .list-item h2,
 .detalhe-ensaio h2 {
-  color: #ffffff; /* branco fixo para todos os casos */
-  font-size: 1.3rem; /* tamanho desktop */
-  margin: 0 0 0.3rem 0;
-  padding-right: 90px; /* espaço para o status no desktop */
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin: 0 0 0.3rem;
+  padding-right: 90px;
   word-wrap: break-word;
 }
 
@@ -361,26 +189,110 @@ footer {
   white-space: nowrap;
 }
 
-.status-ativo {
-  color: #4caf50;
-}
+.status-ativo { color: #4caf50; }
+.status-cancelado { color: #ff4444; }
 
-.status-cancelado {
-  color: #ff4444;
-}
-
-/* === Responsividade para mobile (lista e detalhe) === */
 @media (max-width: 480px) {
   .list-item h2,
   .detalhe-ensaio h2 {
-    font-size: 1.3rem; /* mantém tamanho desktop */
-    padding-right: 0; /* remove espaço para o status */
+    font-size: 1.3rem;
+    padding-right: 0;
   }
-
   .status-cancelado,
   .status-ativo {
-    position: static; /* move para linha de baixo */
+    position: static;
     display: inline-block;
     margin-top: 4px;
   }
 }
+
+/* === BOTÕES === */
+button {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  margin: 0.3rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: var(--accent-hover);
+}
+
+/* === INPUT FILTRO === */
+#filtro-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 320px;
+  margin: 15px auto;
+}
+
+#filtro-container input {
+  width: 100%;
+  padding: 10px 10px 10px 38px;
+  border-radius: 8px;
+  border: none;
+  background: #222;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 255, 0, 0.2);
+}
+
+#filtro-container i {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--accent);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+#filtro-container input::placeholder { color: #aaa; }
+
+@media (max-width: 480px) {
+  #filtro-container { width: 95%; margin: 10px auto; max-width: none; }
+}
+
+/* === LINKS E ÍCONES === */
+a { color: var(--accent); text-decoration: none; font-weight: 500; }
+a:hover { text-decoration: underline; }
+svg.lucide { vertical-align: middle; }
+
+/* === FOOTER === */
+footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #111;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+/* === CIFRAS / LETRA DE MÚSICA === */
+.verso { margin-bottom: 10px; }
+.linha-acordes { color: #f1c40f; font-family: monospace; white-space: pre; text-align: center; }
+.linha-letra { color: #fff; font-family: monospace; white-space: pre; text-align: center; }
+.acordes-resumo { color: #f1c40f; margin-left: 10px; }
+#acorde-letra-container {
+  display: block;
+  min-height: 200px;
+  width: 100%;
+  text-align: center;
+  font-family: monospace;
+  white-space: pre;
+  font-size: 20px;
+  overflow-x: auto;
+}
+
+/* === EVENTOS / ENSAIOS SETLIST === */
+.evento-nome { font-size: 1.8em; margin-bottom: 0.5em; color: var(--text-color); }
+.evento-data, .evento-hora, .evento-local { margin-right: 15px; font-size: 1em; color: #ccc; }
+.setlist { font-weight: bold; font-size: 1.1em; margin-bottom: 0.3em; display: block; color: var(--accent); }
