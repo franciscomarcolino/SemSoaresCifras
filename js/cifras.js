@@ -55,12 +55,13 @@ carregarCifras();
 
 document.addEventListener('DOMContentLoaded', () => {
   const botao = document.getElementById('rolarBtn');
-  if (!botao) return;
+  const slider = document.getElementById('velocidadeScroll');
+  if (!botao || !slider) return;
 
-  const pxPorSegundo = 45; // ajuste a velocidade (quanto maior, mais rápido)
   let running = false;
   let rafId = null;
   let lastTs = null;
+  let pxPorSegundo = parseInt(slider.value, 10);
 
   const scroller = () => (document.scrollingElement || document.documentElement || document.body);
   const estaNoFim = () => (window.innerHeight + (scroller().scrollTop || window.scrollY) >= scroller().scrollHeight - 1);
@@ -104,10 +105,15 @@ document.addEventListener('DOMContentLoaded', () => {
     else iniciar();
   });
 
+  // Atualiza a velocidade conforme o slider
+  slider.addEventListener('input', (e) => {
+    pxPorSegundo = parseInt(e.target.value, 10);
+  });
+
+  // Pausa se o usuário interagir
   const pauseOnUser = () => {
     if (running) parar();
   };
-
   ['touchstart', 'touchmove', 'wheel', 'pointerdown'].forEach(evt =>
     window.addEventListener(evt, pauseOnUser, { passive: true })
   );
@@ -116,4 +122,3 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.hidden) parar();
   });
 });
-
