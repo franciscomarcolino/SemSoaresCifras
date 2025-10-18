@@ -337,32 +337,13 @@ footer {
 }
 
 /* === Tela de detalhe ensaio /* === Detalhe do Ensaio (versão aprimorada) === */
-/* === Blocos de Ensaio (Lista e Detalhe) === */
-.list-item {
-  position: relative;
-  background: var(--card-bg);
-  color: var(--text-color);
-  border-radius: 12px;
-  padding: 1.2rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  cursor: pointer;
-  transition: transform 0.15s ease, background 0.2s ease;
-  overflow: hidden; /* evita que status ultrapasse os limites */
-}
-
-.list-item:hover {
-  transform: translateY(-3px);
-  background: #222;
-}
-
-/* === Título do Ensaio === */
+/* === Título do ensaio (lista e detalhe) === */
 .list-item h2,
 .detalhe-ensaio h2 {
-  color: #ffffff;
-  font-size: 1.3rem;
+  color: #ffffff; /* branco fixo para todos os casos */
+  font-size: 1.3rem; /* tamanho desktop */
   margin: 0 0 0.3rem 0;
-  padding-right: 90px; /* espaço reservado para o status */
+  padding-right: 90px; /* espaço para o status no desktop */
   word-wrap: break-word;
 }
 
@@ -377,7 +358,7 @@ footer {
   padding: 4px 8px;
   border-radius: 6px;
   background: transparent;
-  white-space: nowrap; /* evita quebra do texto "❌ Cancelado" */
+  white-space: nowrap;
 }
 
 .status-ativo {
@@ -388,17 +369,17 @@ footer {
   color: #ff4444;
 }
 
-/* === Responsividade (Mobile) === */
+/* === Responsividade para mobile (lista e detalhe) === */
 @media (max-width: 480px) {
   .list-item h2,
   .detalhe-ensaio h2 {
-    font-size: 1.1rem;
-    padding-right: 0; /* remove o espaço fixo */
+    font-size: 1.3rem; /* mantém tamanho desktop */
+    padding-right: 0; /* remove espaço para o status */
   }
 
   .status-cancelado,
   .status-ativo {
-    position: static; /* status desce abaixo do título */
+    position: static; /* move para linha de baixo */
     display: inline-block;
     margin-top: 4px;
   }
