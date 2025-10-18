@@ -67,13 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const estaNoFim = () => (window.innerHeight + (scroller().scrollTop || window.scrollY) >= scroller().scrollHeight - 1);
 
   function step(ts) {
-    if (!running) return; // garante que nada execute se estiver parado
+    if (!running) return;
     if (!lastTs) lastTs = ts;
     const delta = ts - lastTs;
     lastTs = ts;
 
     const px = (pxPorSegundo * delta) / 1000;
-    // sem smooth, para não conflitar com cancelAnimationFrame
     scroller().scrollTop += px;
 
     if (estaNoFim()) {
@@ -112,7 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
     pxPorSegundo = parseInt(e.target.value, 10);
   });
 
-  const pauseOnUser = () => {
+  const pauseOnUser = (e) => {
+    // Ignora se o evento veio do botão
+    if (botao.contains(e.target)) return;
     if (running) parar();
   };
 
