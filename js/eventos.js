@@ -22,16 +22,18 @@ function renderizar() {
     const div = document.createElement('div');
     div.className = 'list-item';
     div.innerHTML = `
-      <strong>${ev.nome}</strong><br>
-      📅 ${ev.data} ⏰ ${ev.hora}<br>
-      📍 ${ev.local}<br>
-      🎵<br> 
+      <strong class="evento-nome">${ev.nome}</strong><br><br>
+      <span class="evento-data">📅 ${ev.data}</span>
+      <span class="evento-hora">⏰ ${ev.hora}</span>
+      <span class="evento-local">📍 ${ev.local}</span><br><br>
+      <span class="setlist">🎵 Setlist</span><br>
       ${ev.musicas.map(m => `<strong>${m.titulo}</strong> <em>(${m.artista})</em>`).join('<br>')}
     `;
     container.appendChild(div);
   });
 }
 
+// Botão de ocultar/mostrar eventos passados com ícone
 document.getElementById('btn-ocultar').onclick = () => {
   ocultarPassados = !ocultarPassados;
 

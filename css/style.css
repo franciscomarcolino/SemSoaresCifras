@@ -293,7 +293,36 @@ footer {
     white-space: pre;    
 }
 
+/* Nome do evento maior */
+.evento-nome {
+  font-size: 1.8em;
+  display: block;
+  margin-bottom: 0.5em;
+  color: #222;
+}
 
+/* Espaçamento entre data, hora e local */
+.evento-data,
+.evento-hora,
+.evento-local {
+  margin-right: 15px;
+  font-size: 1em;
+  color: #555;
+}
 
+/* Destaque do Setlist */
+.setlist {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 0.3em;
+  display: block;
+  color: #333;
+}
+
+/* Músicas e artistas já estão formatados via <strong> e <em> */
+.list-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
 
 
