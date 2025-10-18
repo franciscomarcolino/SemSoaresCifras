@@ -3,7 +3,7 @@
     "id": 1,
     "titulo": "Tempo Perdido 1AA",
     "banda": "Legião Urbana",
-    "linkYoutube": "",
+    "linkYoutube": "https://www.youtube.com/watch?v=example1",
     "versos": [
       { "acordes": "C Am7", "letra": "Todos os dias quando acordo" },
       { "acordes": "Bm Em", "letra": "Não tenho mais o tempo que passou" },
@@ -15,12 +15,22 @@
     "id": 2,
     "titulo": "Tempo Perdido 2BB",
     "banda": "Legião Urbana",
-    "linkYoutube": "",
+    "linkYoutube": "https://www.youtube.com/watch?v=example2",
     "versos": [
       { "acordes": "C Am7", "letra": "Todos os dias quando acordo" },
       { "acordes": "Bm Em", "letra": "Não tenho mais o tempo que passou" },
       { "acordes": "C Am7", "letra": "Mas tenho muito tempo" },
       { "acordes": "Bm Em", "letra": "Temos todo o tempo do mundo" }
+    ]
+  },
+  {
+    "id": 3,
+    "titulo": "Alvo Mais Que a Neve",
+    "banda": "Banda Sem Soares",
+    "linkYoutube": "https://www.youtube.com/watch?v=example3",
+    "versos": [
+      { "acordes": "G D", "letra": "Frio na pele, vento a soprar" },
+      { "acordes": "Em C", "letra": "Caminho longo, sem parar" }
     ]
   }
 ]

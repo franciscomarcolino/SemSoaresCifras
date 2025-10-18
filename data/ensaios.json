@@ -15,7 +15,19 @@
     "status": "ativo",
     "musicas": [
       { "nome": "Tempo Perdido 1AA", "idCifra": 1 },
-      { "nome": "Tempo Perdido 2BB", "idCifra": 2 }
+      { "nome": "Tempo Perdido 2BB", "idCifra": 2 },
+      { "nome": "Alvo Mais Que a Neve", "idCifra": 3 }
+    ]
+  },
+  {
+    "id": 3,
+    "data": "02 Novembro 2025",
+    "hora": "18:30",
+    "local": "Estúdio central",
+    "status": "ativo",
+    "musicas": [
+      { "nome": "Alvo Mais Que a Neve", "idCifra": 3 },
+      { "nome": "Tempo Perdido 1AA", "idCifra": 1 }
     ]
   }
 ]

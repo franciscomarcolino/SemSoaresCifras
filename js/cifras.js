@@ -1,6 +1,6 @@
-let cifras = []; 
+let cifras = [];
 let indiceAtual = 0;
-let ensaioAtual = null; // para voltar do detalhe da cifra
+let ensaioAtual = null;
 
 // Carrega o JSON de cifras
 async function carregarCifras() {
@@ -9,11 +9,10 @@ async function carregarCifras() {
     cifras.sort((a, b) => a.titulo.localeCompare(b.titulo));
 }
 
-// Abre a cifra detalhada dentro do detalhe do ensaio
+// Abre a cifra dentro do detalhe do ensaio
 function abrirCifraDoEnsaio(musica, ensaio) {
     ensaioAtual = ensaio;
 
-    // Busca a cifra pelo idCifra ou pelo nome da música
     const cifra = cifras.find(c => c.id === musica.idCifra || c.titulo === musica.nome);
     if (!cifra) {
         alert("Cifra não encontrada.");
@@ -31,7 +30,7 @@ function abrirCifraDoEnsaio(musica, ensaio) {
     document.getElementById('titulo-cifra').textContent = cifra.titulo;
     document.getElementById('banda-cifra').textContent = cifra.banda;
     if (document.getElementById('link-cifra')) {
-        document.getElementById('link-cifra').href = cifra.linkCifra || '#';
+        document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
     }
 
     // Renderiza versos
@@ -59,7 +58,7 @@ function abrirCifraDoEnsaio(musica, ensaio) {
     // Botão de voltar para detalhe do ensaio
     const btnVoltar = document.createElement('button');
     btnVoltar.id = 'btn-voltar-ensaio';
-    btnVoltar.innerHTML = `<i data-lucide="chevron-left"></i> Voltar`;
+    btnVoltar.innerHTML = '<i data-lucide="chevron-left"></i> Voltar';
     btnVoltar.addEventListener('click', () => {
         detalheDiv.style.display = 'none';
         container.innerHTML = '';
@@ -68,11 +67,11 @@ function abrirCifraDoEnsaio(musica, ensaio) {
     });
     container.appendChild(btnVoltar);
 
-    // Renderiza ícones Lucide
+    // Inicializa ícones Lucide
     lucide.createIcons();
 }
 
-// Função de exibir lista de cifras (mantida como na versão original)
+// Mantém funções originais da lista de cifras
 function exibirLista(filtro = '') {
     const listaDiv = document.getElementById('lista-cifras');
     const detalheDiv = document.getElementById('detalhe-cifra');
@@ -119,7 +118,6 @@ function exibirLista(filtro = '') {
     }
 }
 
-// Abrir cifra detalhada (como original)
 function abrirCifra(indice) {
     indiceAtual = indice;
     const cifra = cifras[indice];
@@ -133,7 +131,7 @@ function abrirCifra(indice) {
 
     document.getElementById('titulo-cifra').textContent = cifra.titulo;
     document.getElementById('banda-cifra').textContent = cifra.banda;
-    document.getElementById('link-cifra').href = cifra.linkCifra;
+    document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
 
     if (cifra.versos && cifra.versos.length > 0) {
         cifra.versos.forEach(verso => {
@@ -161,20 +159,14 @@ function abrirCifra(indice) {
 }
 
 // Botões de navegação
-document.getElementById('btn-proxima').onclick = () => {
+document.getElementById('btn-proxima')?.addEventListener('click', () => {
     indiceAtual = (indiceAtual + 1) % cifras.length;
     abrirCifra(indiceAtual);
-};
-document.getElementById('btn-anterior').onclick = () => {
+});
+document.getElementById('btn-anterior')?.addEventListener('click', () => {
     indiceAtual = (indiceAtual - 1 + cifras.length) % cifras.length;
     abrirCifra(indiceAtual);
-};
-
-// Voltar para lista
-function voltarLista() {
-    const filtroAtual = document.getElementById('filtro-cifras')?.value || '';
-    exibirLista(filtroAtual);
-}
+});
 
 // Inicializa
 document.addEventListener('DOMContentLoaded', carregarCifras);
