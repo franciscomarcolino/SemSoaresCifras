@@ -1,0 +1,517 @@
+{
+    "id": 1,
+    "titulo": "Tempo Perdido",
+    "banda": "Legião Urbana",
+    "linkYoutube": "",
+    "acordes": "Em Am7 Bm7 C E B G D A E5 D5 Bm",
+    "versos": [
+        {
+            "acordes": "Em",
+            "letra": "Tom:"
+        },
+        {
+            "acordes": "Am7 Bm7 Em",
+            "letra": "[Intro] C7M"
+        },
+        {
+            "acordes": "C Am7 Bm7 Em",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "C7M"
+        },
+        {
+            "acordes": "E",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "B",
+            "letra": "|-------12-------12-------12-------12-----|"
+        },
+        {
+            "acordes": "G",
+            "letra": "|----12-------12-------12-------12--------|"
+        },
+        {
+            "acordes": "D",
+            "letra": "|-10-------10-------10-------10-----------|"
+        },
+        {
+            "acordes": "A",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "E",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "Am7 Bm7",
+            "letra": ""
+        },
+        {
+            "acordes": "E",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "B",
+            "letra": "|----8-----8------8------8-------10-----10|"
+        },
+        {
+            "acordes": "G",
+            "letra": "|--9-----9------9------9------11------11--|"
+        },
+        {
+            "acordes": "D",
+            "letra": "|7-----7------7------7------9-------9-----|"
+        },
+        {
+            "acordes": "A",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "E",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "E5",
+            "letra": ""
+        },
+        {
+            "acordes": "E",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "B",
+            "letra": "|------10------10-------------------------|"
+        },
+        {
+            "acordes": "G",
+            "letra": "|---11------11-----------9-----9-----9----|"
+        },
+        {
+            "acordes": "D",
+            "letra": "|-9-------9------------9---9-----9-----9--|"
+        },
+        {
+            "acordes": "A",
+            "letra": "|-------------------7--------7-----7------|"
+        },
+        {
+            "acordes": "E",
+            "letra": "|-----------------0-----------------------|"
+        },
+        {
+            "acordes": "D5",
+            "letra": ""
+        },
+        {
+            "acordes": "E",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "B",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "G",
+            "letra": "|---7-------------------------------------|"
+        },
+        {
+            "acordes": "D",
+            "letra": "|-----7-----------------------------------|"
+        },
+        {
+            "acordes": "A",
+            "letra": "|-5---------------------------------------|"
+        },
+        {
+            "acordes": "E",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "E",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "B",
+            "letra": "|------1-1-1---0-1--------1-----3-----1---|"
+        },
+        {
+            "acordes": "G",
+            "letra": "|----0------------------0---0-----0-----0-|"
+        },
+        {
+            "acordes": "D",
+            "letra": "|--2---------2--------2-------------2----2|"
+        },
+        {
+            "acordes": "A",
+            "letra": "|3------------------0---------------------|"
+        },
+        {
+            "acordes": "E",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "Bm7 Em",
+            "letra": ""
+        },
+        {
+            "acordes": "E",
+            "letra": "|--------------------------------2----3---|"
+        },
+        {
+            "acordes": "B",
+            "letra": "|------0-3-----1-----------0-------0----0-|"
+        },
+        {
+            "acordes": "G",
+            "letra": "|----2----2------2-----------0-0----0----0|"
+        },
+        {
+            "acordes": "D",
+            "letra": "|--0--------0------0-----2----------------|"
+        },
+        {
+            "acordes": "A",
+            "letra": "|2-------------------2--------------------|"
+        },
+        {
+            "acordes": "E",
+            "letra": "|----------------------0------------------|"
+        },
+        {
+            "acordes": "Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "E",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "B",
+            "letra": "|------1---------3------------------------|"
+        },
+        {
+            "acordes": "G",
+            "letra": "|----0---0-----0---0----------------------|"
+        },
+        {
+            "acordes": "D",
+            "letra": "|--2-------2/4----------------------------|"
+        },
+        {
+            "acordes": "A",
+            "letra": "|0----------------------------------------|"
+        },
+        {
+            "acordes": "E",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Todos os dias quando acordo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Não tenho mais o tempo que passou"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Mas tenho muito tempo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Temos todo o tempo do mundo"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Todos os dias antes de dormir"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Lembro e esqueço como foi o dia"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Sempre em frente"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Não temos tempo a perder"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Nosso suor sagrado"
+        },
+        {
+            "acordes": "Bm",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "É bem mais belo que esse"
+        },
+        {
+            "acordes": "Em",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Sangue amargo"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "E",
+            "letra": "tão sério"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": ""
+        },
+        {
+            "acordes": "E",
+            "letra": "selva__gem"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": ""
+        },
+        {
+            "acordes": "E",
+            "letra": "selva__gem"
+        },
+        {
+            "acordes": "Bm",
+            "letra": "(passagem)"
+        },
+        {
+            "acordes": "E",
+            "letra": "selvagem"
+        },
+        {
+            "acordes": "",
+            "letra": "H.N.     . . . ."
+        },
+        {
+            "acordes": "B",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "G",
+            "letra": "|-----12----------7-----------------------|"
+        },
+        {
+            "acordes": "D",
+            "letra": "|-----12--------7---7---------------------|"
+        },
+        {
+            "acordes": "A",
+            "letra": "|-----12------7---------------------------|"
+        },
+        {
+            "acordes": "E",
+            "letra": "|-----------------------------------------|"
+        },
+        {
+            "acordes": "E",
+            "letra": "|-0---------------------------------------|"
+        },
+        {
+            "acordes": "C Am7 Bm",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Veja o sol dessa manhã tão cinza"
+        },
+        {
+            "acordes": "Em C",
+            "letra": ""
+        },
+        {
+            "acordes": "A",
+            "letra": "tempestade que chega é da cor"
+        },
+        {
+            "acordes": "Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Dos teus olhos"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Casta_nhos"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Então me abraça forte"
+        },
+        {
+            "acordes": "Bm",
+            "letra": ""
+        },
+        {
+            "acordes": "E",
+            "letra": "diz mais uma vez"
+        },
+        {
+            "acordes": "Em C Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Que já estamos distantes de tudo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Temos nosso próprio tempo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Temos nosso próprio tempo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Temos nosso próprio tempo"
+        },
+        {
+            "acordes": "C Am7 Bm",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Não tenho medo     do escuro"
+        },
+        {
+            "acordes": "Em C Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Mas deixe    as luzes   acesas"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Ago__ra"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "O que foi escondido é o que se escondeu"
+        },
+        {
+            "acordes": "Bm",
+            "letra": ""
+        },
+        {
+            "acordes": "E",
+            "letra": "o que foi prometido"
+        },
+        {
+            "acordes": "Em",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Ninguém prometeu"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Nem foi tempo perdido"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": ""
+        },
+        {
+            "acordes": "",
+            "letra": "Somos tão jo__vens"
+        },
+        {
+            "acordes": "Bm Em Bm",
+            "letra": "(passagem)"
+        },
+        {
+            "acordes": "",
+            "letra": "Tão jo__vens, tão jovens"
+        }
+    ]
+}

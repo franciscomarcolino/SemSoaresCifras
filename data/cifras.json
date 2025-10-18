@@ -1,36 +1,486 @@
 [
     {
     "id": 1,
-    "titulo": "Grandes Coisas 01A",
-    "banda": "Minha Banda",
-    "linkYoutube": "https://www.youtube.com/watch?v=example",
-    "acordes": "C G Am F",
+    "titulo": "Tempo Perdido 1",
+    "banda": "Legião Urbana",
+    "linkYoutube": "",
+    "acordes": "Am7 Bm7 Em C E B G D A E5 D5 Bm",
     "versos": [
-        { "acordes": "C     G     Am     F", "letra": "Primeira linha da letra..." },
-        { "acordes": "F     G     C", "letra": "Segunda linha da letra..." }
+        {
+            "acordes": "Am7 Bm7 Em",
+            "letra": "[Intro] C7M"
+        },
+        {
+            "acordes": "C Am7 Bm7 Em",
+            "letra": "C7M"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Todos os dias quando acordo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Não tenho mais o tempo que passou"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Mas tenho muito tempo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Temos todo o tempo do mundo"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Todos os dias antes de dormir"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Lembro e esqueço como foi o dia"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Sempre em frente"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Não temos tempo a perder"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Nosso suor sagrado"
+        },
+        {
+            "acordes": "Bm",
+            "letra": "É bem mais belo que esse"
+        },
+        {
+            "acordes": "Em",
+            "letra": "Sangue amargo"
+        },
+        {
+            "acordes": "C Am7E",
+            "letra": "tão sério"
+        },
+        {
+            "acordes": "Bm EmE",
+            "letra": "selva__gem"
+        },
+        {
+            "acordes": "Bm EmE",
+            "letra": "selva__gem"
+        },
+        {
+            "acordes": "Bm",
+            "letra": "(passagem)"
+        },
+        {
+            "acordes": "E",
+            "letra": "selvagem"
+        },
+        {
+            "acordes": "C Am7 Bm",
+            "letra": "Veja o sol dessa manhã tão cinza"
+        },
+        {
+            "acordes": "Em CA",
+            "letra": "tempestade que chega é da cor"
+        },
+        {
+            "acordes": "Am7",
+            "letra": "Dos teus olhos"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Casta_nhos"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Então me abraça forte"
+        },
+        {
+            "acordes": "BmE",
+            "letra": "diz mais uma vez"
+        },
+        {
+            "acordes": "Em C Am7",
+            "letra": "Que já estamos distantes de tudo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Temos nosso próprio tempo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Temos nosso próprio tempo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Temos nosso próprio tempo"
+        },
+        {
+            "acordes": "C Am7 Bm",
+            "letra": "Não tenho medo     do escuro"
+        },
+        {
+            "acordes": "Em C Am7",
+            "letra": "Mas deixe    as luzes   acesas"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Ago__ra"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "O que foi escondido é o que se escondeu"
+        },
+        {
+            "acordes": "BmE",
+            "letra": "o que foi prometido"
+        },
+        {
+            "acordes": "Em",
+            "letra": "Ninguém prometeu"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Nem foi tempo perdido"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Somos tão jo__vens"
+        },
+        {
+            "acordes": "Bm Em Bm",
+            "letra": "(passagem)"
+        },
+        {
+            "acordes": "",
+            "letra": "Tão jo__vens, tão jovens"
+        }
     ]
 }
 ,
   {
-    "id": 2,
-    "titulo": "Grandes Coisas 02A",
-    "banda": "Minha Banda",
-    "linkYoutube": "https://www.youtube.com/watch?v=example",
-    "acordes": "C G Am F",
+    "id": 1,
+    "titulo": "Tempo Perdido 2",
+    "banda": "Legião Urbana",
+    "linkYoutube": "",
+    "acordes": "Am7 Bm7 Em C E B G D A E5 D5 Bm",
     "versos": [
-        { "acordes": "C     G     Am     F", "letra": "Primeira linha da letra..." },
-        { "acordes": "F     G     C", "letra": "Segunda linha da letra..." }
+        {
+            "acordes": "Am7 Bm7 Em",
+            "letra": "[Intro] C7M"
+        },
+        {
+            "acordes": "C Am7 Bm7 Em",
+            "letra": "C7M"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Todos os dias quando acordo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Não tenho mais o tempo que passou"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Mas tenho muito tempo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Temos todo o tempo do mundo"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Todos os dias antes de dormir"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Lembro e esqueço como foi o dia"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Sempre em frente"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Não temos tempo a perder"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Nosso suor sagrado"
+        },
+        {
+            "acordes": "Bm",
+            "letra": "É bem mais belo que esse"
+        },
+        {
+            "acordes": "Em",
+            "letra": "Sangue amargo"
+        },
+        {
+            "acordes": "C Am7E",
+            "letra": "tão sério"
+        },
+        {
+            "acordes": "Bm EmE",
+            "letra": "selva__gem"
+        },
+        {
+            "acordes": "Bm EmE",
+            "letra": "selva__gem"
+        },
+        {
+            "acordes": "Bm",
+            "letra": "(passagem)"
+        },
+        {
+            "acordes": "E",
+            "letra": "selvagem"
+        },
+        {
+            "acordes": "C Am7 Bm",
+            "letra": "Veja o sol dessa manhã tão cinza"
+        },
+        {
+            "acordes": "Em CA",
+            "letra": "tempestade que chega é da cor"
+        },
+        {
+            "acordes": "Am7",
+            "letra": "Dos teus olhos"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Casta_nhos"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Então me abraça forte"
+        },
+        {
+            "acordes": "BmE",
+            "letra": "diz mais uma vez"
+        },
+        {
+            "acordes": "Em C Am7",
+            "letra": "Que já estamos distantes de tudo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Temos nosso próprio tempo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Temos nosso próprio tempo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Temos nosso próprio tempo"
+        },
+        {
+            "acordes": "C Am7 Bm",
+            "letra": "Não tenho medo     do escuro"
+        },
+        {
+            "acordes": "Em C Am7",
+            "letra": "Mas deixe    as luzes   acesas"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Ago__ra"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "O que foi escondido é o que se escondeu"
+        },
+        {
+            "acordes": "BmE",
+            "letra": "o que foi prometido"
+        },
+        {
+            "acordes": "Em",
+            "letra": "Ninguém prometeu"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Nem foi tempo perdido"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Somos tão jo__vens"
+        },
+        {
+            "acordes": "Bm Em Bm",
+            "letra": "(passagem)"
+        },
+        {
+            "acordes": "",
+            "letra": "Tão jo__vens, tão jovens"
+        }
     ]
 },
   {
-    "id": 3,
-    "titulo": "Grandes Coisas 03A",
-    "banda": "Minha Banda",
-    "linkYoutube": "https://www.youtube.com/watch?v=example",
-    "acordes": "C G Am F",
+    "id": 1,
+    "titulo": "Tempo Perdido 3",
+    "banda": "Legião Urbana",
+    "linkYoutube": "",
+    "acordes": "Am7 Bm7 Em C E B G D A E5 D5 Bm",
     "versos": [
-        { "acordes": "C     G     Am     F", "letra": "Primeira linha da letra..." },
-        { "acordes": "F     G     C", "letra": "Segunda linha da letra..." }
+        {
+            "acordes": "Am7 Bm7 Em",
+            "letra": "[Intro] C7M"
+        },
+        {
+            "acordes": "C Am7 Bm7 Em",
+            "letra": "C7M"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Todos os dias quando acordo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Não tenho mais o tempo que passou"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Mas tenho muito tempo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Temos todo o tempo do mundo"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Todos os dias antes de dormir"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Lembro e esqueço como foi o dia"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Sempre em frente"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Não temos tempo a perder"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Nosso suor sagrado"
+        },
+        {
+            "acordes": "Bm",
+            "letra": "É bem mais belo que esse"
+        },
+        {
+            "acordes": "Em",
+            "letra": "Sangue amargo"
+        },
+        {
+            "acordes": "C Am7E",
+            "letra": "tão sério"
+        },
+        {
+            "acordes": "Bm EmE",
+            "letra": "selva__gem"
+        },
+        {
+            "acordes": "Bm EmE",
+            "letra": "selva__gem"
+        },
+        {
+            "acordes": "Bm",
+            "letra": "(passagem)"
+        },
+        {
+            "acordes": "E",
+            "letra": "selvagem"
+        },
+        {
+            "acordes": "C Am7 Bm",
+            "letra": "Veja o sol dessa manhã tão cinza"
+        },
+        {
+            "acordes": "Em CA",
+            "letra": "tempestade que chega é da cor"
+        },
+        {
+            "acordes": "Am7",
+            "letra": "Dos teus olhos"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Casta_nhos"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Então me abraça forte"
+        },
+        {
+            "acordes": "BmE",
+            "letra": "diz mais uma vez"
+        },
+        {
+            "acordes": "Em C Am7",
+            "letra": "Que já estamos distantes de tudo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Temos nosso próprio tempo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Temos nosso próprio tempo"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Temos nosso próprio tempo"
+        },
+        {
+            "acordes": "C Am7 Bm",
+            "letra": "Não tenho medo     do escuro"
+        },
+        {
+            "acordes": "Em C Am7",
+            "letra": "Mas deixe    as luzes   acesas"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Ago__ra"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "O que foi escondido é o que se escondeu"
+        },
+        {
+            "acordes": "BmE",
+            "letra": "o que foi prometido"
+        },
+        {
+            "acordes": "Em",
+            "letra": "Ninguém prometeu"
+        },
+        {
+            "acordes": "C Am7",
+            "letra": "Nem foi tempo perdido"
+        },
+        {
+            "acordes": "Bm Em",
+            "letra": "Somos tão jo__vens"
+        },
+        {
+            "acordes": "Bm Em Bm",
+            "letra": "(passagem)"
+        },
+        {
+            "acordes": "",
+            "letra": "Tão jo__vens, tão jovens"
+        }
     ]
 }
   
