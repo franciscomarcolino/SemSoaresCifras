@@ -32,19 +32,25 @@
   <div id="detalhe-cifra" style="display:none;">
     <h2 id="titulo-cifra"></h2>
     <p><strong>Banda:</strong> <span id="banda-cifra"></span></p>
+
+    <!-- Scroll automático -->
+    <div id="scrollControls" style="text-align: center;">
+      <div style="white-space: pre-wrap; text-align: center;">Velocidade do scroll</div>
+      <input type="range" id="velocidadeScroll" min="30" max="300" value="30">
+    </div>
+    <button id="rolarBtn">Scroll automático</button>
+
     <div id="acorde-letra-container"></div>
+    <p><a id="link-cifra" target="_blank"><i data-lucide="youtube"></i> Ver no YouTube</a></p>
+    <button id="btn-voltar-ensaio"><i data-lucide="chevron-left"></i> Voltar</button>
   </div>
 
-  <!-- === RODAPÉ === -->
   <footer>
     <p>© 2025 Banda Sem Soares - Todos os direitos reservados</p>
   </footer>
 
-  <!-- === SCRIPTS === -->
-  <script src="js/ensaios.js"></script>
   <script src="js/cifras.js"></script>
-  <script>
-    lucide.createIcons();
-  </script>
+  <script src="js/ensaios.js"></script>
+  <script>lucide.createIcons();</script>
 </body>
 </html>
