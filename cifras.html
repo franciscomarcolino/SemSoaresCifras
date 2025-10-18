@@ -10,42 +10,41 @@
 </head>
 <body>
   <header>
-  <div class="logo-group">
-    <img src="img/Icone_Sem_Soares.png" alt="Logo da Banda" class="logo">
-    <h1>Banda Sem Soares</h1>
-  </div> 
+    <div class="logo-group">
+      <img src="img/Icone_Sem_Soares.png" alt="Logo da Banda" class="logo">
+      <h1>Banda Sem Soares</h1>
+    </div> 
 
-  <nav>
-    <a href="index.html"><i data-lucide="home"></i> Home</a>
-    <a href="cifras.html"><i data-lucide="guitar"></i> Cifras</a>
-    <a href="eventos.html"><i data-lucide="calendar-days"></i> Eventos</a>
-    <a href="ensaios.html"><i data-lucide="drum"></i> Ensaios</a>
-  </nav>
-</header>
+    <nav>
+      <a href="index.html"><i data-lucide="home"></i> Home</a>
+      <a href="cifras.html"><i data-lucide="guitar"></i> Cifras</a>
+      <a href="eventos.html"><i data-lucide="calendar-days"></i> Eventos</a>
+      <a href="ensaios.html"><i data-lucide="drum"></i> Ensaios</a>
+    </nav>
+  </header>
 
   <main id="cifras-container">
     <div id="lista-cifras">
-	<!-- 🔍 Campo de busca com ícone -->
-    <div id="filtro-container"><i class="fa fa-search"></i><input type="text" id="filtro-cifras" placeholder="Buscar música ou banda..."></div>
-    <!-- A lista de cifras é gerada dinamicamente pelo JS -->
-  </div>
+      <div id="filtro-container">
+        <i class="fa fa-search"></i>
+        <input type="text" id="filtro-cifras" placeholder="Buscar música ou banda...">
+      </div>
+      <!-- A lista de cifras é gerada dinamicamente pelo JS -->
+    </div>
+
     <div id="detalhe-cifra" style="display:none;">
-	<h2 id="titulo-cifra"></h2>
-	<p><strong>Banda:</strong> <span id="banda-cifra"></span></p>
-	<!-- <p><strong>Acordes:</strong> <span id="acordes-cifra"></span></p><br> -->
-	<div id="scrollControls" style="text-align: center;">
-		<br>
-		<div style="white-space: pre-wrap; text-align: center;">Velocidade do scroll</div>
-		<input type="range" id="velocidadeScroll" min="30" max="300" value="30">	
-	</div>
-	<br>
-	<button id="rolarBtn"> Scroll automático</button><br><br>
-	<div id="acorde-letra-container"></div><br><br><br><br>
-	<!-- <pre id="letra-cifra" style="white-space: pre-wrap; text-align: center; font-size: 20px;"></pre><br><br><br><br>-->
-	<p><a id="link-cifra" target="_blank"><i data-lucide="youtube"></i> Ver no YouTube</a></p><br><br><br><br>	
-	<button id="btn-anterior"><i data-lucide="chevron-left"></i> Anterior</button>
-	<button id="btn-proxima"><i data-lucide="chevron-right"></i> Próxima</button>	
-	</div>
+      <h2 id="titulo-cifra"></h2>
+      <p><strong>Banda:</strong> <span id="banda-cifra"></span></p>
+      <div id="scrollControls" style="text-align: center;">
+        <div style="white-space: pre-wrap; text-align: center;">Velocidade do scroll</div>
+        <input type="range" id="velocidadeScroll" min="30" max="300" value="30">
+      </div>
+      <button id="rolarBtn">Scroll automático</button>
+      <div id="acorde-letra-container"></div>
+      <p><a id="link-cifra" target="_blank"><i data-lucide="youtube"></i> Ver no YouTube</a></p>
+      <button id="btn-anterior"><i data-lucide="chevron-left"></i> Anterior</button>
+      <button id="btn-proxima"><i data-lucide="chevron-right"></i> Próxima</button>
+    </div>
   </main>
 
   <footer>

@@ -45,7 +45,7 @@ function mostrarDetalhe(ensaio, ensaios, container) {
 
   const musicasHtml = ensaio.musicas.length
     ? `<ul>${ensaio.musicas.map(m => 
-        `<li><a href="cifras.html?id=${m.idCifra}" target="_blank">${m.nome}</a></li>`
+        `<li><a href="cifras.html?id=${m.idCifra}" target="_self">${m.nome}</a></li>`
       ).join('')}</ul>`
     : `<p><em>Sem músicas cadastradas.</em></p>`;
 

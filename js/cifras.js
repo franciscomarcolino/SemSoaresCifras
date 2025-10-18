@@ -1,115 +1,180 @@
-let cifras = []; // precisa carregar cifras primeiro
+let cifras = []; 
+let indiceAtual = 0;
+let ensaioAtual = null; // para voltar do detalhe da cifra
 
-// Carrega JSON de cifras
+// Carrega o JSON de cifras
 async function carregarCifras() {
-    const resp = await fetch('data/cifras.json');
-    cifras = await resp.json();
+    const resposta = await fetch('data/cifras.json');
+    cifras = await resposta.json();
+    cifras.sort((a, b) => a.titulo.localeCompare(b.titulo));
 }
 
-// Carrega JSON de ensaios
-async function carregarEnsaios() {
-    await carregarCifras();
-    const resp = await fetch('data/ensaios.json');
-    const ensaios = await resp.json();
+// Abre a cifra detalhada dentro do detalhe do ensaio
+function abrirCifraDoEnsaio(musica, ensaio) {
+    ensaioAtual = ensaio;
 
-    const container = document.getElementById('lista-ensaios');
-    ensaios.sort((a, b) => new Date(a.data) - new Date(b.data));
-    mostrarLista(ensaios, container);
-}
+    // Busca a cifra pelo idCifra ou pelo nome da música
+    const cifra = cifras.find(c => c.id === musica.idCifra || c.titulo === musica.nome);
+    if (!cifra) {
+        alert("Cifra não encontrada.");
+        return;
+    }
 
-function mostrarLista(ensaios, container) {
+    const detalheDiv = document.getElementById('detalhe-cifra');
+    const container = document.getElementById('acorde-letra-container');
+    detalheDiv.style.display = 'block';
     container.innerHTML = '';
-    ensaios.forEach(ensaio => {
+    container.style.display = 'block';
+    container.style.minHeight = '200px';
+
+    // Título e banda
+    document.getElementById('titulo-cifra').textContent = cifra.titulo;
+    document.getElementById('banda-cifra').textContent = cifra.banda;
+    if (document.getElementById('link-cifra')) {
+        document.getElementById('link-cifra').href = cifra.linkCifra || '#';
+    }
+
+    // Renderiza versos
+    if (cifra.versos && cifra.versos.length > 0) {
+        cifra.versos.forEach(verso => {
+            const versoDiv = document.createElement('div');
+            versoDiv.className = 'verso';
+
+            if (verso.acordes && verso.acordes.trim() !== '') {
+                const acordesDiv = document.createElement('div');
+                acordesDiv.className = 'linha-acordes';
+                acordesDiv.textContent = verso.acordes;
+                versoDiv.appendChild(acordesDiv);
+            }
+
+            const letraDiv = document.createElement('div');
+            letraDiv.className = 'linha-letra';
+            letraDiv.textContent = verso.letra;
+            versoDiv.appendChild(letraDiv);
+
+            container.appendChild(versoDiv);
+        });
+    }
+
+    // Botão de voltar para detalhe do ensaio
+    const btnVoltar = document.createElement('button');
+    btnVoltar.id = 'btn-voltar-ensaio';
+    btnVoltar.innerHTML = `<i data-lucide="chevron-left"></i> Voltar`;
+    btnVoltar.addEventListener('click', () => {
+        detalheDiv.style.display = 'none';
+        container.innerHTML = '';
+        mostrarDetalhe(ensaioAtual, [ensaioAtual], document.getElementById('lista-ensaios'));
+        lucide.createIcons();
+    });
+    container.appendChild(btnVoltar);
+
+    // Renderiza ícones Lucide
+    lucide.createIcons();
+}
+
+// Função de exibir lista de cifras (mantida como na versão original)
+function exibirLista(filtro = '') {
+    const listaDiv = document.getElementById('lista-cifras');
+    const detalheDiv = document.getElementById('detalhe-cifra');
+    listaDiv.style.display = 'block';
+    detalheDiv.style.display = 'none';
+
+    let listaContainer = document.getElementById('cifras-lista-container');
+    if (!listaContainer) {
+        listaContainer = document.createElement('div');
+        listaContainer.id = 'cifras-lista-container';
+        listaDiv.appendChild(listaContainer);
+    }
+
+    const filtroLower = filtro.toLowerCase();
+    const cifrasFiltradas = cifras.filter(c =>
+        c.titulo.toLowerCase().includes(filtroLower) ||
+        (c.banda && c.banda.toLowerCase().includes(filtroLower))
+    );
+
+    listaContainer.innerHTML = '';
+
+    cifrasFiltradas.forEach((cifra, i) => {
         const div = document.createElement('div');
         div.className = 'list-item';
 
-        const cancelado = ensaio.status?.toLowerCase() === 'cancelado';
-        const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
-        const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
+        const acordesUnicos = Array.from(new Set(
+            cifra.versos
+                .map(v => v.acordes)
+                .filter(a => a && a.trim() !== "")
+                .join(' ')
+                .split(/\s+/)
+        ));
 
-        div.innerHTML = `
-            <h2>🎵 Ensaio de ${ensaio.data}</h2>
-            <span class="${statusClass}">${statusTexto}</span>
-            <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
-        `;
-        div.addEventListener('click', () => mostrarDetalhe(ensaio, ensaios, container));
-        container.appendChild(div);
+        div.innerHTML = `<strong>${cifra.titulo}</strong> - <em>${cifra.banda}</em> <span class="acordes-resumo">${acordesUnicos.join(' ')}</span>`;
+        div.onclick = () => abrirCifra(i);
+        listaContainer.appendChild(div);
     });
+
+    if (cifrasFiltradas.length === 0) {
+        const msg = document.createElement('p');
+        msg.textContent = 'Nenhuma música encontrada.';
+        msg.style.textAlign = 'center';
+        listaContainer.appendChild(msg);
+    }
 }
 
-function mostrarDetalhe(ensaio, ensaios, container) {
-    container.innerHTML = '';
+// Abrir cifra detalhada (como original)
+function abrirCifra(indice) {
+    indiceAtual = indice;
+    const cifra = cifras[indice];
 
-    const detalheDiv = document.createElement('div');
-    detalheDiv.className = 'list-item detalhe-ensaio';
-
-    const cancelado = ensaio.status?.toLowerCase() === 'cancelado';
-    const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
-    const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
-
-    // Lista de músicas com onclick para abrir cifra na mesma tela
-    const musicasHtml = ensaio.musicas.length
-        ? `<ul id="musicas-ensaio-container">${ensaio.musicas.map(m => 
-            `<li><a href="#" onclick="abrirCifraDoEnsaio(${m.idCifra})">${m.nome}</a></li>`
-        ).join('')}</ul>`
-        : `<p><em>Sem músicas cadastradas.</em></p>`;
-
-    detalheDiv.innerHTML = `
-        <h2>🎵 Ensaio de ${ensaio.data}</h2>
-        <span class="${statusClass}">${statusTexto}</span>
-        <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
-        <h3>Setlist</h3>
-        ${musicasHtml}
-    `;
-
-    // Botão voltar para lista de ensaios
-    const btnVoltar = document.createElement('button');
-    btnVoltar.textContent = '⬅ Voltar';
-    btnVoltar.id = 'btn-voltar-ensaio';
-    btnVoltar.style.display = 'none';
-    detalheDiv.appendChild(btnVoltar);
-
-    container.appendChild(detalheDiv);
-}
-
-// Função para abrir cifra na mesma tela do detalhe do ensaio
-function abrirCifraDoEnsaio(idCifra) {
-    const cifra = cifras.find(c => c.id === idCifra);
-    if (!cifra) return;
-
-    const detalheDiv = document.getElementById('lista-ensaios');
-    detalheDiv.innerHTML = ''; // limpa a lista do ensaio
+    const detalheDiv = document.getElementById('detalhe-cifra');
     const container = document.getElementById('acorde-letra-container');
-    container.style.display = 'block';
+    detalheDiv.style.display = 'block';
     container.innerHTML = '';
+    container.style.display = 'block';
+    container.style.minHeight = '200px';
 
     document.getElementById('titulo-cifra').textContent = cifra.titulo;
     document.getElementById('banda-cifra').textContent = cifra.banda;
+    document.getElementById('link-cifra').href = cifra.linkCifra;
 
-    cifra.versos.forEach(verso => {
-        const versoDiv = document.createElement('div');
-        versoDiv.className = 'verso';
-        if (verso.acordes) {
-            const acordesDiv = document.createElement('div');
-            acordesDiv.className = 'linha-acordes';
-            acordesDiv.textContent = verso.acordes;
-            versoDiv.appendChild(acordesDiv);
-        }
-        const letraDiv = document.createElement('div');
-        letraDiv.className = 'linha-letra';
-        letraDiv.textContent = verso.letra;
-        versoDiv.appendChild(letraDiv);
-        container.appendChild(versoDiv);
-    });
+    if (cifra.versos && cifra.versos.length > 0) {
+        cifra.versos.forEach(verso => {
+            const versoDiv = document.createElement('div');
+            versoDiv.className = 'verso';
 
-    // Botão voltar para detalhe do ensaio
-    const btnVoltar = document.getElementById('btn-voltar-ensaio');
-    btnVoltar.style.display = 'inline-block';
-    btnVoltar.onclick = () => {
-        container.style.display = 'none';
-        carregarEnsaios(); // recarrega lista para voltar ao detalhe do ensaio
-    };
+            if (verso.acordes && verso.acordes.trim() !== '') {
+                const acordesDiv = document.createElement('div');
+                acordesDiv.className = 'linha-acordes';
+                acordesDiv.textContent = verso.acordes;
+                versoDiv.appendChild(acordesDiv);
+            }
+
+            const letraDiv = document.createElement('div');
+            letraDiv.className = 'linha-letra';
+            letraDiv.textContent = verso.letra;
+            versoDiv.appendChild(letraDiv);
+
+            container.appendChild(versoDiv);
+        });
+    }
+
+    document.getElementById('lista-cifras').style.display = 'none';
+    lucide.createIcons();
+}
+
+// Botões de navegação
+document.getElementById('btn-proxima').onclick = () => {
+    indiceAtual = (indiceAtual + 1) % cifras.length;
+    abrirCifra(indiceAtual);
+};
+document.getElementById('btn-anterior').onclick = () => {
+    indiceAtual = (indiceAtual - 1 + cifras.length) % cifras.length;
+    abrirCifra(indiceAtual);
+};
+
+// Voltar para lista
+function voltarLista() {
+    const filtroAtual = document.getElementById('filtro-cifras')?.value || '';
+    exibirLista(filtroAtual);
 }
 
 // Inicializa
-carregarEnsaios();
+document.addEventListener('DOMContentLoaded', carregarCifras);
