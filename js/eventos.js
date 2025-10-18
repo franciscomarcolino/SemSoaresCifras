@@ -48,4 +48,3 @@ document.getElementById('btn-ocultar').onclick = () => {
 };
 
 carregarEventos();
-

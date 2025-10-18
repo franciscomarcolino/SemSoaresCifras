@@ -336,4 +336,56 @@ footer {
   background: #222;
 }
 
+/* === Tela de detalhe === */
+.detalhe-ensaio {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: left;
+  max-width: 600px;
+  margin: 1rem auto;
+}
+
+.detalhe-ensaio h2 {
+  color: var(--accent);
+  margin-top: 0;
+}
+
+.detalhe-ensaio h3 {
+  margin-top: 1rem;
+  color: var(--accent);
+}
+
+.detalhe-ensaio ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+.detalhe-ensaio li {
+  margin: 0.3rem 0;
+}
+
+.detalhe-ensaio a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.detalhe-ensaio a:hover {
+  text-decoration: underline;
+}
+
+#btn-voltar {
+  margin-top: 1rem;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#btn-voltar:hover {
+  background: var(--accent-hover);
+}
 

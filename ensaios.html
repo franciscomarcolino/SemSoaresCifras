@@ -8,27 +8,35 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
+  <!-- === CABEÇALHO === -->
   <header>
-  <div class="logo-group">
-    <img src="img/Icone_Sem_Soares.png" alt="Logo da Banda" class="logo">
-    <h1>Banda Sem Soares</h1>
-  </div> 
+    <div class="logo-group">
+      <img src="img/Icone_Sem_Soares.png" alt="Logo da Banda" class="logo">
+      <h1>Banda Sem Soares</h1>
+    </div>
 
-  <nav>
-    <a href="index.html"><i data-lucide="home"></i> Home</a>
-    <a href="cifras.html"><i data-lucide="guitar"></i> Cifras</a>
-    <a href="eventos.html"><i data-lucide="calendar-days"></i> Eventos</a>
-    <a href="ensaios.html"><i data-lucide="drum"></i> Ensaios</a>
-  </nav>
-</header>
+    <nav>
+      <a href="index.html"><i data-lucide="home"></i> Home</a>
+      <a href="cifras.html"><i data-lucide="guitar"></i> Cifras</a>
+      <a href="eventos.html"><i data-lucide="calendar-days"></i> Eventos</a>
+      <a href="ensaios.html" class="ativo"><i data-lucide="drum"></i> Ensaios</a>
+    </nav>
+  </header>
 
-  <main id="lista-ensaios"></main>
+  <!-- === CONTEÚDO PRINCIPAL === -->
+  <main id="lista-ensaios">
+    <!-- O conteúdo é gerado dinamicamente via ensaios.js -->
+  </main>
 
+  <!-- === RODAPÉ === -->
   <footer>
     <p>© 2025 Banda Sem Soares - Todos os direitos reservados</p>
   </footer>
 
+  <!-- === SCRIPTS === -->
   <script src="js/ensaios.js"></script>
-  <script>lucide.createIcons();</script>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>
