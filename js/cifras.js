@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const estaNoFim = () => (window.innerHeight + (scroller().scrollTop || window.scrollY) >= scroller().scrollHeight - 1);
 
   function step(ts) {
+    if (!running) return; // garante que não execute se já foi parado
     if (!lastTs) lastTs = ts;
     const delta = ts - lastTs;
     lastTs = ts;
@@ -93,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function parar() {
     running = false;
     lastTs = null;
-    if (rafId) {
+    if (rafId !== null) {
       cancelAnimationFrame(rafId);
       rafId = null;
     }
@@ -105,15 +106,14 @@ document.addEventListener('DOMContentLoaded', () => {
     else iniciar();
   });
 
-  // Atualiza a velocidade conforme o slider
   slider.addEventListener('input', (e) => {
     pxPorSegundo = parseInt(e.target.value, 10);
   });
 
-  // Pausa se o usuário interagir
   const pauseOnUser = () => {
     if (running) parar();
   };
+
   ['touchstart', 'touchmove', 'wheel', 'pointerdown'].forEach(evt =>
     window.addEventListener(evt, pauseOnUser, { passive: true })
   );
