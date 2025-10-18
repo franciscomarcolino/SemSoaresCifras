@@ -178,6 +178,14 @@ button:hover {
   background: var(--accent-hover);
 }
 
+#velocidadeScroll
+{
+  width: 300px;           /* largura */
+  height: 25px;           /* altura */
+  background-color: var(--accent); /* cor de fundo */
+  color: var(--accent-hover);            /* cor do texto */
+ }
+
 /* === LINKS === */
 a {
   color: var(--accent);
