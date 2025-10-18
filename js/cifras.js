@@ -66,9 +66,29 @@ function abrirCifra(indice) {
   const cifra = cifras[indice];
   document.getElementById('titulo-cifra').textContent = cifra.titulo;
   document.getElementById('banda-cifra').textContent = cifra.banda;
-  document.getElementById('acordes-cifra').textContent = cifra.acordes;
-  document.getElementById('letra-cifra').textContent = cifra.letra;
   document.getElementById('link-cifra').href = cifra.linkYoutube;
+
+  const container = document.getElementById('acorde-letra-container');
+  container.innerHTML = ''; // limpa o conteúdo antigo
+
+  // Para cada linha da música, adicionamos acordes e letra
+  cifra.cifras.forEach(linha => {
+    const linhaDiv = document.createElement('div');
+    linhaDiv.className = 'linha-cifra';
+
+    const acordesDiv = document.createElement('pre'); // mantém espaçamento
+    acordesDiv.className = 'acordes';
+    acordesDiv.textContent = linha.acordes;
+
+    const letraDiv = document.createElement('pre'); // mantém formatação da letra
+    letraDiv.className = 'letra';
+    letraDiv.textContent = linha.letra;
+
+    linhaDiv.appendChild(acordesDiv);
+    linhaDiv.appendChild(letraDiv);
+    container.appendChild(linhaDiv);
+  });
+
   document.getElementById('lista-cifras').style.display = 'none';
   document.getElementById('detalhe-cifra').style.display = 'block';
 }
