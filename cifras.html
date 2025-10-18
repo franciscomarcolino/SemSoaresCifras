@@ -24,21 +24,22 @@
 
   <main id="cifras-container">
     <div id="lista-cifras">
-      <!-- Lista gerada dinamicamente pelo JS -->
+      <div id="filtro-container">
+        <i class="fa fa-search"></i>
+        <input type="text" id="filtro-cifras" placeholder="Buscar música ou banda...">
+      </div>
+      <!-- Lista de cifras gerada dinamicamente -->
     </div>
 
     <div id="detalhe-cifra" style="display:none;">
       <h2 id="titulo-cifra"></h2>
       <p><strong>Banda:</strong> <span id="banda-cifra"></span></p>
-
-      <div id="scrollControls" style="text-align:center;">
-        <div style="white-space:pre-wrap;">Velocidade do scroll</div>
+      <div id="scrollControls" style="text-align: center;">
+        <div style="white-space: pre-wrap; text-align: center;">Velocidade do scroll</div>
         <input type="range" id="velocidadeScroll" min="30" max="300" value="30">
       </div>
-      <button id="rolarBtn">Scroll automático</button>
-
+      <button id="rolarBtn">Ativar Scroll</button>
       <div id="acorde-letra-container"></div>
-
       <p><a id="link-cifra" target="_blank"><i data-lucide="youtube"></i> Ver no YouTube</a></p>
       <button id="btn-anterior"><i data-lucide="chevron-left"></i> Anterior</button>
       <button id="btn-proxima"><i data-lucide="chevron-right"></i> Próxima</button>
@@ -50,6 +51,7 @@
   </footer>
 
   <script src="js/cifras.js"></script>
+  <script src="js/scrollAuto.js"></script>
   <script>lucide.createIcons();</script>
 </body>
 </html>

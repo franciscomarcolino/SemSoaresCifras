@@ -1,6 +1,3 @@
-// -----------------------
-// Scroll automático ajustado
-// -----------------------
 document.addEventListener('DOMContentLoaded', () => {
     const botao = document.getElementById('rolarBtn');
     const slider = document.getElementById('velocidadeScroll');
@@ -28,11 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
             acumulado -= px;
         }
 
-        if (estaNoFim()) {
-            parar();
-            return;
-        }
-        rafId = requestAnimationFrame(step);
+        if (estaNoFim()) parar();
+        else rafId = requestAnimationFrame(step);
     }
 
     function iniciar() {
@@ -44,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function parar() {
-        if (!running) return;
         running = false;
         lastTs = null;
         acumulado = 0;
@@ -53,26 +46,18 @@ document.addEventListener('DOMContentLoaded', () => {
         botao.textContent = 'Ativar Scroll';
     }
 
-    botao.addEventListener('click', (e) => {
-        e.stopPropagation(); // impede que o clique reinicie o scroll imediatamente
-        if (running) parar();
-        else iniciar();
+    botao.addEventListener('click', e => {
+        e.stopPropagation();
+        if (running) parar(); else iniciar();
     });
 
     slider.addEventListener('input', e => {
         pxPorSegundo = parseInt(e.target.value, 10);
     });
 
-    const pauseOnUser = (e) => {
-        if (e.target.closest('#rolarBtn')) return;
-        if (running) parar();
-    };
-
     ['touchstart', 'touchmove', 'wheel', 'mousedown'].forEach(evt =>
-        window.addEventListener(evt, pauseOnUser, { passive: true })
+        window.addEventListener(evt, () => { if (running) parar(); }, { passive: true })
     );
 
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) parar();
-    });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) parar(); });
 });

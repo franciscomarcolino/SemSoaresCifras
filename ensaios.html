@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -22,21 +22,19 @@
   </header>
 
   <main id="lista-ensaios">
-    <!-- Lista de ensaios gerada dinamicamente pelo JS -->
+    <!-- Lista de ensaios gerada dinamicamente -->
   </main>
 
+  <!-- Detalhe da cifra acessível a partir do ensaio -->
   <div id="detalhe-cifra" style="display:none;">
     <h2 id="titulo-cifra"></h2>
     <p><strong>Banda:</strong> <span id="banda-cifra"></span></p>
-
-    <div id="scrollControls" style="text-align:center;">
-      <div style="white-space:pre-wrap;">Velocidade do scroll</div>
+    <div id="scrollControls" style="text-align: center;">
+      <div style="white-space: pre-wrap; text-align: center;">Velocidade do scroll</div>
       <input type="range" id="velocidadeScroll" min="30" max="300" value="30">
     </div>
-    <button id="rolarBtn">Scroll automático</button>
-
+    <button id="rolarBtn">Ativar Scroll</button>
     <div id="acorde-letra-container"></div>
-
     <p><a id="link-cifra" target="_blank"><i data-lucide="youtube"></i> Ver no YouTube</a></p>
     <button id="btn-anterior"><i data-lucide="chevron-left"></i> Anterior</button>
     <button id="btn-proxima"><i data-lucide="chevron-right"></i> Próxima</button>
@@ -48,6 +46,7 @@
 
   <script src="js/cifras.js"></script>
   <script src="js/ensaios.js"></script>
+  <script src="js/scrollAuto.js"></script>
   <script>lucide.createIcons();</script>
 </body>
 </html>
