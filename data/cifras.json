@@ -1,12 +1,12 @@
 [
-    {
+	{
   "id": 1,
-  "titulo": "Tempo Perdido 1AA1",
+  "titulo": "Tempo Perdido 1AA",
   "banda": "Legião Urbana",
   "linkYoutube": "",
   "versos": [
     {
-      "acordes": "C7 Am7",
+      "acordes": "C Am7",
       "letra": "Todos os dias quando acordo"
     },
     {
@@ -29,7 +29,7 @@
 ,
     {
   "id": 2,
-  "titulo": "Tempo Perdido 2BB2",
+  "titulo": "Tempo Perdido 2BB",
   "banda": "Legiao Urbana",
   "linkYoutube": "",
   "versos": [
@@ -54,5 +54,3 @@
 
   
 ]
-
-
