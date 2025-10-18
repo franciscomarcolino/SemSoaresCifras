@@ -14,15 +14,11 @@
     "local": "Estúdio central",
     "status": "ativo",
     "musicas": [
-      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
+      { "nome": "Tempo Perdido 1AA", "idCifra": 1 },
+      { "nome": "Tempo Perdido 2BB", "idCifra": 2 },
+      { "nome": "Alvo Mais Que a Neve", "idCifra": 3 }
     ]
-  }
-  ,
+  },
   {
     "id": 3,
     "data": "02 Novembro 2025",
@@ -30,45 +26,8 @@
     "local": "Estúdio central",
     "status": "ativo",
     "musicas": [
-      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
-    ]
-  },
-  {
-    "id": 4,
-    "data": "09 Novembro 2025",
-    "hora": "18:30",
-    "local": "Estúdio central",
-    "status": "ativo",
-    "musicas": [
-      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
-    ]
-  },
-  {
-    "id": 5,
-    "data": "16 Novembro 2025",
-    "hora": "18:30",
-    "local": "Estúdio central",
-    "status": "ativo",
-    "musicas": [
-      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
-    ]
-  },
-  {
-    "id": 6,
-    "data": "23 Novembro 2025",
-    "hora": "18:30",
-    "local": "Estúdio central",
-    "status": "ativo",
-    "musicas": [
-      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
+      { "nome": "Alvo Mais Que a Neve", "idCifra": 3 },
+      { "nome": "Tempo Perdido 1AA", "idCifra": 1 }
     ]
   }
 ]

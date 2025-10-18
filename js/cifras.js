@@ -1,4 +1,4 @@
-let cifras = []; 
+let cifras = [];
 let indiceAtual = 0;
 
 // Carrega o JSON de cifras
@@ -6,25 +6,19 @@ async function carregarCifras() {
     const resposta = await fetch('data/cifras.json');
     cifras = await resposta.json();
     cifras.sort((a, b) => a.titulo.localeCompare(b.titulo));
-
     exibirLista();
-
-    // 🔍 Filtro em tempo real
-    const filtroInput = document.getElementById('filtro-cifras');
-    if (filtroInput) {
-        filtroInput.addEventListener('input', e => {
-            exibirLista(e.target.value);
-        });
-    }
 }
 
-// Exibe a lista de músicas filtrada
+// Exibe a lista de cifras filtrada
 function exibirLista(filtro = '') {
     const listaDiv = document.getElementById('lista-cifras');
     const detalheDiv = document.getElementById('detalhe-cifra');
+
+    // Garante que lista esteja visível e detalhe escondido
     listaDiv.style.display = 'block';
     detalheDiv.style.display = 'none';
 
+    // Cria container interno se ainda não existir
     let listaContainer = document.getElementById('cifras-lista-container');
     if (!listaContainer) {
         listaContainer = document.createElement('div');
@@ -44,7 +38,6 @@ function exibirLista(filtro = '') {
         const div = document.createElement('div');
         div.className = 'list-item';
 
-        // Pega todos os acordes de todos os versos, remove vazios e duplicados
         const acordesUnicos = Array.from(new Set(
             cifra.versos
                 .map(v => v.acordes)
@@ -66,32 +59,31 @@ function exibirLista(filtro = '') {
     }
 }
 
-// Abre a cifra detalhada
+// Abrir cifra detalhada
 function abrirCifra(indice) {
     indiceAtual = indice;
     const cifra = cifras[indice];
 
-    // 1️⃣ Mostra a div de detalhe e garante altura mínima
     const detalheDiv = document.getElementById('detalhe-cifra');
-    detalheDiv.style.display = 'block';
-
+    const listaDiv = document.getElementById('lista-cifras');
     const container = document.getElementById('acorde-letra-container');
-    container.innerHTML = ''; // limpa versos anteriores
-    container.style.display = 'block';
+
+    // Exibe detalhe e esconde lista
+    detalheDiv.style.display = 'block';
+    listaDiv.style.display = 'none';
+    container.innerHTML = '';
     container.style.minHeight = '200px';
 
-    // 2️⃣ Preenche título, banda e link
     document.getElementById('titulo-cifra').textContent = cifra.titulo;
     document.getElementById('banda-cifra').textContent = cifra.banda;
-    document.getElementById('link-cifra').href = cifra.linkCifra;
+    document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
 
-    // 3️⃣ Renderiza versos detalhados
+    // Renderiza versos
     if (cifra.versos && cifra.versos.length > 0) {
         cifra.versos.forEach(verso => {
             const versoDiv = document.createElement('div');
             versoDiv.className = 'verso';
 
-            // Linha de acordes só se houver acordes
             if (verso.acordes && verso.acordes.trim() !== '') {
                 const acordesDiv = document.createElement('div');
                 acordesDiv.className = 'linha-acordes';
@@ -99,7 +91,6 @@ function abrirCifra(indice) {
                 versoDiv.appendChild(acordesDiv);
             }
 
-            // Linha da letra
             const letraDiv = document.createElement('div');
             letraDiv.className = 'linha-letra';
             letraDiv.textContent = verso.letra;
@@ -109,25 +100,27 @@ function abrirCifra(indice) {
         });
     }
 
-    // 4️⃣ Esconde a lista
-    document.getElementById('lista-cifras').style.display = 'none';
+    // Botões de navegação
+    document.getElementById('btn-proxima').onclick = () => {
+        indiceAtual = (indiceAtual + 1) % cifras.length;
+        abrirCifra(indiceAtual);
+    };
+    document.getElementById('btn-anterior').onclick = () => {
+        indiceAtual = (indiceAtual - 1 + cifras.length) % cifras.length;
+        abrirCifra(indiceAtual);
+    };
 }
 
-// Botões de navegação
-document.getElementById('btn-proxima').onclick = () => {
-    indiceAtual = (indiceAtual + 1) % cifras.length;
-    abrirCifra(indiceAtual);
-};
-document.getElementById('btn-anterior').onclick = () => {
-    indiceAtual = (indiceAtual - 1 + cifras.length) % cifras.length;
-    abrirCifra(indiceAtual);
-};
-
-// Voltar para lista
+// Voltar para lista de cifras
 function voltarLista() {
     const filtroAtual = document.getElementById('filtro-cifras')?.value || '';
     exibirLista(filtroAtual);
 }
+
+// Filtro em tempo real
+document.getElementById('filtro-cifras')?.addEventListener('input', e => {
+    exibirLista(e.target.value);
+});
 
 // -----------------------
 // Scroll automático
@@ -207,4 +200,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Inicializa
-carregarCifras();
+document.addEventListener('DOMContentLoaded', carregarCifras);

@@ -1,73 +1,71 @@
 async function carregarEnsaios() {
-  const resp = await fetch('data/ensaios.json');
-  const ensaios = await resp.json();
-  const container = document.getElementById('lista-ensaios');
+    const resp = await fetch('data/ensaios.json');
+    const ensaios = await resp.json();
+    const container = document.getElementById('lista-ensaios');
 
-  // Ordena por data
-  ensaios.sort((a, b) => new Date(a.data) - new Date(b.data));
+    // Ordena por data
+    ensaios.sort((a,b) => new Date(a.data) - new Date(b.data));
 
-  // Mostra lista inicial
-  mostrarLista(ensaios, container);
+    mostrarListaEnsaios(ensaioAtual=null, ensaios, container);
 }
 
-function mostrarLista(ensaios, container) {
-  container.innerHTML = '';
+function mostrarListaEnsaios(ensaioAtual, ensaios, container) {
+    container.innerHTML = '';
 
-  ensaios.forEach(ensaio => {
-    const div = document.createElement('div');
-    div.className = 'list-item';
+    ensaios.forEach(ensaio => {
+        const div = document.createElement('div');
+        div.className = 'list-item';
+
+        const cancelado = ensaio.status?.toLowerCase() === 'cancelado' ||
+                          ensaio.local?.toLowerCase().includes('cancel');
+        const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
+        const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
+
+        div.innerHTML = `
+            <h2>🎵 Ensaio de ${ensaio.data}</h2>
+            <span class="${statusClass}">${statusTexto}</span>
+            <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
+        `;
+        div.onclick = () => mostrarDetalheEnsaio(ensaio);
+        container.appendChild(div);
+    });
+}
+
+function mostrarDetalheEnsaio(ensaio) {
+    const container = document.getElementById('lista-ensaios');
+    container.innerHTML = '';
+
+    const detalheDiv = document.createElement('div');
+    detalheDiv.className = 'list-item detalhe-ensaio';
 
     const cancelado = ensaio.status?.toLowerCase() === 'cancelado' ||
                       ensaio.local?.toLowerCase().includes('cancel');
     const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
     const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
 
-    div.innerHTML = `
-      <h2>🎵 Ensaio de ${ensaio.data}</h2>
-      <span class="${statusClass}">${statusTexto}</span>
-      <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
+    const musicasHtml = ensaio.musicas.length
+        ? `<ul>${ensaio.musicas.map(m =>
+            `<li><a href="#" onclick="abrirCifra(${m.idCifra}, ${JSON.stringify(ensaio)})">${m.nome}</a></li>`
+          ).join('')}</ul>`
+        : `<p><em>Sem músicas cadastradas.</em></p>`;
+
+    detalheDiv.innerHTML = `
+        <h2>🎵 Ensaio de ${ensaio.data}</h2>
+        <span class="${statusClass}">${statusTexto}</span>
+        <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
+        <h3>Setlist</h3>
+        ${musicasHtml}
+        <button id="btn-anterior"><i data-lucide="chevron-left"></i> Voltar</button>
     `;
+    container.appendChild(detalheDiv);
 
-    // Clique abre detalhe
-    div.addEventListener('click', () => mostrarDetalhe(ensaio, ensaios, container));
+    document.getElementById('btn-anterior').onclick = () => carregarEnsaios();
 
-    container.appendChild(div);
-  });
-}
-
-function mostrarDetalhe(ensaio, ensaios, container) {
-  container.innerHTML = '';
-
-  const detalheDiv = document.createElement('div');
-  detalheDiv.className = 'list-item detalhe-ensaio';
-
-  const cancelado = ensaio.status?.toLowerCase() === 'cancelado' ||
-                    ensaio.local?.toLowerCase().includes('cancel');
-  const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
-  const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
-
-  const musicasHtml = ensaio.musicas.length
-    ? `<ul>${ensaio.musicas.map(m => `<li><a href="${m.link}" target="_blank">${m.nome}</a></li>`).join('')}</ul>`
-    : `<p><em>Sem músicas cadastradas.</em></p>`;
-
-  detalheDiv.innerHTML = `
-    <h2>🎵 Ensaio de ${ensaio.data}</h2>
-    <span class="${statusClass}">${statusTexto}</span>
-    <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
-    <h3>Setlist</h3>
-    ${musicasHtml}
-    <button id="btn-anterior"><i data-lucide="chevron-left"></i> Voltar</button>
-  `;
-
-  container.appendChild(detalheDiv);
-
-  // 🔹 Renderiza o ícone do Lucide
-  lucide.createIcons();
-
-  document.getElementById('btn-anterior').addEventListener('click', () => {
-    mostrarLista(ensaios, container);
-  });
+    if(window.lucide) lucide.createIcons();
 }
 
 // Inicializa
-carregarEnsaios();
+document.addEventListener('DOMContentLoaded', async () => {
+    await carregarCifras(); // garante que cifras já estejam carregadas
+    carregarEnsaios();
+});
