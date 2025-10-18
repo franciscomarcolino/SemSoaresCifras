@@ -1,6 +1,9 @@
-export function initScrollAutomatico(botaoId = 'rolarBtn', sliderId = 'velocidadeScroll') {
-    const botao = document.getElementById(botaoId);
-    const slider = document.getElementById(sliderId);
+// -----------------------
+// Scroll automático ajustado
+// -----------------------
+document.addEventListener('DOMContentLoaded', () => {
+    const botao = document.getElementById('rolarBtn');
+    const slider = document.getElementById('velocidadeScroll');
     if (!botao || !slider) return;
 
     let running = false;
@@ -9,7 +12,7 @@ export function initScrollAutomatico(botaoId = 'rolarBtn', sliderId = 'velocidad
     let pxPorSegundo = parseInt(slider.value, 10);
     let acumulado = 0;
 
-    const scroller = () => document.scrollingElement || document.documentElement || document.body;
+    const scroller = () => (document.scrollingElement || document.documentElement || document.body);
     const estaNoFim = () => (window.innerHeight + (scroller().scrollTop || window.scrollY) >= scroller().scrollHeight - 1);
 
     function step(ts) {
@@ -51,8 +54,9 @@ export function initScrollAutomatico(botaoId = 'rolarBtn', sliderId = 'velocidad
     }
 
     botao.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (running) parar(); else iniciar();
+        e.stopPropagation(); // impede que o clique reinicie o scroll imediatamente
+        if (running) parar();
+        else iniciar();
     });
 
     slider.addEventListener('input', e => {
@@ -60,7 +64,7 @@ export function initScrollAutomatico(botaoId = 'rolarBtn', sliderId = 'velocidad
     });
 
     const pauseOnUser = (e) => {
-        if (e.target.closest(`#${botaoId}`) || e.target.closest(`#${sliderId}`)) return;
+        if (e.target.closest('#rolarBtn')) return;
         if (running) parar();
     };
 
@@ -71,7 +75,4 @@ export function initScrollAutomatico(botaoId = 'rolarBtn', sliderId = 'velocidad
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) parar();
     });
-}
-
-// Inicialização automática se houver DOM
-document.addEventListener('DOMContentLoaded', () => initScrollAutomatico());
+});
