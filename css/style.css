@@ -255,3 +255,17 @@ footer {
     margin: 10px auto;
   }
 }
+
+.verso {
+    margin-bottom: 10px;
+}
+
+.linha-acordes {
+    color: #f1c40f; /* cor diferenciada para acordes */
+}
+
+.linha-letra {
+    color: #fff; /* cor da letra */
+}
+
+
