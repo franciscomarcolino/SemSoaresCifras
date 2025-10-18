@@ -1,17 +1,16 @@
 [
     {
     "id": 1,
-    "titulo": "aaaaaa",
+    "titulo": "Grandes Coisas1",
     "acordes": "C  G  Am  F",
-    "letra": "          C                 Am7
-					Todos os dias quando acordo",
+    "letra": "Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...",
     "linkYoutube": "https://www.youtube.com/watch?v=example2",
     "banda": "Minha Banda"
   }
 ,
   {
     "id": 2,
-    "titulo": "Grandes Coisas",
+    "titulo": "Grandes Coisas2",
     "acordes": "C  G  Am  F",
     "letra": "Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...",
     "linkYoutube": "https://www.youtube.com/watch?v=example2",
@@ -19,9 +18,9 @@
   },
   {
     "id": 3,
-    "titulo": "Grandes Coisas",
+    "titulo": "Grandes Coisas3",
     "acordes": "C  G  Am  F",
-    "letra": "Grandes coisas estão por vir...\naaaaaaaaaaaaaaaa",
+    "letra": "Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...Grandes coisas estão por vir...",
     "linkYoutube": "https://www.youtube.com/watch?v=example2",
     "banda": "Minha Banda"
   }
