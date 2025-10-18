@@ -43,7 +43,17 @@ function exibirLista(filtro = '') {
     cifrasFiltradas.forEach((cifra, i) => {
         const div = document.createElement('div');
         div.className = 'list-item';
-        div.innerHTML = `<strong>${cifra.titulo}</strong> - <em>${cifra.banda}</em> - <span class="acorde">${cifra.acordes}</span>`;
+
+        // Pega todos os acordes de todos os versos, remove vazios e duplicados
+        const acordesUnicos = Array.from(new Set(
+            cifra.versos
+                .map(v => v.acordes)
+                .filter(a => a && a.trim() !== "")
+                .join(' ')
+                .split(/\s+/)
+        ));
+
+        div.innerHTML = `<strong>${cifra.titulo}</strong> - <em>${cifra.banda}</em> <span class="acordes-resumo">${acordesUnicos.join(' ')}</span>`;
         div.onclick = () => abrirCifra(i);
         listaContainer.appendChild(div);
     });
@@ -63,24 +73,27 @@ function abrirCifra(indice) {
 
     document.getElementById('titulo-cifra').textContent = cifra.titulo;
     document.getElementById('banda-cifra').textContent = cifra.banda;
-    document.getElementById('acordes-cifra').innerHTML = `<span class="acorde">${cifra.acordes}</span>`;
-    document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
+    document.getElementById('link-cifra').href = cifra.linkCifra || '#';
 
     const container = document.getElementById('acorde-letra-container');
-    container.innerHTML = ''; // limpa conteúdo anterior
+    container.innerHTML = ''; // limpa versos anteriores
 
-    // Renderiza o conteúdo total da cifra
     if (cifra.versos && cifra.versos.length > 0) {
         cifra.versos.forEach(verso => {
             const versoDiv = document.createElement('div');
             versoDiv.className = 'verso';
 
-            // Se houver acordes, envolve com span
-            let conteudo = verso.conteudo || '';
-            const regexAcordes = /\b([A-G][#b]?m?(maj|min|dim|sus)?\d*)\b/g;
-            conteudo = conteudo.replace(regexAcordes, '<span class="acorde">$1</span>');
+            const acordesDiv = document.createElement('div');
+            acordesDiv.className = 'linha-acordes';
+            // Mantém apenas a cor de acordes se houver acordes visíveis
+            acordesDiv.textContent = verso.acordes || '';
 
-            versoDiv.innerHTML = conteudo;
+            const letraDiv = document.createElement('div');
+            letraDiv.className = 'linha-letra';
+            letraDiv.textContent = verso.letra || '';
+
+            versoDiv.appendChild(acordesDiv);
+            versoDiv.appendChild(letraDiv);
             container.appendChild(versoDiv);
         });
     }
