@@ -244,3 +244,11 @@ footer {
 #filtro-container input::placeholder {
   color: #aaa;
 }
+
+@media (max-width: 480px) {
+  #filtro-container {
+    width: 95%;
+    max-width: none;
+    margin: 10px auto;
+  }
+}
