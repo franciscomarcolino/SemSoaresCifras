@@ -22,10 +22,15 @@ function exibirLista(filtro = '') {
   listaDiv.style.display = 'block';
   detalheDiv.style.display = 'none';
 
-  // Mantém o campo de busca, caso já exista
-  const filtroContainer = document.getElementById('filtro-container');
-  listaDiv.innerHTML = '';
-  if (filtroContainer) listaDiv.appendChild(filtroContainer);
+  // 🔧 Em vez de recriar toda a lista, localizamos a área onde os itens vão ser renderizados
+  let listaContainer = document.getElementById('cifras-lista-container');
+
+  // Se ainda não existir, criamos uma div interna só para os itens
+  if (!listaContainer) {
+    listaContainer = document.createElement('div');
+    listaContainer.id = 'cifras-lista-container';
+    listaDiv.appendChild(listaContainer);
+  }
 
   // 🔍 aplica o filtro, se houver texto digitado
   const filtroLower = filtro.toLowerCase();
@@ -34,13 +39,16 @@ function exibirLista(filtro = '') {
     (c.banda && c.banda.toLowerCase().includes(filtroLower))
   );
 
+  // 🔄 limpa apenas os itens, sem apagar o campo de busca
+  listaContainer.innerHTML = '';
+
   // Gera os itens da lista filtrada
   cifrasFiltradas.forEach((cifra, i) => {
     const div = document.createElement('div');
     div.className = 'list-item';
     div.innerHTML = `<strong>${cifra.titulo}</strong> - <em>${cifra.banda}</em><br><em>${cifra.acordes}</em>`;
     div.onclick = () => abrirCifra(i);
-    listaDiv.appendChild(div);
+    listaContainer.appendChild(div);
   });
 
   // Se não houver resultados
@@ -48,9 +56,10 @@ function exibirLista(filtro = '') {
     const msg = document.createElement('p');
     msg.textContent = 'Nenhuma música encontrada.';
     msg.style.textAlign = 'center';
-    listaDiv.appendChild(msg);
+    listaContainer.appendChild(msg);
   }
 }
+
 
 function abrirCifra(indice) {
   indiceAtual = indice;
