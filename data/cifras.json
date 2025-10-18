@@ -3,7 +3,7 @@
   "id": 1,
   "titulo": "Creep",
   "banda": "Radiohead",
-  "linkYoutube": "",
+  "linkYoutube": "https://www.youtube.com/watch?v=XFkzRNyygfk",
   "versos": [
     {
       "acordes": "G B C Cm",
@@ -82,3 +82,4 @@
 
   
 ]
+
