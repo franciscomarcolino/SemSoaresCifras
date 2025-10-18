@@ -42,6 +42,11 @@ document.getElementById('btn-proxima').onclick = () => {
   abrirCifra(indiceAtual);
 };
 
+document.getElementById('btn-anterior').onclick = () => {
+  indiceAtual = (indiceAtual - 1) % cifras.length;
+  abrirCifra(indiceAtual);
+};
+
 function voltarLista() {
   exibirLista();
 }

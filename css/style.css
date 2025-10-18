@@ -30,7 +30,7 @@ header {
   top: 0;
   z-index: 10;
   box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  text-align: center; /* garante centralização do conteúdo interno */	
+  text-align: center; /* garante centralização do conteúdo interno */
 }
 
 /* Área do logo e título agrupada */
@@ -202,5 +202,3 @@ footer {
   font-size: 0.9rem;
   color: #aaa;
 }
-
-
