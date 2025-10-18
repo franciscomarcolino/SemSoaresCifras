@@ -1,19 +1,24 @@
-let cifras = [];
+let cifras = []; 
 let indiceAtual = 0;
 
 // Carrega o JSON de cifras
 async function carregarCifras() {
-    try {
-        const resp = await fetch('data/cifras.json');
-        cifras = await resp.json();
-        cifras.sort((a, b) => a.titulo.localeCompare(b.titulo));
-        console.log('Cifras carregadas:', cifras);
-    } catch (err) {
-        console.error('Erro ao carregar cifras:', err);
+    const resposta = await fetch('data/cifras.json');
+    cifras = await resposta.json();
+    cifras.sort((a, b) => a.titulo.localeCompare(b.titulo));
+
+    exibirLista();
+
+    // 🔍 Filtro em tempo real
+    const filtroInput = document.getElementById('filtro-cifras');
+    if (filtroInput) {
+        filtroInput.addEventListener('input', e => {
+            exibirLista(e.target.value);
+        });
     }
 }
 
-// Exibe lista de cifras na página de cifras
+// Exibe a lista de músicas filtrada
 function exibirLista(filtro = '') {
     const listaDiv = document.getElementById('lista-cifras');
     const detalheDiv = document.getElementById('detalhe-cifra');
@@ -39,6 +44,7 @@ function exibirLista(filtro = '') {
         const div = document.createElement('div');
         div.className = 'list-item';
 
+        // Pega todos os acordes de todos os versos, remove vazios e duplicados
         const acordesUnicos = Array.from(new Set(
             cifra.versos
                 .map(v => v.acordes)
@@ -60,28 +66,32 @@ function exibirLista(filtro = '') {
     }
 }
 
-// Abrir cifra detalhada (para a página de cifras ou ensaios)
-function abrirCifra(indice, ensaio = null) {
+// Abre a cifra detalhada
+function abrirCifra(indice) {
     indiceAtual = indice;
     const cifra = cifras[indice];
 
+    // 1️⃣ Mostra a div de detalhe e garante altura mínima
     const detalheDiv = document.getElementById('detalhe-cifra');
-    const container = document.getElementById('acorde-letra-container');
     detalheDiv.style.display = 'block';
-    container.innerHTML = '';
+
+    const container = document.getElementById('acorde-letra-container');
+    container.innerHTML = ''; // limpa versos anteriores
     container.style.display = 'block';
     container.style.minHeight = '200px';
 
+    // 2️⃣ Preenche título, banda e link
     document.getElementById('titulo-cifra').textContent = cifra.titulo;
     document.getElementById('banda-cifra').textContent = cifra.banda;
-    document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
+    document.getElementById('link-cifra').href = cifra.linkCifra;
 
-    // Renderiza versos
+    // 3️⃣ Renderiza versos detalhados
     if (cifra.versos && cifra.versos.length > 0) {
         cifra.versos.forEach(verso => {
             const versoDiv = document.createElement('div');
             versoDiv.className = 'verso';
 
+            // Linha de acordes só se houver acordes
             if (verso.acordes && verso.acordes.trim() !== '') {
                 const acordesDiv = document.createElement('div');
                 acordesDiv.className = 'linha-acordes';
@@ -89,6 +99,7 @@ function abrirCifra(indice, ensaio = null) {
                 versoDiv.appendChild(acordesDiv);
             }
 
+            // Linha da letra
             const letraDiv = document.createElement('div');
             letraDiv.className = 'linha-letra';
             letraDiv.textContent = verso.letra;
@@ -98,37 +109,30 @@ function abrirCifra(indice, ensaio = null) {
         });
     }
 
-    // Botões de navegação
-    document.getElementById('btn-proxima').onclick = () => {
-        indiceAtual = (indiceAtual + 1) % cifras.length;
-        abrirCifra(indiceAtual);
-    };
-    document.getElementById('btn-anterior').onclick = () => {
-        indiceAtual = (indiceAtual - 1 + cifras.length) % cifras.length;
-        abrirCifra(indiceAtual);
-    };
-
-    // Scroll automático
-    initScrollAutomatico();
-
-    // Voltar para lista (quando abrir via setlist do ensaio)
-    if (ensaio) {
-        const btnVoltar = document.createElement('button');
-        btnVoltar.textContent = 'Voltar';
-        btnVoltar.style.marginTop = '10px';
-        btnVoltar.onclick = () => {
-            detalheDiv.style.display = 'none';
-            container.innerHTML = '';
-            mostrarDetalheEnsaio(ensaio); // função do ensaios.js
-        };
-        container.appendChild(btnVoltar);
-    }
-
-    lucide.createIcons();
+    // 4️⃣ Esconde a lista
+    document.getElementById('lista-cifras').style.display = 'none';
 }
 
+// Botões de navegação
+document.getElementById('btn-proxima').onclick = () => {
+    indiceAtual = (indiceAtual + 1) % cifras.length;
+    abrirCifra(indiceAtual);
+};
+document.getElementById('btn-anterior').onclick = () => {
+    indiceAtual = (indiceAtual - 1 + cifras.length) % cifras.length;
+    abrirCifra(indiceAtual);
+};
+
+// Voltar para lista
+function voltarLista() {
+    const filtroAtual = document.getElementById('filtro-cifras')?.value || '';
+    exibirLista(filtroAtual);
+}
+
+// -----------------------
 // Scroll automático
-function initScrollAutomatico() {
+// -----------------------
+document.addEventListener('DOMContentLoaded', () => {
     const botao = document.getElementById('rolarBtn');
     const slider = document.getElementById('velocidadeScroll');
     if (!botao || !slider) return;
@@ -180,19 +184,27 @@ function initScrollAutomatico() {
         botao.textContent = 'Ativar Scroll';
     }
 
-    botao.onclick = () => { running ? parar() : iniciar(); };
-    slider.oninput = (e) => { pxPorSegundo = parseInt(e.target.value, 10); };
+    botao.addEventListener('click', () => {
+        if (running) parar(); else iniciar();
+    });
 
-    ['touchstart','touchmove','wheel','mousedown'].forEach(evt => window.addEventListener(evt, () => { if (running) parar(); }, { passive:true }));
-    document.addEventListener('visibilitychange', () => { if(document.hidden) parar(); });
-}
+    slider.addEventListener('input', e => {
+        pxPorSegundo = parseInt(e.target.value, 10);
+    });
+
+    const pauseOnUser = (e) => {
+        if (e.target.closest('#rolarBtn')) return;
+        if (running) parar();
+    };
+
+    ['touchstart', 'touchmove', 'wheel', 'mousedown'].forEach(evt =>
+        window.addEventListener(evt, pauseOnUser, { passive: true })
+    );
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) parar();
+    });
+});
 
 // Inicializa
-document.addEventListener('DOMContentLoaded', async () => {
-    await carregarCifras();
-    const filtroInput = document.getElementById('filtro-cifras');
-    if(filtroInput){
-        filtroInput.addEventListener('input', e => exibirLista(e.target.value));
-        exibirLista();
-    }
-});
+carregarCifras();
