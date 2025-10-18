@@ -3,7 +3,7 @@
     "id": 1,
     "data": "19 Outubro 2025",
     "hora": "N/A",
-    "local": "Sede da Banda",
+    "local": "Estúdio central",
     "status": "cancelado",
     "musicas": []
   },
@@ -11,7 +11,30 @@
     "id": 2,
     "data": "26 Outubro 2025",
     "hora": "14:00",
-    "local": "Sede da Banda",
+    "local": "Estúdio central",
+    "status": "ativo",
+    "musicas": [
+      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
+      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
+    ]
+  }
+  ,
+  {
+    "id": 3,
+    "data": "02 Novembro 2025",
+    "hora": "14:00",
+    "local": "Estúdio central",
+    "status": "ativo",
+    "musicas": [
+      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
+      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
+    ]
+  },
+  {
+    "id": 4,
+    "data": "09 Novembro 2025",
+    "hora": "14:00",
+    "local": "Estúdio central",
     "status": "ativo",
     "musicas": [
       { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },

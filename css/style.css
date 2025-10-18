@@ -337,8 +337,56 @@ footer {
 }
 
 /* === Tela de detalhe ensaio /* === Detalhe do Ensaio (versão aprimorada) === */
+/* === Blocos de Ensaio (Lista e Detalhe) === */
+.list-item {
+  position: relative;
+  background: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.list-item:hover {
+  transform: translateY(-3px);
+  background: #222;
+}
+
+/* === Título do Ensaio === */
+.list-item h2,
+.detalhe-ensaio h2 {
+  color: #ffffff; /* branco fixo */
+  font-size: 1.4rem;
+  margin: 0 0 0.3rem 0;
+}
+
+/* === Status (Ativo / Cancelado) === */
+.status-cancelado,
+.status-ativo {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: transparent; /* sem fundo escuro */
+}
+
+.status-ativo {
+  color: #4caf50; /* verde */
+}
+
+.status-cancelado {
+  color: #ff4444; /* vermelho */
+}
+
+/* === Detalhe do Ensaio === */
 .detalhe-ensaio {
-  position: relative; /* permite posicionar o status no topo direito */
+  position: relative;
   background: var(--card-bg);
   padding: 1.5rem;
   border-radius: 12px;
@@ -348,36 +396,7 @@ footer {
   box-shadow: 0 2px 5px rgba(0,0,0,0.4);
 }
 
-/* Título principal (Ensaio de + data) */
-.detalhe-ensaio h2 {
-  color: #ffe86e; /* tom mais claro que o dourado do site */
-  font-size: 1.4rem; /* levemente menor */
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-/* Posição e estilo do status */
-.detalhe-ensaio .status-cancelado,
-.detalhe-ensaio .status-ativo {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 0.9rem;
-  font-weight: bold;
-  background: rgba(0,0,0,0.4);
-  padding: 4px 10px;
-  border-radius: 6px;
-}
-
-.detalhe-ensaio .status-ativo {
-  color: #4caf50; /* verde */
-}
-
-.detalhe-ensaio .status-cancelado {
-  color: #ff4444; /* vermelho */
-}
-
-/* Subtítulo “Setlist” */
+/* Subtítulo */
 .detalhe-ensaio h3 {
   margin-top: 1.2rem;
   color: var(--accent);
@@ -386,7 +405,7 @@ footer {
   padding-bottom: 4px;
 }
 
-/* Botão voltar */
+/* Botão Voltar */
 #btn-voltar {
   margin-top: 1.5rem;
   background: var(--accent);
@@ -402,4 +421,3 @@ footer {
 #btn-voltar:hover {
   background: var(--accent-hover);
 }
-

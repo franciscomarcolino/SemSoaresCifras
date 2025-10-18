@@ -11,38 +11,36 @@ async function carregarEnsaios() {
 }
 
 function mostrarLista(ensaios, container) {
-  container.innerHTML = ''; // limpa conteúdo anterior
+  container.innerHTML = '';
 
-  ensaios.forEach(en => {
+  ensaios.forEach(ensaio => {
     const div = document.createElement('div');
     div.className = 'list-item';
 
-    // status baseado no campo ou texto
-    const cancelado = en.local?.toLowerCase().includes('cancel') || en.status === 'cancelado';
+    const cancelado = ensaio.status?.toLowerCase() === 'cancelado' ||
+                      ensaio.local?.toLowerCase().includes('cancel');
     const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
     const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
 
     div.innerHTML = `
-      <strong class="evento-data">📅 ${en.data}</strong>
-      <span class="evento-hora">⏰ ${en.hora}</span><br>
-      <span class="evento-local">📍 ${en.local}</span><br>
+      <h2>🎵 Ensaio de ${ensaio.data}</h2>
       <span class="${statusClass}">${statusTexto}</span>
+      <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
     `;
 
-    // evento de clique para abrir o detalhe
-    div.addEventListener('click', () => mostrarDetalhe(en, ensaios, container));
-
+    div.addEventListener('click', () => mostrarDetalhe(ensaio, ensaios, container));
     container.appendChild(div);
   });
 }
 
 function mostrarDetalhe(ensaio, ensaios, container) {
-  container.innerHTML = ''; // limpa lista
+  container.innerHTML = '';
 
   const detalheDiv = document.createElement('div');
   detalheDiv.className = 'list-item detalhe-ensaio';
 
-  const cancelado = ensaio.local?.toLowerCase().includes('cancel') || ensaio.status === 'cancelado';
+  const cancelado = ensaio.status?.toLowerCase() === 'cancelado' ||
+                    ensaio.local?.toLowerCase().includes('cancel');
   const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
   const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
 
@@ -54,7 +52,7 @@ function mostrarDetalhe(ensaio, ensaios, container) {
     <h2>🎵 Ensaio de ${ensaio.data}</h2>
     <span class="${statusClass}">${statusTexto}</span>
     <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
-    <h3 class="setlist">Setlist</h3>
+    <h3>Setlist</h3>
     ${musicasHtml}
     <button id="btn-voltar">⬅ Voltar</button>
   `;
@@ -65,5 +63,6 @@ function mostrarDetalhe(ensaio, ensaios, container) {
     mostrarLista(ensaios, container);
   });
 }
+
 
 carregarEnsaios();
