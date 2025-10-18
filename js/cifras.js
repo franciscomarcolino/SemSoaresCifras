@@ -43,8 +43,7 @@ function exibirLista(filtro = '') {
     cifrasFiltradas.forEach((cifra, i) => {
         const div = document.createElement('div');
         div.className = 'list-item';
-        // Exibe título, banda e todos os acordes resumidos
-        div.innerHTML = `<strong>${cifra.titulo}</strong> - <em>${cifra.banda}</em> <span style="color:gray;">[${cifra.versos.map(v => v.acordes).filter(a => a).join(' ')}]</span>`;
+        div.innerHTML = `<strong>${cifra.titulo}</strong> - <em>${cifra.banda}</em> - <span class="acorde">${cifra.acordes}</span>`;
         div.onclick = () => abrirCifra(i);
         listaContainer.appendChild(div);
     });
@@ -57,30 +56,33 @@ function exibirLista(filtro = '') {
     }
 }
 
-// Abre a cifra detalhada sem filtros, mantendo todo o conteúdo
+// Abre a cifra detalhada
 function abrirCifra(indice) {
     indiceAtual = indice;
     const cifra = cifras[indice];
 
     document.getElementById('titulo-cifra').textContent = cifra.titulo;
     document.getElementById('banda-cifra').textContent = cifra.banda;
-    document.getElementById('link-cifra').href = cifra.linkCifra || "#";
+    document.getElementById('acordes-cifra').innerHTML = `<span class="acorde">${cifra.acordes}</span>`;
+    document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
 
     const container = document.getElementById('acorde-letra-container');
-    container.innerHTML = ''; // limpa versos anteriores
+    container.innerHTML = ''; // limpa conteúdo anterior
 
+    // Renderiza o conteúdo total da cifra
     if (cifra.versos && cifra.versos.length > 0) {
         cifra.versos.forEach(verso => {
             const versoDiv = document.createElement('div');
             versoDiv.className = 'verso';
 
-            // Mostra o conteúdo completo do verso, combinando acordes e letra
-            versoDiv.textContent = (verso.acordes ? verso.acordes + ' ' : '') + verso.letra;
+            // Se houver acordes, envolve com span
+            let conteudo = verso.conteudo || '';
+            const regexAcordes = /\b([A-G][#b]?m?(maj|min|dim|sus)?\d*)\b/g;
+            conteudo = conteudo.replace(regexAcordes, '<span class="acorde">$1</span>');
 
+            versoDiv.innerHTML = conteudo;
             container.appendChild(versoDiv);
         });
-    } else {
-        container.textContent = 'Erro ao carregar a cifra.';
     }
 
     document.getElementById('lista-cifras').style.display = 'none';
@@ -103,7 +105,9 @@ function voltarLista() {
     exibirLista(filtroAtual);
 }
 
-// Scroll automático (mantém seu código atual)
+// -----------------------
+// Scroll automático
+// -----------------------
 document.addEventListener('DOMContentLoaded', () => {
     const botao = document.getElementById('rolarBtn');
     const slider = document.getElementById('velocidadeScroll');

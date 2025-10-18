@@ -256,16 +256,29 @@ footer {
   }
 }
 
+/* Container de cada verso */
 .verso {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-family: monospace; /* mantém alinhamento de tablaturas e espaços */
+    white-space: pre;        /* preserva quebras e espaços */
+    font-size: 20px;
+    text-align: center;
+    color: #fff;             /* cor padrão da letra */
 }
 
-.linha-acordes {
-    color: #f1c40f; /* cor diferenciada para acordes */
+/* Regex manual para colorir acordes (usando <span class="acorde"> se quiser marcar no JS) */
+.acorde {
+    color: #f1c40f;          /* cor diferenciada para acordes */
+    font-weight: bold;
 }
 
-.linha-letra {
-    color: #fff; /* cor da letra */
+/* Para links e botões */
+#detalhe-cifra a {
+    color: #3498db;
+    text-decoration: none;
+}
+#detalhe-cifra a:hover {
+    text-decoration: underline;
 }
 
 
