@@ -52,3 +52,28 @@ function voltarLista() {
 }
 
 carregarCifras();
+
+document.addEventListener('DOMContentLoaded', () => {
+  let intervaloScroll;
+
+  const botao = document.getElementById('rolarBtn');
+  if (!botao) return; // segurança: só roda se o botão existir
+
+  botao.addEventListener('click', () => {
+    if (intervaloScroll) {
+      clearInterval(intervaloScroll);
+      intervaloScroll = null;
+      botao.textContent = "Ativar Scroll";
+    } else {
+      intervaloScroll = setInterval(() => {
+        window.scrollBy({ top: 1, behavior: 'smooth' });
+        if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+          clearInterval(intervaloScroll);
+          intervaloScroll = null;
+          botao.textContent = "Ativar Scroll";
+        }
+      }, 10);
+      botao.textContent = "Parar Scroll";
+    }
+  });
+});
