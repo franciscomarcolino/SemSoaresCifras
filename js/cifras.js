@@ -1,102 +1,18 @@
 let cifras = []; 
 let indiceAtual = 0;
-let ensaioAtual = null;
+let ensaioAtual = null; // Guarda o ensaio atual para voltar
 
-// -----------------------
-// Carregamento de cifras
-// -----------------------
+// Carrega o JSON de cifras
 async function carregarCifras() {
     const resposta = await fetch('data/cifras.json');
     cifras = await resposta.json();
     cifras.sort((a, b) => a.titulo.localeCompare(b.titulo));
+
+    // Exibe lista na página de cifras
+    exibirLista();
 }
 
-// -----------------------
-// Abrir cifra do ensaio
-// -----------------------
-async function abrirCifraDoEnsaio(musica, ensaio) {
-    ensaioAtual = ensaio;
-
-    if (cifras.length === 0) {
-        await carregarCifras();
-    }
-
-    const cifra = cifras.find(c => c.id === musica.idCifra || c.titulo === musica.nome);
-    if (!cifra) {
-        alert("Cifra não encontrada.");
-        return;
-    }
-
-    abrirCifraDetalhada(cifra);
-}
-
-// -----------------------
-// Abrir cifra detalhada (uso geral)
-// -----------------------
-function abrirCifra(indice) {
-    indiceAtual = indice;
-    const cifra = cifras[indice];
-    abrirCifraDetalhada(cifra);
-}
-
-// -----------------------
-// Função genérica para abrir uma cifra
-// -----------------------
-function abrirCifraDetalhada(cifra) {
-    const detalheDiv = document.getElementById('detalhe-cifra');
-    const container = document.getElementById('acorde-letra-container');
-    detalheDiv.style.display = 'block';
-    container.innerHTML = '';
-    container.style.display = 'block';
-    container.style.minHeight = '200px';
-
-    document.getElementById('titulo-cifra').textContent = cifra.titulo;
-    document.getElementById('banda-cifra').textContent = cifra.banda;
-    document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
-
-    if (cifra.versos && cifra.versos.length > 0) {
-        cifra.versos.forEach(verso => {
-            const versoDiv = document.createElement('div');
-            versoDiv.className = 'verso';
-
-            if (verso.acordes && verso.acordes.trim() !== '') {
-                const acordesDiv = document.createElement('div');
-                acordesDiv.className = 'linha-acordes';
-                acordesDiv.textContent = verso.acordes;
-                versoDiv.appendChild(acordesDiv);
-            }
-
-            const letraDiv = document.createElement('div');
-            letraDiv.className = 'linha-letra';
-            letraDiv.textContent = verso.letra;
-            versoDiv.appendChild(letraDiv);
-
-            container.appendChild(versoDiv);
-        });
-    }
-
-    // Botão de voltar para detalhe do ensaio
-    if (ensaioAtual) {
-        const btnVoltar = document.createElement('button');
-        btnVoltar.id = 'btn-voltar-ensaio';
-        btnVoltar.innerHTML = `<i data-lucide="chevron-left"></i> Voltar`;
-        btnVoltar.addEventListener('click', () => {
-            detalheDiv.style.display = 'none';
-            container.innerHTML = '';
-            mostrarDetalhe(ensaioAtual, [ensaioAtual], document.getElementById('lista-ensaios'));
-            lucide.createIcons();
-        });
-        container.appendChild(btnVoltar);
-    }
-
-    document.getElementById('lista-cifras').style.display = 'none';
-    lucide.createIcons();
-    inicializarScrollAutomatico();
-}
-
-// -----------------------
-// Lista de cifras
-// -----------------------
+// Exibe a lista de cifras filtrada
 function exibirLista(filtro = '') {
     const listaDiv = document.getElementById('lista-cifras');
     const detalheDiv = document.getElementById('detalhe-cifra');
@@ -143,9 +59,108 @@ function exibirLista(filtro = '') {
     }
 }
 
-// -----------------------
-// Navegação entre cifras
-// -----------------------
+// Abre cifra detalhada na página de cifras
+function abrirCifra(indice) {
+    indiceAtual = indice;
+    const cifra = cifras[indice];
+
+    const detalheDiv = document.getElementById('detalhe-cifra');
+    const container = document.getElementById('acorde-letra-container');
+    detalheDiv.style.display = 'block';
+    container.innerHTML = '';
+    container.style.display = 'block';
+    container.style.minHeight = '200px';
+
+    document.getElementById('titulo-cifra').textContent = cifra.titulo;
+    document.getElementById('banda-cifra').textContent = cifra.banda;
+    document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
+
+    // Renderiza versos
+    if (cifra.versos && cifra.versos.length > 0) {
+        cifra.versos.forEach(verso => {
+            const versoDiv = document.createElement('div');
+            versoDiv.className = 'verso';
+
+            if (verso.acordes && verso.acordes.trim() !== '') {
+                const acordesDiv = document.createElement('div');
+                acordesDiv.className = 'linha-acordes';
+                acordesDiv.textContent = verso.acordes;
+                versoDiv.appendChild(acordesDiv);
+            }
+
+            const letraDiv = document.createElement('div');
+            letraDiv.className = 'linha-letra';
+            letraDiv.textContent = verso.letra;
+            versoDiv.appendChild(letraDiv);
+
+            container.appendChild(versoDiv);
+        });
+    }
+
+    document.getElementById('lista-cifras').style.display = 'none';
+
+    // Renderiza ícones Lucide
+    lucide.createIcons();
+}
+
+// Abre cifra diretamente do detalhe do ensaio
+function abrirCifraDoEnsaio(musica, ensaio) {
+    ensaioAtual = ensaio;
+
+    const cifra = cifras.find(c => c.id === musica.idCifra || c.titulo === musica.nome);
+    if (!cifra) {
+        alert("Cifra não encontrada.");
+        return;
+    }
+
+    const detalheDiv = document.getElementById('detalhe-cifra');
+    const container = document.getElementById('acorde-letra-container');
+    detalheDiv.style.display = 'block';
+    container.innerHTML = '';
+    container.style.display = 'block';
+    container.style.minHeight = '200px';
+
+    document.getElementById('titulo-cifra').textContent = cifra.titulo;
+    document.getElementById('banda-cifra').textContent = cifra.banda;
+    document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
+
+    if (cifra.versos && cifra.versos.length > 0) {
+        cifra.versos.forEach(verso => {
+            const versoDiv = document.createElement('div');
+            versoDiv.className = 'verso';
+
+            if (verso.acordes && verso.acordes.trim() !== '') {
+                const acordesDiv = document.createElement('div');
+                acordesDiv.className = 'linha-acordes';
+                acordesDiv.textContent = verso.acordes;
+                versoDiv.appendChild(acordesDiv);
+            }
+
+            const letraDiv = document.createElement('div');
+            letraDiv.className = 'linha-letra';
+            letraDiv.textContent = verso.letra;
+            versoDiv.appendChild(letraDiv);
+
+            container.appendChild(versoDiv);
+        });
+    }
+
+    // Botão de voltar para detalhe do ensaio
+    const btnVoltar = document.createElement('button');
+    btnVoltar.id = 'btn-voltar-ensaio';
+    btnVoltar.innerHTML = `<i data-lucide="chevron-left"></i> Voltar`;
+    btnVoltar.addEventListener('click', () => {
+        detalheDiv.style.display = 'none';
+        container.innerHTML = '';
+        mostrarDetalhe(ensaioAtual, [ensaioAtual], document.getElementById('lista-ensaios'));
+        lucide.createIcons();
+    });
+    container.appendChild(btnVoltar);
+
+    lucide.createIcons();
+}
+
+// Botões de navegação
 document.getElementById('btn-proxima').onclick = () => {
     indiceAtual = (indiceAtual + 1) % cifras.length;
     abrirCifra(indiceAtual);
@@ -155,10 +170,17 @@ document.getElementById('btn-anterior').onclick = () => {
     abrirCifra(indiceAtual);
 };
 
+// Voltar para lista
+function voltarLista() {
+    const filtroAtual = document.getElementById('filtro-cifras')?.value || '';
+    exibirLista(filtroAtual);
+}
+
 // -----------------------
 // Scroll automático
 // -----------------------
-function inicializarScrollAutomatico() {
+document.addEventListener('DOMContentLoaded', () => {
+    carregarCifras(); // garante que a lista seja carregada
     const botao = document.getElementById('rolarBtn');
     const slider = document.getElementById('velocidadeScroll');
     if (!botao || !slider) return;
@@ -230,9 +252,4 @@ function inicializarScrollAutomatico() {
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) parar();
     });
-}
-
-// -----------------------
-// Inicialização
-// -----------------------
-document.addEventListener('DOMContentLoaded', carregarCifras);
+});
