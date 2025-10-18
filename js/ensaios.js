@@ -6,63 +6,60 @@ async function carregarEnsaios() {
   // Ordena por data
   ensaios.sort((a, b) => new Date(a.data) - new Date(b.data));
 
-  // Mostra lista inicial
-  mostrarLista(ensaios, container);
-}
-
-function mostrarLista(ensaios, container) {
-  container.innerHTML = '';
-
-  ensaios.forEach(ensaio => {
+  // Cria lista de ensaios
+  ensaios.forEach(en => {
     const div = document.createElement('div');
     div.className = 'list-item';
-
-    const cancelado = ensaio.status?.toLowerCase() === 'cancelado' ||
-                      ensaio.local?.toLowerCase().includes('cancel');
-    const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
-    const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
-
     div.innerHTML = `
-      <h2>🎵 Ensaio de ${ensaio.data}</h2>
-      <span class="${statusClass}">${statusTexto}</span>
-      <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
+      <h2>Ensaio de ${formatarData(en.data)}</h2>
+      <span class="status-${en.cancelado ? 'cancelado' : 'ativo'}">
+        ${en.cancelado ? 'CANCELADO' : 'ATIVO'}
+      </span>
+      <p>⏰ ${en.hora} | 📍 ${en.local}</p>
     `;
-
-    div.addEventListener('click', () => mostrarDetalhe(ensaio, ensaios, container));
     container.appendChild(div);
+
+    // Clique no ensaio para abrir detalhe
+    div.addEventListener('click', () => abrirDetalheEnsaio(en));
   });
 }
 
-function mostrarDetalhe(ensaio, ensaios, container) {
-  container.innerHTML = '';
-
-  const detalheDiv = document.createElement('div');
-  detalheDiv.className = 'list-item detalhe-ensaio';
-
-  const cancelado = ensaio.status?.toLowerCase() === 'cancelado' ||
-                    ensaio.local?.toLowerCase().includes('cancel');
-  const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
-  const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
-
-  const musicasHtml = ensaio.musicas.length
-    ? `<ul>${ensaio.musicas.map(m => `<li><a href="${m.link}" target="_blank">${m.nome}</a></li>`).join('')}</ul>`
-    : `<p><em>Sem músicas cadastradas.</em></p>`;
-
-  detalheDiv.innerHTML = `
-    <h2>🎵 Ensaio de ${ensaio.data}</h2>
-    <span class="${statusClass}">${statusTexto}</span>
-    <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
-    <h3>Setlist</h3>
-    ${musicasHtml}
+// Função para abrir detalhe de um ensaio
+function abrirDetalheEnsaio(en) {
+  const container = document.getElementById('lista-ensaios');
+  container.innerHTML = `
     <button id="btn-anterior"><i data-lucide="chevron-left"></i> Voltar</button>
+    <div class="detalhe-ensaio">
+      <h2>Ensaio de ${formatarData(en.data)}</h2>
+      <span class="status-${en.cancelado ? 'cancelado' : 'ativo'}">
+        ${en.cancelado ? 'CANCELADO' : 'ATIVO'}
+      </span>
+      <p>⏰ ${en.hora} | 📍 ${en.local}</p>
+      <ul>
+        ${en.musicas.map(m => `<li><a href="${m.link}" target="_blank">${m.nome}</a></li>`).join('')}
+      </ul>
+    </div>
   `;
 
-  container.appendChild(detalheDiv);
+  // Renderiza os ícones do Lucide no botão
+  lucide.createIcons();
 
+  // Evento para voltar à lista
   document.getElementById('btn-anterior').addEventListener('click', () => {
-    mostrarLista(ensaios, container);
+    container.innerHTML = '';
+    carregarEnsaios();
   });
 }
 
+// Função auxiliar para formatar datas
+function formatarData(dataStr) {
+  const meses = [
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+  ];
+  const d = new Date(dataStr);
+  return `${d.getDate()} ${meses[d.getMonth()]} ${d.getFullYear()}`;
+}
 
+// Carrega ensaios na inicialização
 carregarEnsaios();
