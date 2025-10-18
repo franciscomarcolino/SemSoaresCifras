@@ -22,19 +22,5 @@
       { "acordes": "C Am7", "letra": "Mas tenho muito tempo" },
       { "acordes": "Bm Em", "letra": "Temos todo o tempo do mundo" }
     ]
-  },
-  {
-    "id": 3,
-    "titulo": "Alvo Mais Que a Neve",
-    "banda": "Legião Urbana",
-    "linkYoutube": "",
-    "versos": []
-  },
-  {
-    "id": 4,
-    "titulo": "Grandes Coisas",
-    "banda": "Legião Urbana",
-    "linkYoutube": "",
-    "versos": []
   }
 ]
