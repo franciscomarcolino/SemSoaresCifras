@@ -22,7 +22,7 @@ function renderizar() {
     const div = document.createElement('div');
     div.className = 'list-item'; // mantém estilo do site
     div.innerHTML = `
-      <strong class="evento-nome">${ev.nome}</strong>
+      <strong class="evento-nome">${ev.nome}</strong><br>
       <span class="evento-data">📅 ${ev.data}</span>
       <span class="evento-hora">⏰ ${ev.hora}</span><br>
       <span class="evento-local">📍 ${ev.local}</span><br><br><br>
