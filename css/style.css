@@ -214,8 +214,11 @@ footer {
 /* === FILTRO === */
 #filtro-container {
   position: relative;
-  width: 80%;
-  max-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 320px;
   margin: 15px auto;
 }
 
@@ -251,4 +254,5 @@ footer {
     max-width: none;
     margin: 10px auto;
   }
+
 }
