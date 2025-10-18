@@ -1,30 +1,25 @@
+// -----------------------
+// Carrega ensaios
+// -----------------------
 let ensaios = [];
-let ensaioAtual = null;
 
-// Carrega JSON de ensaios
 async function carregarEnsaios() {
     const resp = await fetch('data/ensaios.json');
     ensaios = await resp.json();
-
-    // Ordena por data
-    ensaios.sort((a, b) => new Date(a.data) - new Date(b.data));
-
-    mostrarLista(ensaios);
+    ensaios.sort((a,b) => new Date(a.data) - new Date(b.data));
+    mostrarListaEnsaios();
 }
 
-// Exibe lista de ensaios
-function mostrarLista(lista) {
+function mostrarListaEnsaios() {
     const container = document.getElementById('lista-ensaios');
     container.innerHTML = '';
 
-    lista.forEach(ensaio => {
+    ensaios.forEach(ensaio => {
         const div = document.createElement('div');
         div.className = 'list-item';
-
-        const cancelado = ensaio.status?.toLowerCase() === 'cancelado' ||
-                          ensaio.local?.toLowerCase().includes('cancel');
-        const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
+        const cancelado = ensaio.status.toLowerCase() === 'cancelado';
         const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
+        const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
 
         div.innerHTML = `
             <h2>🎵 Ensaio de ${ensaio.data}</h2>
@@ -32,67 +27,68 @@ function mostrarLista(lista) {
             <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
         `;
 
-        div.addEventListener('click', () => mostrarDetalhe(ensaio));
+        div.addEventListener('click', () => mostrarDetalheEnsaio(ensaio));
         container.appendChild(div);
     });
 }
 
-// Função que será chamada pelo cifras.js para voltar ao detalhe do ensaio
-window.mostrarDetalheEnsaio = function() {
-    if (ensaioAtual) {
-        mostrarDetalhe(ensaioAtual);
-    }
-};
-
-// Mostra detalhe do ensaio
-function mostrarDetalhe(ensaio) {
-    ensaioAtual = ensaio;
+function mostrarDetalheEnsaio(ensaio) {
     const container = document.getElementById('lista-ensaios');
     container.innerHTML = '';
 
-    const detalheDiv = document.createElement('div');
-    detalheDiv.className = 'list-item detalhe-ensaio';
+    const detalheDiv = document.getElementById('detalhe-cifra');
+    detalheDiv.style.display = 'block';
 
-    const cancelado = ensaio.status?.toLowerCase() === 'cancelado' ||
-                      ensaio.local?.toLowerCase().includes('cancel');
-    const statusTexto = cancelado ? '❌ Cancelado' : '✅ Ativo';
-    const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
+    const titulo = document.getElementById('titulo-cifra');
+    const bandaSpan = document.getElementById('banda-cifra');
+    const linkYoutube = document.getElementById('link-cifra');
+    const containerVersos = document.getElementById('acorde-letra-container');
 
-    const musicasHtml = ensaio.musicas.length
-        ? `<ul>${ensaio.musicas.map(m => 
-            `<li><a href="#" onclick="abrirCifraDoEnsaio({idCifra:${m.idCifra}, nome:'${m.nome}'})">${m.nome}</a></li>`
-          ).join('')}</ul>`
-        : `<p><em>Sem músicas cadastradas.</em></p>`;
+    // Mostra a primeira música do setlist
+    let indexCifra = 0;
 
-    detalheDiv.innerHTML = `
-        <h2>🎵 Ensaio de ${ensaio.data}</h2>
-        <span class="${statusClass}">${statusTexto}</span>
-        <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
-        <h3>Setlist</h3>
-        ${musicasHtml}
-        <button id="btn-anterior"><i data-lucide="chevron-left"></i> Voltar</button>
-    `;
+    function abrirMusicaCifra() {
+        const musica = ensaio.musicas[indexCifra];
+        if (!musica) return containerVersos.innerHTML = '<em>Sem músicas cadastradas.</em>';
 
-    container.appendChild(detalheDiv);
+        fetch('data/cifras.json')
+            .then(r => r.json())
+            .then(cifras => {
+                const cifra = cifras.find(c => c.id === musica.idCifra);
+                if (!cifra) return alert('Cifra não encontrada.');
 
-    if (window.lucide) lucide.createIcons();
+                titulo.textContent = cifra.titulo;
+                bandaSpan.textContent = cifra.banda;
+                linkYoutube.href = cifra.linkYoutube;
 
-    document.getElementById('btn-anterior').addEventListener('click', () => {
-        mostrarLista(ensaios);
-    });
-}
+                containerVersos.innerHTML = '';
+                cifra.versos.forEach(v => {
+                    const div = document.createElement('div');
+                    div.className = 'verso';
+                    div.innerHTML = `<div class="linha-acordes">${v.acordes}</div>
+                                     <div class="linha-letra">${v.letra}</div>`;
+                    containerVersos.appendChild(div);
+                });
 
-// Função chamada pelos links do ensaio
-function abrirCifraDoEnsaio(cifraRef) {
-    const indice = cifras.findIndex(c => c.id === cifraRef.idCifra || c.id === cifraRef.id);
-    if (indice !== -1) {
-        abrirCifra(indice, "ensaio");
-    } else {
-        alert('Cifra não encontrada.');
+                if (window.lucide) lucide.createIcons();
+            });
     }
+
+    abrirMusicaCifra();
+
+    // Botões
+    document.getElementById('btn-anterior').onclick = () => {
+        if (indexCifra > 0) indexCifra--;
+        abrirMusicaCifra();
+    };
+
+    document.getElementById('btn-proxima').onclick = () => {
+        if (indexCifra < ensaio.musicas.length -1) indexCifra++;
+        abrirMusicaCifra();
+    };
 }
 
 // Inicializa
 document.addEventListener('DOMContentLoaded', () => {
-    carregarCifras().then(() => carregarEnsaios());
+    carregarEnsaios();
 });
