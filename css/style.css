@@ -336,53 +336,67 @@ footer {
   background: #222;
 }
 
-/* === Tela de detalhe === */
+/* === Tela de detalhe ensaio /* === Detalhe do Ensaio (versão aprimorada) === */
 .detalhe-ensaio {
+  position: relative; /* permite posicionar o status no topo direito */
   background: var(--card-bg);
   padding: 1.5rem;
   border-radius: 12px;
   text-align: left;
   max-width: 600px;
   margin: 1rem auto;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
 }
 
+/* Título principal (Ensaio de + data) */
 .detalhe-ensaio h2 {
-  color: var(--accent);
+  color: #ffe86e; /* tom mais claro que o dourado do site */
+  font-size: 1.4rem; /* levemente menor */
   margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
+/* Posição e estilo do status */
+.detalhe-ensaio .status-cancelado,
+.detalhe-ensaio .status-ativo {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  background: rgba(0,0,0,0.4);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.detalhe-ensaio .status-ativo {
+  color: #4caf50; /* verde */
+}
+
+.detalhe-ensaio .status-cancelado {
+  color: #ff4444; /* vermelho */
+}
+
+/* Subtítulo “Setlist” */
 .detalhe-ensaio h3 {
-  margin-top: 1rem;
+  margin-top: 1.2rem;
   color: var(--accent);
+  font-size: 1.1rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 4px;
 }
 
-.detalhe-ensaio ul {
-  list-style: none;
-  padding-left: 1rem;
-}
-
-.detalhe-ensaio li {
-  margin: 0.3rem 0;
-}
-
-.detalhe-ensaio a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.detalhe-ensaio a:hover {
-  text-decoration: underline;
-}
-
+/* Botão voltar */
 #btn-voltar {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   background: var(--accent);
   color: #000;
   border: none;
   border-radius: 5px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.2rem;
   cursor: pointer;
   font-weight: 600;
+  transition: background 0.2s ease;
 }
 
 #btn-voltar:hover {

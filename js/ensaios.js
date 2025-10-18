@@ -52,8 +52,8 @@ function mostrarDetalhe(ensaio, ensaios, container) {
 
   detalheDiv.innerHTML = `
     <h2>🎵 Ensaio de ${ensaio.data}</h2>
+    <span class="${statusClass}">${statusTexto}</span>
     <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
-    <p class="${statusClass}">${statusTexto}</p>
     <h3 class="setlist">Setlist</h3>
     ${musicasHtml}
     <button id="btn-voltar">⬅ Voltar</button>
@@ -61,7 +61,6 @@ function mostrarDetalhe(ensaio, ensaios, container) {
 
   container.appendChild(detalheDiv);
 
-  // Botão de voltar
   document.getElementById('btn-voltar').addEventListener('click', () => {
     mostrarLista(ensaios, container);
   });

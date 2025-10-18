@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "data": "2025-10-19",
+    "data": "19 Outubro 2025",
     "hora": "N/A",
     "local": "Sede da Banda",
     "status": "cancelado",
@@ -9,7 +9,7 @@
   },
   {
     "id": 2,
-    "data": "2025-10-26",
+    "data": "26 Outubro 2025",
     "hora": "14:00",
     "local": "Sede da Banda",
     "status": "ativo",
