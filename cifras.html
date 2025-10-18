@@ -26,17 +26,14 @@
     <div id="lista-cifras"></div>
     <div id="detalhe-cifra" style="display:none;">
 	<h2 id="titulo-cifra"></h2>
-	<p><strong>Banda:</strong> <span id="banda-cifra"></span></p> <!-- novo -->
-	<p><strong>Acordes:</strong> <span id="acordes-cifra"></span></p><br><br>	
-	
-	
-	<div id="scrollControls" style="white-space: pre-wrap; text-align: center;">  
-	<br>
-	<input type="range" id="velocidadeScroll" min="10" max="300" value="10" style="width: 120px;">
-	<div style="white-space: pre-wrap; text-align: center;">Velocidade</div>
+	<p><strong>Banda:</strong> <span id="banda-cifra"></span></p>
+	<p><strong>Acordes:</strong> <span id="acordes-cifra"></span></p><br>
+	<div id="scrollControls" style="text-align: center;">
+		<br>
+		<div style="white-space: pre-wrap; text-align: center;">Velocidade</div>
+		<input type="range" id="velocidadeScroll" min="5" max="300" value="10" style="width: 300px;">	
 	</div>
-	
-	
+	<br>
 	<button id="rolarBtn"> Scroll automático</button><br><br>
 	<pre id="letra-cifra" style="white-space: pre-wrap; text-align: center;"></pre><br><br><br><br>
 	<p><a id="link-cifra" target="_blank"><i data-lucide="youtube"></i> Ver no YouTube</a></p><br><br><br><br>	
