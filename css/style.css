@@ -298,7 +298,7 @@ footer {
   font-size: 1.8em;
   display: block;
   margin-bottom: 0.5em;
-  color: #222;
+  color: var(--text-color);
 }
 
 /* Espaçamento entre data, hora e local */
@@ -307,7 +307,7 @@ footer {
 .evento-local {
   margin-right: 15px;
   font-size: 1em;
-  color: #555;
+  color: #ccc; /* mais visível no fundo escuro */
 }
 
 /* Destaque do Setlist */
@@ -316,13 +316,24 @@ footer {
   font-size: 1.1em;
   margin-bottom: 0.3em;
   display: block;
-  color: #333;
+  color: var(--accent);
 }
 
-/* Músicas e artistas já estão formatados via <strong> e <em> */
+/* Cada música/linha permanece em linha própria, título em negrito e artista em itálico */
 .list-item {
-  border-bottom: 1px solid #ccc;
-  padding: 10px 0;
+  background: var(--card-bg);
+  margin: 0.5rem auto;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  text-align: left;
+  transition: background 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+.list-item:hover {
+  background: #222;
 }
 
 

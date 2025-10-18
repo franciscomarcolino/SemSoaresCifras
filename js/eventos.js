@@ -20,12 +20,12 @@ function renderizar() {
 
   lista.forEach(ev => {
     const div = document.createElement('div');
-    div.className = 'list-item';
+    div.className = 'list-item'; // mantém estilo do site
     div.innerHTML = `
       <strong class="evento-nome">${ev.nome}</strong><br><br>
       <span class="evento-data">📅 ${ev.data}</span>
-      <span class="evento-hora">⏰ ${ev.hora}</span>
-      <span class="evento-local">📍 ${ev.local}</span><br><br>
+      <span class="evento-hora">⏰ ${ev.hora}</span><br>
+      <span class="evento-local">📍 ${ev.local}</span><br><br><br>
       <span class="setlist">🎵 Setlist</span><br>
       ${ev.musicas.map(m => `<strong>${m.titulo}</strong> <em>(${m.artista})</em>`).join('<br>')}
     `;
@@ -44,7 +44,7 @@ document.getElementById('btn-ocultar').onclick = () => {
   `;
 
   renderizar();
-  lucide.createIcons();
+  lucide.createIcons(); // atualiza ícones
 };
 
 carregarEventos();
