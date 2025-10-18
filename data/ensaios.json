@@ -10,11 +10,15 @@
   {
     "id": 2,
     "data": "26 Outubro 2025",
-    "hora": "14:00",
+    "hora": "18:30",
     "local": "Estúdio central",
     "status": "ativo",
     "musicas": [
       { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
+      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
+      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
+      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
+      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
       { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
     ]
   }
@@ -22,18 +26,22 @@
   {
     "id": 3,
     "data": "02 Novembro 2025",
-    "hora": "14:00",
+    "hora": "18:30",
     "local": "Estúdio central",
     "status": "ativo",
     "musicas": [
       { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
+      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
+      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
+      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
+      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
       { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
     ]
   },
   {
     "id": 4,
     "data": "09 Novembro 2025",
-    "hora": "14:00",
+    "hora": "18:30",
     "local": "Estúdio central",
     "status": "ativo",
     "musicas": [

@@ -348,6 +348,7 @@ footer {
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   cursor: pointer;
   transition: transform 0.15s ease, background 0.2s ease;
+  overflow: hidden; /* evita que status ultrapasse os limites */
 }
 
 .list-item:hover {
@@ -358,9 +359,11 @@ footer {
 /* === Título do Ensaio === */
 .list-item h2,
 .detalhe-ensaio h2 {
-  color: #ffffff; /* branco fixo */
-  font-size: 1.4rem;
+  color: #ffffff;
+  font-size: 1.3rem;
   margin: 0 0 0.3rem 0;
+  padding-right: 90px; /* espaço reservado para o status */
+  word-wrap: break-word;
 }
 
 /* === Status (Ativo / Cancelado) === */
@@ -369,55 +372,34 @@ footer {
   position: absolute;
   top: 10px;
   right: 15px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: bold;
-  padding: 4px 10px;
+  padding: 4px 8px;
   border-radius: 6px;
-  background: transparent; /* sem fundo escuro */
+  background: transparent;
+  white-space: nowrap; /* evita quebra do texto "❌ Cancelado" */
 }
 
 .status-ativo {
-  color: #4caf50; /* verde */
+  color: #4caf50;
 }
 
 .status-cancelado {
-  color: #ff4444; /* vermelho */
+  color: #ff4444;
 }
 
-/* === Detalhe do Ensaio === */
-.detalhe-ensaio {
-  position: relative;
-  background: var(--card-bg);
-  padding: 1.5rem;
-  border-radius: 12px;
-  text-align: left;
-  max-width: 600px;
-  margin: 1rem auto;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-}
+/* === Responsividade (Mobile) === */
+@media (max-width: 480px) {
+  .list-item h2,
+  .detalhe-ensaio h2 {
+    font-size: 1.1rem;
+    padding-right: 0; /* remove o espaço fixo */
+  }
 
-/* Subtítulo */
-.detalhe-ensaio h3 {
-  margin-top: 1.2rem;
-  color: var(--accent);
-  font-size: 1.1rem;
-  border-bottom: 1px solid #333;
-  padding-bottom: 4px;
-}
-
-/* Botão Voltar */
-#btn-voltar {
-  margin-top: 1.5rem;
-  background: var(--accent);
-  color: #000;
-  border: none;
-  border-radius: 5px;
-  padding: 0.5rem 1.2rem;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.2s ease;
-}
-
-#btn-voltar:hover {
-  background: var(--accent-hover);
+  .status-cancelado,
+  .status-ativo {
+    position: static; /* status desce abaixo do título */
+    display: inline-block;
+    margin-top: 4px;
+  }
 }
