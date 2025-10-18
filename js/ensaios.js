@@ -54,12 +54,12 @@ function mostrarDetalhe(ensaio, ensaios, container) {
     <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
     <h3>Setlist</h3>
     ${musicasHtml}
-    <button id="btn-voltar">⬅ Voltar</button>
+    <button id="btn-anterior"><i data-lucide="chevron-left"></i> Voltar</button>
   `;
 
   container.appendChild(detalheDiv);
 
-  document.getElementById('btn-voltar').addEventListener('click', () => {
+  document.getElementById('btn-anterior').addEventListener('click', () => {
     mostrarLista(ensaios, container);
   });
 }
