@@ -14,15 +14,10 @@
     "local": "Estúdio central",
     "status": "ativo",
     "musicas": [
-      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
+      { "nome": "Alvo Mais Que a Neve", "idCifra": 3 },
+      { "nome": "Grandes Coisas", "idCifra": 4 }
     ]
-  }
-  ,
+  },
   {
     "id": 3,
     "data": "02 Novembro 2025",
@@ -30,12 +25,8 @@
     "local": "Estúdio central",
     "status": "ativo",
     "musicas": [
-      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
+      { "nome": "Alvo Mais Que a Neve", "idCifra": 3 },
+      { "nome": "Grandes Coisas", "idCifra": 4 }
     ]
   },
   {
@@ -45,8 +36,8 @@
     "local": "Estúdio central",
     "status": "ativo",
     "musicas": [
-      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
+      { "nome": "Alvo Mais Que a Neve", "idCifra": 3 },
+      { "nome": "Grandes Coisas", "idCifra": 4 }
     ]
   },
   {
@@ -56,8 +47,8 @@
     "local": "Estúdio central",
     "status": "ativo",
     "musicas": [
-      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
+      { "nome": "Alvo Mais Que a Neve", "idCifra": 3 },
+      { "nome": "Grandes Coisas", "idCifra": 4 }
     ]
   },
   {
@@ -67,8 +58,8 @@
     "local": "Estúdio central",
     "status": "ativo",
     "musicas": [
-      { "nome": "Alvo Mais Que a Neve", "link": "https://www.youtube.com/watch?v=example" },
-      { "nome": "Grandes Coisas", "link": "https://open.spotify.com/track/example" }
+      { "nome": "Alvo Mais Que a Neve", "idCifra": 3 },
+      { "nome": "Grandes Coisas", "idCifra": 4 }
     ]
   }
 ]

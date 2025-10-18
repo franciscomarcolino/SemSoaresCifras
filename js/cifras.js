@@ -1,24 +1,33 @@
 let cifras = []; 
 let indiceAtual = 0;
 
-// Carrega o JSON de cifras
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
 async function carregarCifras() {
     const resposta = await fetch('data/cifras.json');
     cifras = await resposta.json();
     cifras.sort((a, b) => a.titulo.localeCompare(b.titulo));
+
+    // Se houver id na URL, abre direto a cifra correspondente
+    const idCifra = getQueryParam('id');
+    if (idCifra) {
+        const indice = cifras.findIndex(c => c.id == idCifra);
+        if (indice !== -1) abrirCifra(indice);
+        return;
+    }
 
     exibirLista();
 
     // 🔍 Filtro em tempo real
     const filtroInput = document.getElementById('filtro-cifras');
     if (filtroInput) {
-        filtroInput.addEventListener('input', e => {
-            exibirLista(e.target.value);
-        });
+        filtroInput.addEventListener('input', e => exibirLista(e.target.value));
     }
 }
 
-// Exibe a lista de músicas filtrada
 function exibirLista(filtro = '') {
     const listaDiv = document.getElementById('lista-cifras');
     const detalheDiv = document.getElementById('detalhe-cifra');
@@ -44,7 +53,6 @@ function exibirLista(filtro = '') {
         const div = document.createElement('div');
         div.className = 'list-item';
 
-        // Pega todos os acordes de todos os versos, remove vazios e duplicados
         const acordesUnicos = Array.from(new Set(
             cifra.versos
                 .map(v => v.acordes)
@@ -66,32 +74,27 @@ function exibirLista(filtro = '') {
     }
 }
 
-// Abre a cifra detalhada
 function abrirCifra(indice) {
     indiceAtual = indice;
     const cifra = cifras[indice];
 
-    // 1️⃣ Mostra a div de detalhe e garante altura mínima
     const detalheDiv = document.getElementById('detalhe-cifra');
     detalheDiv.style.display = 'block';
 
     const container = document.getElementById('acorde-letra-container');
-    container.innerHTML = ''; // limpa versos anteriores
+    container.innerHTML = '';
     container.style.display = 'block';
     container.style.minHeight = '200px';
 
-    // 2️⃣ Preenche título, banda e link
     document.getElementById('titulo-cifra').textContent = cifra.titulo;
     document.getElementById('banda-cifra').textContent = cifra.banda;
     document.getElementById('link-cifra').href = cifra.linkCifra;
 
-    // 3️⃣ Renderiza versos detalhados
     if (cifra.versos && cifra.versos.length > 0) {
         cifra.versos.forEach(verso => {
             const versoDiv = document.createElement('div');
             versoDiv.className = 'verso';
 
-            // Linha de acordes só se houver acordes
             if (verso.acordes && verso.acordes.trim() !== '') {
                 const acordesDiv = document.createElement('div');
                 acordesDiv.className = 'linha-acordes';
@@ -99,7 +102,6 @@ function abrirCifra(indice) {
                 versoDiv.appendChild(acordesDiv);
             }
 
-            // Linha da letra
             const letraDiv = document.createElement('div');
             letraDiv.className = 'linha-letra';
             letraDiv.textContent = verso.letra;
@@ -109,102 +111,24 @@ function abrirCifra(indice) {
         });
     }
 
-    // 4️⃣ Esconde a lista
     document.getElementById('lista-cifras').style.display = 'none';
 }
 
-// Botões de navegação
 document.getElementById('btn-proxima').onclick = () => {
     indiceAtual = (indiceAtual + 1) % cifras.length;
     abrirCifra(indiceAtual);
 };
+
 document.getElementById('btn-anterior').onclick = () => {
     indiceAtual = (indiceAtual - 1 + cifras.length) % cifras.length;
     abrirCifra(indiceAtual);
 };
 
-// Voltar para lista
 function voltarLista() {
     const filtroAtual = document.getElementById('filtro-cifras')?.value || '';
     exibirLista(filtroAtual);
 }
 
-// -----------------------
-// Scroll automático
-// -----------------------
 document.addEventListener('DOMContentLoaded', () => {
-    const botao = document.getElementById('rolarBtn');
-    const slider = document.getElementById('velocidadeScroll');
-    if (!botao || !slider) return;
-
-    let running = false;
-    let rafId = null;
-    let lastTs = null;
-    let pxPorSegundo = parseInt(slider.value, 10);
-    let acumulado = 0;
-
-    const scroller = () => (document.scrollingElement || document.documentElement || document.body);
-    const estaNoFim = () => (window.innerHeight + (scroller().scrollTop || window.scrollY) >= scroller().scrollHeight - 1);
-
-    function step(ts) {
-        if (!running) return;
-        if (!lastTs) lastTs = ts;
-        const delta = ts - lastTs;
-        lastTs = ts;
-
-        acumulado += (pxPorSegundo * delta) / 1000;
-        const px = Math.floor(acumulado);
-        if (px >= 1) {
-            scroller().scrollTop += px;
-            acumulado -= px;
-        }
-
-        if (estaNoFim()) {
-            parar();
-            return;
-        }
-        rafId = requestAnimationFrame(step);
-    }
-
-    function iniciar() {
-        if (running) return;
-        running = true;
-        lastTs = null;
-        rafId = requestAnimationFrame(step);
-        botao.textContent = 'Parar Scroll';
-    }
-
-    function parar() {
-        if (!running) return;
-        running = false;
-        lastTs = null;
-        acumulado = 0;
-        if (rafId !== null) cancelAnimationFrame(rafId);
-        rafId = null;
-        botao.textContent = 'Ativar Scroll';
-    }
-
-    botao.addEventListener('click', () => {
-        if (running) parar(); else iniciar();
-    });
-
-    slider.addEventListener('input', e => {
-        pxPorSegundo = parseInt(e.target.value, 10);
-    });
-
-    const pauseOnUser = (e) => {
-        if (e.target.closest('#rolarBtn')) return;
-        if (running) parar();
-    };
-
-    ['touchstart', 'touchmove', 'wheel', 'mousedown'].forEach(evt =>
-        window.addEventListener(evt, pauseOnUser, { passive: true })
-    );
-
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) parar();
-    });
+    carregarCifras();
 });
-
-// Inicializa
-carregarCifras();

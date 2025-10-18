@@ -6,7 +6,6 @@ async function carregarEnsaios() {
   // Ordena por data
   ensaios.sort((a, b) => new Date(a.data) - new Date(b.data));
 
-  // Mostra lista inicial
   mostrarLista(ensaios, container);
 }
 
@@ -28,9 +27,7 @@ function mostrarLista(ensaios, container) {
       <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
     `;
 
-    // Clique abre detalhe
     div.addEventListener('click', () => mostrarDetalhe(ensaio, ensaios, container));
-
     container.appendChild(div);
   });
 }
@@ -47,7 +44,9 @@ function mostrarDetalhe(ensaio, ensaios, container) {
   const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
 
   const musicasHtml = ensaio.musicas.length
-    ? `<ul>${ensaio.musicas.map(m => `<li><a href="${m.link}" target="_blank">${m.nome}</a></li>`).join('')}</ul>`
+    ? `<ul>${ensaio.musicas.map(m => 
+        `<li><a href="cifras.html?id=${m.idCifra}" target="_blank">${m.nome}</a></li>`
+      ).join('')}</ul>`
     : `<p><em>Sem músicas cadastradas.</em></p>`;
 
   detalheDiv.innerHTML = `
@@ -61,13 +60,12 @@ function mostrarDetalhe(ensaio, ensaios, container) {
 
   container.appendChild(detalheDiv);
 
-  // 🔹 Renderiza o ícone do Lucide
-  lucide.createIcons();
+  // Inicializa ícones do lucide
+  if (window.lucide) lucide.createIcons();
 
   document.getElementById('btn-anterior').addEventListener('click', () => {
     mostrarLista(ensaios, container);
   });
 }
 
-// Inicializa
 carregarEnsaios();

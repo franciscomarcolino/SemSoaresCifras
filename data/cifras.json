@@ -1,56 +1,40 @@
 [
-	{
-  "id": 1,
-  "titulo": "Tempo Perdido 1AA",
-  "banda": "Legião Urbana",
-  "linkYoutube": "",
-  "versos": [
-    {
-      "acordes": "C Am7",
-      "letra": "Todos os dias quando acordo"
-    },
-    {
-      "acordes": "Bm Em",
-      "letra": "Não tenho mais o tempo que passou"
-    },
-    {
-      "acordes": "C Am7",
-      "letra": "Mas tenho muito tempo"
-    },
-    {
-      "acordes": "Bm Em",
-      "letra": "Temos todo o tempo do mundo"
-    }
-  ]
-}
-
-
-
-,
-    {
-  "id": 2,
-  "titulo": "Tempo Perdido 2BB",
-  "banda": "Legiao Urbana",
-  "linkYoutube": "",
-  "versos": [
-    {
-      "acordes": "C Am7",
-      "letra": "Todos os dias quando acordo"
-    },
-    {
-      "acordes": "Bm Em",
-      "letra": "Não tenho mais o tempo que passou"
-    },
-    {
-      "acordes": "C Am7",
-      "letra": "Mas tenho muito tempo"
-    },
-    {
-      "acordes": "Bm Em",
-      "letra": "Temos todo o tempo do mundo"
-    }
-  ]
-}
-
-  
+  {
+    "id": 1,
+    "titulo": "Tempo Perdido 1AA",
+    "banda": "Legião Urbana",
+    "linkYoutube": "",
+    "versos": [
+      { "acordes": "C Am7", "letra": "Todos os dias quando acordo" },
+      { "acordes": "Bm Em", "letra": "Não tenho mais o tempo que passou" },
+      { "acordes": "C Am7", "letra": "Mas tenho muito tempo" },
+      { "acordes": "Bm Em", "letra": "Temos todo o tempo do mundo" }
+    ]
+  },
+  {
+    "id": 2,
+    "titulo": "Tempo Perdido 2BB",
+    "banda": "Legião Urbana",
+    "linkYoutube": "",
+    "versos": [
+      { "acordes": "C Am7", "letra": "Todos os dias quando acordo" },
+      { "acordes": "Bm Em", "letra": "Não tenho mais o tempo que passou" },
+      { "acordes": "C Am7", "letra": "Mas tenho muito tempo" },
+      { "acordes": "Bm Em", "letra": "Temos todo o tempo do mundo" }
+    ]
+  },
+  {
+    "id": 3,
+    "titulo": "Alvo Mais Que a Neve",
+    "banda": "Legião Urbana",
+    "linkYoutube": "",
+    "versos": []
+  },
+  {
+    "id": 4,
+    "titulo": "Grandes Coisas",
+    "banda": "Legião Urbana",
+    "linkYoutube": "",
+    "versos": []
+  }
 ]
