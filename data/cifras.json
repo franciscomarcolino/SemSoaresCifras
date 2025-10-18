@@ -166,7 +166,129 @@
       "letra": "Things are easy when you're big in Japan, when you're big in Japan"
     }
   ]
+},
+
+{
+  "id": 3,
+  "titulo": "Big in Japan 2",
+  "banda": "Alphaville",
+  "linkYoutube": "",
+  "versos": [
+    {
+      "acordes": "",
+      "letra": "[Intro] (1° Sequência)\nE|---------------------P.|- m-.-------------------|\nB|---------------------------------------------|\nG|15------------15*------15------------17*-15*-|\nD|---16-14-14-16------------16-14-14-16--------|\nA|---------------------------------------------|\nE|---------------------------------------------|\n"
+    },
+    {
+      "acordes": "",
+      "letra": "(2° Sequência)\nE|-----------------------------P.|- m-.---------------------------|\nB|-------------------------------------------------------------|\nG|15------------15---------------15-------------17*-17*-15*-15*|\nD|---16-14-14-16--16-14*-14-16~-----16-14-14-16----------------|\nA|-------------------------------------------------------------|\nE|-------------------------------------------------------------|\n"
+    },
+    {
+      "acordes": "",
+      "letra": "(3° Sequência)\nE|--------------P-.-| -m.-----------|\nB|-------------------------------14---*-14~-----8----*-8~----|\nG|15------------15---------------17b19*-17b19~--20b22*-20b22~|\nD|---16-14-14-16--16-14*-14-16~------------------------------|\nA|-----------------------------------------------------------|\nE|-----------------------------------------------------------|\n"
+    },
+    {
+      "acordes": "Bm",
+      "letra": "Winter's cityside"
+    },
+    {
+      "acordes": "G A F#",
+      "letra": "Crystal bits of snowflakes all around my head and in the wind"
+    },
+    {
+      "acordes": "Bm",
+      "letra": "I had no illusions"
+    },
+    {
+      "acordes": "G A F#",
+      "letra": "That I'd ever find a glimpse of summer's heatwaves in your eyes"
+    },
+    {
+      "acordes": "Bm G A F#m G",
+      "letra": "You did what you did to me, now it's history I see"
+    },
+    {
+      "acordes": "Em F#",
+      "letra": "Here's my comeback on the road again"
+    },
+    {
+      "acordes": "Bm G A",
+      "letra": "Things will happen while they can"
+    },
+    {
+      "acordes": "F#m G Em F#",
+      "letra": "I will wait here for my man tonight, it's easy when your big in Japan"
+    },
+    {
+      "acordes": "Bm G",
+      "letra": "When your big in Japan, tonight"
+    },
+    {
+      "acordes": "A F#m G Em F#",
+      "letra": "Big in Japan, be tight, big in Japan where the eastern sea's so blue"
+    },
+    {
+      "acordes": "Bm G A F#m",
+      "letra": "Big in Japan, alright, pay, then I'll sleep by your side"
+    },
+    {
+      "acordes": "G Em F# Bm",
+      "letra": "Things are easy when you're big in Japan, when you're big in Japan"
+    },
+    {
+      "acordes": "Bm G A F#m G Em F#",
+      "letra": "(Interlúdio 2x)"
+    },
+    {
+      "acordes": "Bm",
+      "letra": "Neon on my naked skin"
+    },
+    {
+      "acordes": "G A F#",
+      "letra": "Passing silhouettes of strange illuminated mannequins"
+    },
+    {
+      "acordes": "Bm",
+      "letra": "Shall I stay here at the zoo"
+    },
+    {
+      "acordes": "G A F#",
+      "letra": "Or shall I go and change my point of view for other ugly scenes"
+    },
+    {
+      "acordes": "Bm G A F#m G",
+      "letra": "You did what you did to me, now it's history I see"
+    },
+    {
+      "acordes": "Em F#",
+      "letra": "Here's my comeback on the road again"
+    },
+    {
+      "acordes": "Bm G A",
+      "letra": "Things will happen while they can"
+    },
+    {
+      "acordes": "F#m G Em F#",
+      "letra": "I will wait here for my man tonight, it's easy when your big in Japan"
+    },
+    {
+      "acordes": "Bm G",
+      "letra": "When your big in Japan, tonight"
+    },
+    {
+      "acordes": "A F#m G Em F#",
+      "letra": "Big in Japan, be tight, big in Japan where the eastern sea's so blue"
+    },
+    {
+      "acordes": "Bm G A F#m",
+      "letra": "Big in Japan, alright, pay, then I'll sleep by your side"
+    },
+    {
+      "acordes": "G Em F# Bm",
+      "letra": "Things are easy when you're big in Japan, when you're big in Japan"
+    }
+  ]
 }
+
 
 
 
