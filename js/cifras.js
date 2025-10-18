@@ -54,26 +54,66 @@ function voltarLista() {
 carregarCifras();
 
 document.addEventListener('DOMContentLoaded', () => {
-  let intervaloScroll;
-
   const botao = document.getElementById('rolarBtn');
-  if (!botao) return; // segurança: só roda se o botão existir
+  if (!botao) return;
+
+  const pxPorSegundo = 45; // ajuste a velocidade (quanto maior, mais rápido)
+  let running = false;
+  let rafId = null;
+  let lastTs = null;
+
+  const scroller = () => (document.scrollingElement || document.documentElement || document.body);
+  const estaNoFim = () => (window.innerHeight + (scroller().scrollTop || window.scrollY) >= scroller().scrollHeight - 1);
+
+  function step(ts) {
+    if (!lastTs) lastTs = ts;
+    const delta = ts - lastTs;
+    lastTs = ts;
+
+    const px = (pxPorSegundo * delta) / 1000;
+    window.scrollBy(0, px);
+
+    if (estaNoFim()) {
+      parar();
+      return;
+    }
+
+    rafId = requestAnimationFrame(step);
+  }
+
+  function iniciar() {
+    if (running) return;
+    running = true;
+    lastTs = null;
+    rafId = requestAnimationFrame(step);
+    botao.textContent = 'Parar Scroll';
+  }
+
+  function parar() {
+    running = false;
+    lastTs = null;
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+    botao.textContent = 'Ativar Scroll';
+  }
 
   botao.addEventListener('click', () => {
-    if (intervaloScroll) {
-      clearInterval(intervaloScroll);
-      intervaloScroll = null;
-      botao.textContent = "Ativar Scroll";
-    } else {
-      intervaloScroll = setInterval(() => {
-        window.scrollBy({ top: 1, behavior: 'smooth' });
-        if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-          clearInterval(intervaloScroll);
-          intervaloScroll = null;
-          botao.textContent = "Ativar Scroll";
-        }
-      }, 10);
-      botao.textContent = "Parar Scroll";
-    }
+    if (running) parar();
+    else iniciar();
+  });
+
+  const pauseOnUser = () => {
+    if (running) parar();
+  };
+
+  ['touchstart', 'touchmove', 'wheel', 'pointerdown'].forEach(evt =>
+    window.addEventListener(evt, pauseOnUser, { passive: true })
+  );
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) parar();
   });
 });
+
