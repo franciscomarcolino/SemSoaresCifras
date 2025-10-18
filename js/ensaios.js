@@ -1,18 +1,23 @@
+let ensaios = [];
+let ensaioAtual = null;
+
+// Carrega JSON de ensaios
 async function carregarEnsaios() {
     const resp = await fetch('data/ensaios.json');
-    const ensaios = await resp.json();
-    const container = document.getElementById('lista-ensaios');
+    ensaios = await resp.json();
 
     // Ordena por data
-    ensaios.sort((a,b) => new Date(a.data) - new Date(b.data));
+    ensaios.sort((a, b) => new Date(a.data) - new Date(b.data));
 
-    mostrarListaEnsaios(ensaioAtual=null, ensaios, container);
+    mostrarLista(ensaios);
 }
 
-function mostrarListaEnsaios(ensaioAtual, ensaios, container) {
+// Exibe lista de ensaios
+function mostrarLista(lista) {
+    const container = document.getElementById('lista-ensaios');
     container.innerHTML = '';
 
-    ensaios.forEach(ensaio => {
+    lista.forEach(ensaio => {
         const div = document.createElement('div');
         div.className = 'list-item';
 
@@ -26,12 +31,22 @@ function mostrarListaEnsaios(ensaioAtual, ensaios, container) {
             <span class="${statusClass}">${statusTexto}</span>
             <p><span class="evento-hora">⏰ ${ensaio.hora}</span> | <span class="evento-local">📍 ${ensaio.local}</span></p>
         `;
-        div.onclick = () => mostrarDetalheEnsaio(ensaio);
+
+        div.addEventListener('click', () => mostrarDetalhe(ensaio));
         container.appendChild(div);
     });
 }
 
-function mostrarDetalheEnsaio(ensaio) {
+// Função que será chamada pelo cifras.js para voltar ao detalhe do ensaio
+window.mostrarDetalheEnsaio = function() {
+    if (ensaioAtual) {
+        mostrarDetalhe(ensaioAtual);
+    }
+};
+
+// Mostra detalhe do ensaio
+function mostrarDetalhe(ensaio) {
+    ensaioAtual = ensaio;
     const container = document.getElementById('lista-ensaios');
     container.innerHTML = '';
 
@@ -44,8 +59,8 @@ function mostrarDetalheEnsaio(ensaio) {
     const statusClass = cancelado ? 'status-cancelado' : 'status-ativo';
 
     const musicasHtml = ensaio.musicas.length
-        ? `<ul>${ensaio.musicas.map(m =>
-            `<li><a href="#" onclick="abrirCifra(${m.idCifra}, ${JSON.stringify(ensaio)})">${m.nome}</a></li>`
+        ? `<ul>${ensaio.musicas.map(m => 
+            `<li><a href="#" onclick="abrirCifraDoEnsaio({idCifra:${m.idCifra}, nome:'${m.nome}'})">${m.nome}</a></li>`
           ).join('')}</ul>`
         : `<p><em>Sem músicas cadastradas.</em></p>`;
 
@@ -57,15 +72,27 @@ function mostrarDetalheEnsaio(ensaio) {
         ${musicasHtml}
         <button id="btn-anterior"><i data-lucide="chevron-left"></i> Voltar</button>
     `;
+
     container.appendChild(detalheDiv);
 
-    document.getElementById('btn-anterior').onclick = () => carregarEnsaios();
+    if (window.lucide) lucide.createIcons();
 
-    if(window.lucide) lucide.createIcons();
+    document.getElementById('btn-anterior').addEventListener('click', () => {
+        mostrarLista(ensaios);
+    });
+}
+
+// Função chamada pelos links do ensaio
+function abrirCifraDoEnsaio(cifraRef) {
+    const indice = cifras.findIndex(c => c.id === cifraRef.idCifra || c.id === cifraRef.id);
+    if (indice !== -1) {
+        abrirCifra(indice, "ensaio");
+    } else {
+        alert('Cifra não encontrada.');
+    }
 }
 
 // Inicializa
-document.addEventListener('DOMContentLoaded', async () => {
-    await carregarCifras(); // garante que cifras já estejam carregadas
-    carregarEnsaios();
+document.addEventListener('DOMContentLoaded', () => {
+    carregarCifras().then(() => carregarEnsaios());
 });

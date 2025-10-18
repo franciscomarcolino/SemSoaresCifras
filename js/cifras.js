@@ -1,24 +1,23 @@
 let cifras = [];
 let indiceAtual = 0;
+let contextoAtual = null; // "cifras" ou "ensaio"
 
 // Carrega o JSON de cifras
 async function carregarCifras() {
     const resposta = await fetch('data/cifras.json');
     cifras = await resposta.json();
     cifras.sort((a, b) => a.titulo.localeCompare(b.titulo));
-    exibirLista();
 }
 
-// Exibe a lista de cifras filtrada
+// Exibe a lista de cifras na página de cifras
 function exibirLista(filtro = '') {
     const listaDiv = document.getElementById('lista-cifras');
-    const detalheDiv = document.getElementById('detalhe-cifra');
+    if (!listaDiv) return;
 
-    // Garante que lista esteja visível e detalhe escondido
     listaDiv.style.display = 'block';
-    detalheDiv.style.display = 'none';
+    const detalheDiv = document.getElementById('detalhe-cifra');
+    if (detalheDiv) detalheDiv.style.display = 'none';
 
-    // Cria container interno se ainda não existir
     let listaContainer = document.getElementById('cifras-lista-container');
     if (!listaContainer) {
         listaContainer = document.createElement('div');
@@ -47,7 +46,7 @@ function exibirLista(filtro = '') {
         ));
 
         div.innerHTML = `<strong>${cifra.titulo}</strong> - <em>${cifra.banda}</em> <span class="acordes-resumo">${acordesUnicos.join(' ')}</span>`;
-        div.onclick = () => abrirCifra(i);
+        div.addEventListener('click', () => abrirCifra(i, "cifras"));
         listaContainer.appendChild(div);
     });
 
@@ -59,88 +58,95 @@ function exibirLista(filtro = '') {
     }
 }
 
-// Abrir cifra detalhada
-function abrirCifra(indice) {
+// Abre cifra detalhada
+function abrirCifra(indice, contexto = "cifras") {
     indiceAtual = indice;
+    contextoAtual = contexto;
     const cifra = cifras[indice];
 
     const detalheDiv = document.getElementById('detalhe-cifra');
-    const listaDiv = document.getElementById('lista-cifras');
     const container = document.getElementById('acorde-letra-container');
+    if (!detalheDiv || !container) return;
 
-    // Exibe detalhe e esconde lista
     detalheDiv.style.display = 'block';
-    listaDiv.style.display = 'none';
     container.innerHTML = '';
+    container.style.display = 'block';
     container.style.minHeight = '200px';
 
     document.getElementById('titulo-cifra').textContent = cifra.titulo;
     document.getElementById('banda-cifra').textContent = cifra.banda;
-    document.getElementById('link-cifra').href = cifra.linkYoutube || '#';
+    const linkCifra = document.getElementById('link-cifra');
+    if (linkCifra) linkCifra.href = cifra.linkYoutube || '#';
 
     // Renderiza versos
-    if (cifra.versos && cifra.versos.length > 0) {
-        cifra.versos.forEach(verso => {
-            const versoDiv = document.createElement('div');
-            versoDiv.className = 'verso';
+    cifra.versos.forEach(verso => {
+        const versoDiv = document.createElement('div');
+        versoDiv.className = 'verso';
 
-            if (verso.acordes && verso.acordes.trim() !== '') {
-                const acordesDiv = document.createElement('div');
-                acordesDiv.className = 'linha-acordes';
-                acordesDiv.textContent = verso.acordes;
-                versoDiv.appendChild(acordesDiv);
-            }
+        if (verso.acordes && verso.acordes.trim() !== '') {
+            const acordesDiv = document.createElement('div');
+            acordesDiv.className = 'linha-acordes';
+            acordesDiv.textContent = verso.acordes;
+            versoDiv.appendChild(acordesDiv);
+        }
 
-            const letraDiv = document.createElement('div');
-            letraDiv.className = 'linha-letra';
-            letraDiv.textContent = verso.letra;
-            versoDiv.appendChild(letraDiv);
+        const letraDiv = document.createElement('div');
+        letraDiv.className = 'linha-letra';
+        letraDiv.textContent = verso.letra;
+        versoDiv.appendChild(letraDiv);
 
-            container.appendChild(versoDiv);
-        });
+        container.appendChild(versoDiv);
+    });
+
+    if (contexto === "cifras") {
+        document.getElementById('lista-cifras').style.display = 'none';
     }
 
-    // Botões de navegação
-    document.getElementById('btn-proxima').onclick = () => {
-        indiceAtual = (indiceAtual + 1) % cifras.length;
-        abrirCifra(indiceAtual);
-    };
-    document.getElementById('btn-anterior').onclick = () => {
-        indiceAtual = (indiceAtual - 1 + cifras.length) % cifras.length;
-        abrirCifra(indiceAtual);
-    };
+    iniciarScrollAutomatico();
+    lucide.createIcons();
 }
 
-// Voltar para lista de cifras
+// Botões de navegação
+function proximaCifra() {
+    indiceAtual = (indiceAtual + 1) % cifras.length;
+    abrirCifra(indiceAtual, contextoAtual);
+}
+function anteriorCifra() {
+    indiceAtual = (indiceAtual - 1 + cifras.length) % cifras.length;
+    abrirCifra(indiceAtual, contextoAtual);
+}
+
+// Voltar para lista
 function voltarLista() {
-    const filtroAtual = document.getElementById('filtro-cifras')?.value || '';
-    exibirLista(filtroAtual);
+    if (contextoAtual === "cifras") {
+        const filtroAtual = document.getElementById('filtro-cifras')?.value || '';
+        exibirLista(filtroAtual);
+    } else if (contextoAtual === "ensaio" && window.mostrarDetalheEnsaio) {
+        // Para ensaios, chamamos função externa
+        window.mostrarDetalheEnsaio();
+    }
 }
-
-// Filtro em tempo real
-document.getElementById('filtro-cifras')?.addEventListener('input', e => {
-    exibirLista(e.target.value);
-});
 
 // -----------------------
 // Scroll automático
 // -----------------------
-document.addEventListener('DOMContentLoaded', () => {
+let scrollRunning = false;
+let rafId = null;
+let lastTs = null;
+let acumulado = 0;
+
+function iniciarScrollAutomatico() {
     const botao = document.getElementById('rolarBtn');
     const slider = document.getElementById('velocidadeScroll');
     if (!botao || !slider) return;
 
-    let running = false;
-    let rafId = null;
-    let lastTs = null;
     let pxPorSegundo = parseInt(slider.value, 10);
-    let acumulado = 0;
 
     const scroller = () => (document.scrollingElement || document.documentElement || document.body);
     const estaNoFim = () => (window.innerHeight + (scroller().scrollTop || window.scrollY) >= scroller().scrollHeight - 1);
 
     function step(ts) {
-        if (!running) return;
+        if (!scrollRunning) return;
         if (!lastTs) lastTs = ts;
         const delta = ts - lastTs;
         lastTs = ts;
@@ -153,51 +159,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (estaNoFim()) {
-            parar();
+            pararScroll();
             return;
         }
         rafId = requestAnimationFrame(step);
     }
 
     function iniciar() {
-        if (running) return;
-        running = true;
+        if (scrollRunning) return;
+        scrollRunning = true;
         lastTs = null;
         rafId = requestAnimationFrame(step);
         botao.textContent = 'Parar Scroll';
     }
 
-    function parar() {
-        if (!running) return;
-        running = false;
+    function pararScroll() {
+        if (!scrollRunning) return;
+        scrollRunning = false;
         lastTs = null;
         acumulado = 0;
         if (rafId !== null) cancelAnimationFrame(rafId);
         rafId = null;
-        botao.textContent = 'Ativar Scroll';
+        botao.textContent = 'Scroll automático';
     }
 
-    botao.addEventListener('click', () => {
-        if (running) parar(); else iniciar();
-    });
-
-    slider.addEventListener('input', e => {
-        pxPorSegundo = parseInt(e.target.value, 10);
-    });
-
-    const pauseOnUser = (e) => {
-        if (e.target.closest('#rolarBtn')) return;
-        if (running) parar();
-    };
+    botao.onclick = () => { scrollRunning ? pararScroll() : iniciar(); };
+    slider.oninput = e => { pxPorSegundo = parseInt(e.target.value, 10); };
 
     ['touchstart', 'touchmove', 'wheel', 'mousedown'].forEach(evt =>
-        window.addEventListener(evt, pauseOnUser, { passive: true })
+        window.addEventListener(evt, () => { if (scrollRunning) pararScroll(); }, { passive: true })
     );
-
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) parar();
-    });
-});
+    document.addEventListener('visibilitychange', () => { if (document.hidden) pararScroll(); });
+}
 
 // Inicializa
-document.addEventListener('DOMContentLoaded', carregarCifras);
+document.addEventListener('DOMContentLoaded', async () => {
+    await carregarCifras();
+    if (document.getElementById('filtro-cifras')) {
+        exibirLista();
+    }
+    document.getElementById('btn-proxima')?.addEventListener('click', proximaCifra);
+    document.getElementById('btn-anterior')?.addEventListener('click', anteriorCifra);
+});
