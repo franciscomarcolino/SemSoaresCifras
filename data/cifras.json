@@ -59,40 +59,115 @@
   "id": 2,
   "titulo": "Big in Japan",
   "banda": "Alphaville",
-  "linkYoutube": "https://www.youtube.com/watch?v=9vKqVkMQHKk",
+  "linkYoutube": "https://www.youtube.com/watch?v=tl6u2NASUzU",
   "versos": [
     {
-      "acordes": "Dm Bb C Am Bb Gm A",
-      "letra": "Winter's cityside, Crystal bits of snowflakes all around my head and in the wind..."
+      "acordes": "B",
+      "letra": "E|---------------P.| m.--------------|\nB|--------------------------------|\nG|6--------6*------6--------8*-6*-|\nD|--7-5-5-7----------7-5-5-7------|\nA|--------------------------------|\nE|--------------------------------|"
     },
     {
-      "acordes": "Dm Bb C Am Bb Gm A",
-      "letra": "You did what you did to me, now it's history I see..."
+      "acordes": "B",
+      "letra": "E|-------------------P.| m.--------------------|\nB|------------------------------------------|\nG|6--------6-----------6---------8*-8*-6*-6*|\nD|--7-5-5-7-7-5*-5-7~----7-5-5-7------------|\nA|------------------------------------------|\nE|------------------------------------------|"
     },
     {
-      "acordes": "Dm Bb C Am Bb Gm A",
-      "letra": "Here's my comeback on the road again..."
+      "acordes": "B",
+      "letra": "Winter's cityside"
     },
     {
-      "acordes": "Dm Bb C Am Bb Gm A",
-      "letra": "Things will happen while they can..."
-    }
-  ],
-  "tablaturas": [
-    {
-      "sequencia": 1,
-      "tab": "E|---------------P.| m.--------------|\nB|--------------------------------|\nG|6--------6*------6--------8*-6*-|\nD|--7-5-5-7----------7-5-5-7------|\nA|--------------------------------|\nE|--------------------------------|"
+      "acordes": "G C# D#",
+      "letra": "Crystal bits of snowflakes all around my head and in the wind"
     },
     {
-      "sequencia": 2,
-      "tab": "E|-------------------P.| m.--------------------|\nB|------------------------------------------|\nG|6--------6-----------6---------8*-8*-6*-6*|\nD|--7-5-5-7-7-5*-5-7~----7-5-5-7------------|\nA|------------------------------------------|\nE|------------------------------------------|"
+      "acordes": "B",
+      "letra": "I had no illusions"
     },
     {
-      "sequencia": 3,
-      "tab": "E|---------P.| m.--------|\nB|---------------------5---*-5~-----8----*-8~----|\nG|6--------6-----------8b10*-8b10~--11b13*-11b13~|\nD|--7-5-5-7-7-5*-5-7~----------------------------|\nA|-----------------------------------------------|\nE|-----------------------------------------------|"
+      "acordes": "G C# D#",
+      "letra": "That I'd ever find a glimpse of summer's heatwaves in your eyes"
+    },
+    {
+      "acordes": "B G C# D# C#",
+      "letra": "You did what you did to me, now it's history I see"
+    },
+    {
+      "acordes": "G# D#",
+      "letra": "Here's my comeback on the road again"
+    },
+    {
+      "acordes": "B G C#",
+      "letra": "Things will happen while they can"
+    },
+    {
+      "acordes": "D# C# G# D#",
+      "letra": "I will wait here for my man tonight, it's easy when you're big in Japan"
+    },
+    {
+      "acordes": "B G",
+      "letra": "When you're big in Japan, tonight"
+    },
+    {
+      "acordes": "C# D# C# G# D#",
+      "letra": "Big in Japan, be tight, big in Japan where the eastern sea's so blue"
+    },
+    {
+      "acordes": "B G C# D#",
+      "letra": "Big in Japan, alright, pay, then I'll sleep by your side"
+    },
+    {
+      "acordes": "C# G# D# B",
+      "letra": "Things are easy when you're big in Japan, when you're big in Japan"
+    },
+    {
+      "acordes": "B",
+      "letra": "Neon on my naked skin"
+    },
+    {
+      "acordes": "G C# D#",
+      "letra": "Passing silhouettes of strange illuminated mannequins"
+    },
+    {
+      "acordes": "B",
+      "letra": "Shall I stay here at the zoo"
+    },
+    {
+      "acordes": "G C# D#",
+      "letra": "Or shall I go and change my point of view for other ugly scenes"
+    },
+    {
+      "acordes": "B G C# D# C#",
+      "letra": "You did what you did to me, now it's history I see"
+    },
+    {
+      "acordes": "G# D#",
+      "letra": "Here's my comeback on the road again"
+    },
+    {
+      "acordes": "B G C#",
+      "letra": "Things will happen while they can"
+    },
+    {
+      "acordes": "D# C# G# D#",
+      "letra": "I will wait here for my man tonight, it's easy when you're big in Japan"
+    },
+    {
+      "acordes": "B G",
+      "letra": "When you're big in Japan, tonight"
+    },
+    {
+      "acordes": "C# D# C# G# D#",
+      "letra": "Big in Japan, be tight, big in Japan where the eastern sea's so blue"
+    },
+    {
+      "acordes": "B G C# D#",
+      "letra": "Big in Japan, alright, pay, then I'll sleep by your side"
+    },
+    {
+      "acordes": "C# G# D# B",
+      "letra": "Things are easy when you're big in Japan, when you're big in Japan"
     }
   ]
 }
+
 
 
   
