@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "data": "19 Outubro 2025",
+    "hora": "N/A",
+    "local": "Estúdio central",
+    "status": "cancelado",
+    "musicas": []
+  },
+  {
+    "id": 2,
+    "data": "26 Outubro 2025",
+    "hora": "18:30",
+    "local": "Estúdio central",
+    "status": "ativo",
+    "musicas": [1,2]    
+  }
+  ,
+  {
+    "id": 3,
+    "data": "02 Novembro 2025",
+    "hora": "18:30",
+    "local": "Estúdio central",
+    "status": "ativo",
+    "musicas": [1,2]    
+  },
+  {
+    "id": 4,
+    "data": "09 Novembro 2025",
+    "hora": "18:30",
+    "local": "Estúdio central",
+    "status": "ativo",
+    "musicas": [1,2]    
+  },
+  {
+    "id": 5,
+    "data": "16 Novembro 2025",
+    "hora": "18:30",
+    "local": "Estúdio central",
+    "status": "ativo",
+    "musicas": [1,2]    
+  },
+  {
+    "id": 6,
+    "data": "23 Novembro 2025",
+    "hora": "18:30",
+    "local": "Estúdio central",
+    "status": "ativo",
+    "musicas": [1,2]    
+  }
+]

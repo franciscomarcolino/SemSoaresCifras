@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sem Soares - Cifras</title>
+  <link rel="icon" href="img/Icone_Sem_Soares.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="theme-dark">
+  <header>
+    <div class="logo-group">
+      <img src="img/Icone_Sem_Soares.png" alt="Logo da Banda" class="logo">
+      <h1>Banda Sem Soares</h1>
+    </div> 
+
+    <nav>
+      <a href="index.html"><i data-lucide="home"></i> Home</a>
+      <a href="lista_de_musica.html"><i data-lucide="guitar"></i> Cifras</a>
+      <a href="lista_de_evento.html"><i data-lucide="calendar-days"></i> Eventos</a>
+      <a href="lista_de_ensaio.html"><i data-lucide="drum"></i> Ensaios</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="lista-principal">
+      <!-- 🔍 Filtro -->
+      <div id="filtro-container">
+        <i class="fa fa-search"></i>
+        <input type="text" id="filtro-cifras" placeholder="Buscar música ou artista..." />
+      </div>
+
+      <!-- Lista -->
+      <div id="musicas-lista" class="list-container"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Banda Sem Soares - Todos os direitos reservados</p>
+  </footer>
+
+  <script>lucide.createIcons();</script>
+  <!-- Usa o mesmo renderizador de cifra de eventos/ensaios -->
+  <script src="js/exibir_cifra.js"></script>
+  <script src="js/listar_musica.js"></script>
+</body>
+</html>

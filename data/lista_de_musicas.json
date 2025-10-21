@@ -1,0 +1,47 @@
+[
+  {
+    "idMusica": 1,
+    "nome": "Musica 1",
+    "artista": "Sem Banda",
+    "tempo": "",
+    "imagem": "https://via.placeholder.com/100x100.png?text=No+Image",
+    "LinkYoutube": "https://www.youtube.com/watch?v=tl6u2NASUzU",
+    "cifra": "/data/cifras/cifra_1.json"
+  },
+  {
+    "idMusica": 2,
+    "nome": "Musica 2",
+    "artista": "Sem Banda",
+    "tempo": "",
+    "imagem": "https://via.placeholder.com/100x100.png?text=No+Image",
+    "LinkYoutube": "https://www.youtube.com/watch?v=tl6u2NASUzU",
+    "cifra": "/data/cifras/cifra_2.json"
+  },
+  {
+    "idMusica": 3,
+    "nome": "Musica 3",
+    "artista": "Sem Banda",
+    "tempo": "",
+    "imagem": "https://via.placeholder.com/100x100.png?text=No+Image",
+    "LinkYoutube": "https://www.youtube.com/watch?v=tl6u2NASUzU",
+    "cifra": "/data/cifras/cifra_3.json"
+  },
+  {
+    "idMusica": 4,
+    "nome": "Musica 4",
+    "artista": "Sem Banda",
+    "tempo": "",
+    "imagem": "https://via.placeholder.com/100x100.png?text=No+Image",
+    "LinkYoutube": "https://www.youtube.com/watch?v=tl6u2NASUzU",
+    "cifra": "/data/cifras/cifra_4.json"
+  },
+  {
+    "idMusica": 5,
+    "nome": "Musica 5",
+    "artista": "Sem Banda",
+    "tempo": "",
+    "imagem": "https://via.placeholder.com/100x100.png?text=No+Image",
+    "LinkYoutube": "https://www.youtube.com/watch?v=tl6u2NASUzU",
+    "cifra": "/data/cifras/cifra_5.json"
+  }
+]
