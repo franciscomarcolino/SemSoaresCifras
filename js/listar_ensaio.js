@@ -1,8 +1,8 @@
 // listar_ensaio.js
 // Similar to listar_evento.js but for ensaios
 document.addEventListener('DOMContentLoaded', async () => {
-  const ensaiosPath = '/data/ensaios.json';
-  const listaPath = '/data/lista_de_musicas.json';
+  const ensaiosPath = '../data/ensaios.json';
+  const listaPath = '../data/lista_de_musicas.json';
   const container = document.getElementById('ensaios-lista');
   if (!container) return;
 

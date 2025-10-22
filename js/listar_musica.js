@@ -2,7 +2,7 @@
 // Lista músicas e exibe cifras inline com acordes destacados (sem botões anterior/próxima)
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const listaPath = '/data/lista_de_musicas.json';
+  const listaPath = '../data/lista_de_musicas.json';
   const container = document.getElementById('musicas-lista');
   if (!container) return;
 

@@ -2,8 +2,8 @@
 // Lista eventos a partir de /data/eventos.json (ou evento.json) e permite expandir setlist;
 // ao clicar em música do evento, exibe a cifra logo abaixo da div do evento (usando exibir_cifra.js)
 document.addEventListener('DOMContentLoaded', async ()=>{
-  const eventosPath = '/data/eventos.json';
-  const listaPath = '/data/lista_de_musicas.json';
+  const eventosPath = '../data/eventos.json';
+  const listaPath = '../data/lista_de_musicas.json';
   const container = document.getElementById('eventos-lista');
   if(!container) return;
   const eventos = await fetch(eventosPath).then(r=>r.json()).catch(()=>[]);
