@@ -24,14 +24,15 @@ function highlightChords(cifraText) {
   const escaped = escapeHtml(cifraText);
 
   // Regex final: suporta acordes complexos como A7(b13), F#m7(9), D7/9, C6/9, A7+, Cº etc.
-  const CHORD_RE = /^(?:[A-G](?:#|b)?)(?:(?:m|M|maj|min|dim|aug|sus\d*|add\d*|maj7|M7|7M|7|9|11|13|6\/9|6|5|4|2|º|°|\+)|(?:\([^)]+\)))*(?:\/[A-G0-9](?:#|b)?)?$/;
+  const CHORD_RE =
+    /^(?:[A-G](?:#|b)?)(?:(?:m|M|maj|min|dim|aug|sus\d*|add\d*|maj7|M7|7M|7|9|11|13|6\/9|6|5|4|2|º|°|\+)|(?:\([^)]+\)))*(?:\/[A-G0-9](?:#|b)?)?$/;
 
-  const isChordLike = (tok) => CHORD_RE.test(tok.replace(/[,:;.!?]+$/,''));
-  const isBareRoot  = (tok) => /^[A-G]$/.test(tok.replace(/[,:;.!?]+$/,''));
+  const isChordLike = (tok) => CHORD_RE.test(tok.replace(/[,:;.!?]+$/, ''));
+  const isBareRoot = (tok) => /^[A-G]$/.test(tok.replace(/[,:;.!?]+$/, ''));
 
   return escaped
     .split('\n')
-    .map(line => {
+    .map((line) => {
       const tokens = line.match(/[^\s]+/g) || [];
       const chordTokens = tokens.filter(isChordLike);
       const manyChordsInLine = chordTokens.length >= 2;
@@ -44,8 +45,6 @@ function highlightChords(cifraText) {
     .join('\n');
 }
 
-
-
 // -----------------------
 // Renderiza uma cifra inline
 // -----------------------
@@ -53,30 +52,61 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
   const { hideNavButtons = false } = options;
   container.innerHTML = '';
 
-  const cifraPath = musicEntry.cifra.startsWith('/')
-    ? musicEntry.cifra
-    : '../data/cifras/' + musicEntry.cifra;
+  // === Detecção de ambiente e montagem do caminho da cifra ===
+  const hostname = window.location.hostname;
+  const isGithubPages = /\.github\.io$/i.test(hostname);
+  let basePath = '';
 
+  if (isGithubPages) {
+    // Ex: https://usuario.github.io/SemSoaresCifras/
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    const repo = parts[0] || '';
+    basePath = repo ? `/${repo}/` : '/';
+  }
+
+  let cifraPath = musicEntry.cifra || '';
+
+  if (cifraPath.startsWith('//')) {
+    cifraPath = cifraPath.replace(/^\/+/, '');
+  }
+
+  if (/^https?:\/\//i.test(cifraPath)) {
+    // URL completa (Spotify, etc.)
+  } else {
+    cifraPath = cifraPath.replace(/^\/+/, ''); // remove / inicial
+    cifraPath = isGithubPages ? `${basePath}${cifraPath}` : cifraPath;
+  }
+
+  console.log('[DEBUG] Cifra path final:', cifraPath);
+
+  // === Carrega o JSON da cifra ===
   let cifraText = '';
   try {
     const j = await fetchJson(cifraPath);
     cifraText = j.cifra || '';
   } catch (e) {
+    console.error('Erro ao carregar cifra:', e);
     cifraText = 'Não foi possível carregar a cifra.';
   }
 
+  // -----------------------
+  // Monta o HTML dinamicamente respeitando o modo hideNavButtons
+  // -----------------------
   const area = document.createElement('div');
   area.className = 'cifra-inline-wrapper';
 
-  // Monta o HTML dinamicamente respeitando o modo hideNavButtons
   area.innerHTML = `
     <div class="cifra-controls">
       <button class="btn btn-close">Fechar cifra</button>
       <br><br><br><br>
-      ${!hideNavButtons ? `
+      ${
+        !hideNavButtons
+          ? `
         <button class="btn btn-prev">◀ Anterior</button>
         <button class="btn btn-next">Próxima ▶</button>
-        <br><br>` : ''}
+        <br><br>`
+          : ''
+      }
       <label id="vel-label">Velocidade:
         <input class="scroll-speed" type="range" min="5" max="500" value="5">
       </label>
@@ -132,9 +162,7 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
 
       nextBtn.addEventListener('click', () => {
         const nextIndex =
-          currentIndex < contextIds.length - 1
-            ? currentIndex + 1
-            : contextIds.length - 1;
+          currentIndex < contextIds.length - 1 ? currentIndex + 1 : contextIds.length - 1;
         const idNext = contextIds[nextIndex];
         const evt = new CustomEvent('cifra:navigate', { detail: { id: idNext } });
         container.dispatchEvent(evt);
@@ -182,7 +210,7 @@ function habilitarScrollAutomatico(container, opts = {}) {
     display: 'block',
     width: '100%',
     padding: '10px',
-    backgroundColor: '#ffcc00', // 🔸 amarelo original restaurado
+    backgroundColor: '#ffcc00',
     color: '#000',
     fontWeight: 'bold',
     border: 'none',
@@ -191,31 +219,23 @@ function habilitarScrollAutomatico(container, opts = {}) {
     transition: 'background-color 0.2s ease, transform 0.1s ease'
   });
 
-  // Insere botão na área de controles
-  if (btnContainer) {
-    btnContainer.appendChild(btnScroll);
-  } else if (container.parentElement) {
-    container.parentElement.insertBefore(btnScroll, container);
-  }
+  if (btnContainer) btnContainer.appendChild(btnScroll);
+  else if (container.parentElement) container.parentElement.insertBefore(btnScroll, container);
 
-  // Ajusta velocidade conforme slider
-  if (speedInput) {
+  if (speedInput)
     speedInput.addEventListener('input', (e) => {
       const v = parseInt(e.target.value, 10);
       if (!Number.isNaN(v)) pxPorSegundo = v;
     });
-  }
 
   const estaNoFim = () =>
     container.scrollTop + container.clientHeight >= container.scrollHeight - 1;
 
-  // Função de rolagem animada
   function step(ts) {
     if (!running) return;
     if (lastTs == null) lastTs = ts;
     const delta = ts - lastTs;
     lastTs = ts;
-
     acumulado += (pxPorSegundo * delta) / 1000;
     const px = Math.floor(acumulado);
     if (px >= 1) {
@@ -230,7 +250,6 @@ function habilitarScrollAutomatico(container, opts = {}) {
     rafId = requestAnimationFrame(step);
   }
 
-  // Inicia ou pausa a rolagem
   function toggle(forceState) {
     const next = typeof forceState === 'boolean' ? forceState : !running;
     if (next === running) return;
@@ -253,21 +272,9 @@ function habilitarScrollAutomatico(container, opts = {}) {
     }
   }
 
-  // Clique alterna scroll
   btnScroll.addEventListener('click', () => toggle());
-
-  // Pausa ao interagir manualmente
-  const pauseOnUser = (e) => {
-    if (e.target === btnScroll) return;
-    if (running) toggle(false);
-  };
-
   ['touchstart', 'touchmove', 'wheel', 'mousedown', 'keydown'].forEach((evt) =>
-    container.addEventListener(evt, pauseOnUser, { passive: true })
+    container.addEventListener(evt, () => running && toggle(false), { passive: true })
   );
-
-  // Pausa ao sair da aba
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) toggle(false);
-  });
+  document.addEventListener('visibilitychange', () => document.hidden && toggle(false));
 }

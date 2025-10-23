@@ -359,6 +359,6 @@ footer {
   .container { padding: 0 8px; }
   .list-item { width: 95%; font-size: 0.95rem; }
   .musica-foto img { width: 45px; height: 45px; }
-  .cifra-texto { font-size: 14px; min-height: 150px; }
+  .cifra-texto { font-size: 14px; min-height: 300px; }
   .scroll-speed { width: 240px; }
 }
