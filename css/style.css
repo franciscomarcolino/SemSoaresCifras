@@ -217,8 +217,9 @@ nav a:hover { color: var(--accent-hover); }
 .btn:hover { background: var(--accent-hover); }
 
 .scroll-speed {
-  width: 300px;
+  width: 350px;
   height: 8px;
+  margin-bottom: 25px;
   accent-color: var(--accent-hover);
   cursor: pointer;
 }
@@ -360,5 +361,5 @@ footer {
   .list-item { width: 95%; font-size: 0.95rem; }
   .musica-foto img { width: 45px; height: 45px; }
   .cifra-texto { font-size: 14px; min-height: 300px; }
-  .scroll-speed { width: 240px; }
+  .scroll-speed { width: 350px; margin-bottom: 25px; }
 }
