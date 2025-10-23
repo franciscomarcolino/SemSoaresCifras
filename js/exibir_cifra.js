@@ -120,6 +120,8 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
   `;
 
   container.appendChild(area);
+  criarPlayerYoutube(musicEntry, area);
+
 
   // -----------------------
   // Configura área de rolagem
@@ -277,4 +279,133 @@ function habilitarScrollAutomatico(container, opts = {}) {
     container.addEventListener(evt, () => running && toggle(false), { passive: true })
   );
   document.addEventListener('visibilitychange', () => document.hidden && toggle(false));
+}
+
+// -----------------------
+// Cria e inicializa player de áudio do YouTube sob demanda (lazy-load)
+// -----------------------
+function criarPlayerYoutube(musicEntry, area) {
+  if (!musicEntry || !musicEntry.LinkYoutube) {
+    console.warn('[YT] Nenhum link do YouTube encontrado para esta música:', musicEntry?.nome);
+    return;
+  }
+
+  const link = musicEntry.LinkYoutube.trim();
+  const match = link.match(/(?:v=|\/)([0-9A-Za-z_-]{11})(?:\?|&|$)/);
+  const videoId = match ? match[1] : null;
+  if (!videoId) {
+    console.warn('[YT] Link inválido, não foi possível extrair o ID do vídeo:', link);
+    return;
+  }
+
+  console.log('[YT] Player configurado (modo lazy) para vídeo:', videoId, 'de', musicEntry.nome);
+
+  // === Cria o HTML do player (sem carregar nada do YouTube ainda) ===
+  const playerHtml = `
+    <div class="youtube-audio-player">
+      <span class="youtube-label">🎧 Ouvir música</span>
+      <div id="yt-player-container-${videoId}" class="yt-audio-iframe"></div>
+      <div class="youtube-controls">
+        <button class="btn btn-youtube-play">▶️</button>
+        <button class="btn btn-youtube-pause" disabled>⏸️</button>
+        <button class="btn btn-youtube-stop" disabled>⏹️</button>
+      </div>
+    </div>
+  `;
+
+  const controls = area.querySelector('.cifra-controls');
+  controls?.insertAdjacentHTML('afterend', playerHtml);
+
+  // === Lazy load ===
+  let ytPlayer = null;
+  let apiLoaded = false;
+  let isReady = false;
+
+  const btnPlay = area.querySelector('.btn-youtube-play');
+  const btnPause = area.querySelector('.btn-youtube-pause');
+  const btnStop = area.querySelector('.btn-youtube-stop');
+  const containerId = `yt-player-container-${videoId}`;
+
+  // === Carrega API (apenas uma vez) ===
+  const loadYouTubeAPI = () =>
+    new Promise((resolve) => {
+      if (window.YT && window.YT.Player) {
+        apiLoaded = true;
+        resolve();
+      } else {
+        if (!document.querySelector("script[src*='youtube.com/iframe_api']")) {
+          const tag = document.createElement('script');
+          tag.src = 'https://www.youtube.com/iframe_api';
+          document.body.appendChild(tag);
+        }
+        const check = setInterval(() => {
+          if (window.YT && window.YT.Player) {
+            clearInterval(check);
+            apiLoaded = true;
+            resolve();
+          }
+        }, 300);
+      }
+    });
+
+  // === Cria o player sob demanda ===
+  const createPlayer = () => {
+    console.log('[YT] Criando YT.Player sob demanda...');
+
+    // Define parâmetros do player
+    const playerVars = {
+      autoplay: 0,
+      controls: 0,
+      modestbranding: 1,
+      rel: 0,
+    };
+
+    // Evita origem inválida em ambiente local
+    if (window.location.protocol === 'https:') {
+      playerVars.origin = window.location.origin;
+    }
+
+    ytPlayer = new YT.Player(containerId, {
+      height: '0',
+      width: '0',
+      videoId: videoId,
+      host: 'https://www.youtube.com',
+      playerVars,
+      events: {
+        onReady: (e) => {
+          console.log('[YT] Player pronto (lazy):', videoId);
+          isReady = true;
+          e.target.playVideo();
+          btnPause.disabled = false;
+          btnStop.disabled = false;
+        },
+        onError: (err) => {
+          console.error('[YT] Erro no player:', err);
+        },
+      },
+    });
+  };
+
+  // === Eventos dos botões ===
+  btnPlay?.addEventListener('click', async () => {
+    if (!apiLoaded) await loadYouTubeAPI();
+
+    if (!ytPlayer) {
+      createPlayer();
+    } else if (isReady) {
+      ytPlayer.playVideo();
+    }
+  });
+
+  btnPause?.addEventListener('click', () => {
+    ytPlayer?.pauseVideo();
+  });
+
+  btnStop?.addEventListener('click', () => {
+    if (ytPlayer && isReady) {
+      // Rebobina e toca novamente
+      ytPlayer.seekTo(0, true);
+      ytPlayer.playVideo();
+    }
+  });
 }

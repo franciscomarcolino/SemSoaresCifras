@@ -363,3 +363,42 @@ footer {
   .cifra-texto { font-size: 14px; min-height: 300px; }
   .scroll-speed { width: 350px; margin-bottom: 25px; }
 }
+
+.youtube-audio-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.youtube-label {
+  color: #ffcc00;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.youtube-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.youtube-controls .btn {
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.youtube-controls .btn:hover {
+  background-color: #ffe676;
+}
+
+.yt-audio-iframe {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
