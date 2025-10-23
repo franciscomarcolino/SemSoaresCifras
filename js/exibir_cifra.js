@@ -55,7 +55,7 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
 
   const cifraPath = musicEntry.cifra.startsWith('/')
     ? musicEntry.cifra
-    : '/data/cifras/' + musicEntry.cifra;
+    : '../data/cifras/' + musicEntry.cifra;
 
   let cifraText = '';
   try {
