@@ -21,17 +21,30 @@ function escapeHtml(s) {
 // Realça acordes dentro do texto da cifra (corrigido para F#, Bb, etc.)
 // -----------------------
 function highlightChords(cifraText) {
-  // Escapa HTML antes (para evitar injeção)
   const escaped = escapeHtml(cifraText);
 
-  // Usa regex para capturar acordes dentro de cada linha
-  // A-G (com sustenido/bemol), seguidos de sufixos e extensões opcionais
-  const chordRegex =
-    /(?<![a-zA-Z0-9])([A-G](?:#|b)?(?:m|maj|min|dim|aug|sus|add)?\d*(?:\/[A-G](?:#|b)?)?)(?![a-zA-Z0-9])/g;
+  // Regex final: suporta acordes complexos como A7(b13), F#m7(9), D7/9, C6/9, A7+, Cº etc.
+  const CHORD_RE = /^(?:[A-G](?:#|b)?)(?:(?:m|M|maj|min|dim|aug|sus\d*|add\d*|maj7|M7|7M|7|9|11|13|6\/9|6|5|4|2|º|°|\+)|(?:\([^)]+\)))*(?:\/[A-G0-9](?:#|b)?)?$/;
 
-  // Substitui por span de destaque
-  return escaped.replace(chordRegex, '<span class="chord">$1</span>');
+  const isChordLike = (tok) => CHORD_RE.test(tok.replace(/[,:;.!?]+$/,''));
+  const isBareRoot  = (tok) => /^[A-G]$/.test(tok.replace(/[,:;.!?]+$/,''));
+
+  return escaped
+    .split('\n')
+    .map(line => {
+      const tokens = line.match(/[^\s]+/g) || [];
+      const chordTokens = tokens.filter(isChordLike);
+      const manyChordsInLine = chordTokens.length >= 2;
+
+      return line.replace(/([^\s]+)/g, (m) => {
+        const ok = isChordLike(m) && (manyChordsInLine || !isBareRoot(m));
+        return ok ? `<span class="chord">${m}</span>` : m;
+      });
+    })
+    .join('\n');
 }
+
+
 
 // -----------------------
 // Renderiza uma cifra inline

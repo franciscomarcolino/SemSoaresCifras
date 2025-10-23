@@ -1,47 +1,48 @@
 [
   {
     "idMusica": 1,
-    "nome": "Musica 1",
-    "artista": "Sem Banda",
-    "tempo": "",
-    "imagem": "https://via.placeholder.com/100x100.png?text=No+Image",
-    "LinkYoutube": "https://www.youtube.com/watch?v=tl6u2NASUzU",
-    "cifra": "/data/cifras/cifra_1.json"
+    "nome": "Tudo Igual",
+    "artista": "Lulu Santos",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b27308f9f43a1ceb6719cbe3f3c7",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/6V4OPyLDyixJf8Y07M3wFJ?si=f25647f8dc544761",
+    "LinkYoutube": "https://www.youtube.com/watch?v=dq2VbWyZeuM",
+    "cifra": "/data/cifras/Tudo Igual - Lulu Santos.json"
   },
   {
     "idMusica": 2,
-    "nome": "Musica 2",
-    "artista": "Sem Banda",
-    "tempo": "",
-    "imagem": "https://via.placeholder.com/100x100.png?text=No+Image",
-    "LinkYoutube": "https://www.youtube.com/watch?v=tl6u2NASUzU",
-    "cifra": "/data/cifras/cifra_2.json"
+    "nome": "Never Gonna Give You Up",
+    "artista": "Rick Astley",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d00001e02255e131abc1410833be95673",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/4PTG3Z6ehGkBFwjybzWkR8?si=b63a070df46a4be4",
+    "LinkYoutube": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "cifra": "/data/cifras/Never Gonna Give You Up - Rick Astley.json"
   },
   {
     "idMusica": 3,
-    "nome": "Musica 3",
-    "artista": "Sem Banda",
-    "tempo": "",
-    "imagem": "https://via.placeholder.com/100x100.png?text=No+Image",
-    "LinkYoutube": "https://www.youtube.com/watch?v=tl6u2NASUzU",
-    "cifra": "/data/cifras/cifra_3.json"
+    "nome": "Careless Whisper",
+    "artista": "Seether",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273c418220159462cdd7cfeb9a1",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/46eHxWRKmtYhUHPDRgclt6?si=aceadb4c206d474c",
+    "LinkYoutube": "https://www.youtube.com/watch?v=B5lzYG83yVQ",
+    "cifra": "/data/cifras/Careless Whisper - Seether.json"
   },
   {
     "idMusica": 4,
-    "nome": "Musica 4",
-    "artista": "Sem Banda",
-    "tempo": "",
-    "imagem": "https://via.placeholder.com/100x100.png?text=No+Image",
-    "LinkYoutube": "https://www.youtube.com/watch?v=tl6u2NASUzU",
-    "cifra": "/data/cifras/cifra_4.json"
+    "nome": "Take On Me",
+    "artista": "a-ha",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273e8dd4db47e7177c63b0b7d53",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/2WfaOiMkCvy7F5fcp2zZ8L?si=01309cffd2e64c3a", 
+    "LinkYoutube": "https://www.youtube.com/watch?v=djV11Xbc914",
+    "cifra": "/data/cifras/Take On Me - a-ha.json"
   },
   {
     "idMusica": 5,
-    "nome": "Musica 5",
-    "artista": "Sem Banda",
-    "tempo": "",
-    "imagem": "https://via.placeholder.com/100x100.png?text=No+Image",
-    "LinkYoutube": "https://www.youtube.com/watch?v=tl6u2NASUzU",
-    "cifra": "/data/cifras/cifra_5.json"
+    "nome": "Easy",
+    "artista": "The Commodores",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2739d52169c3b609d4630e04433",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/351fwrWO6CkL7Knl94qKye?si=1d9118139c4c4549",
+    "LinkYoutube": "https://www.youtube.com/watch?v=aCsZ3_db_Fk",
+    "cifra": "/data/cifras/Easy - The Commodores.json"
   }
 ]
+

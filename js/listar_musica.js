@@ -1,8 +1,9 @@
 // listar_musica.js
-// Lista músicas e exibe cifras inline com acordes destacados (sem botões anterior/próxima)
+// Lista músicas e exibe cifras inline com acordes destacados, foto e links (YouTube + Spotify)
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const listaPath = '../data/lista_de_musicas.json';
+  const listaPath = 'data/lista_de_musicas.json';
+  
   const container = document.getElementById('musicas-lista');
   if (!container) return;
 
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const div = document.createElement('div');
       div.className = 'list-item musica-item';
 
+      // ==== Carregar acordes únicos ====
       let acordesUnicos = [];
       try {
         const cifraPath = m.cifra.startsWith('/') ? m.cifra : '/data/cifras/' + m.cifra;
@@ -35,21 +37,37 @@ document.addEventListener('DOMContentLoaded', async () => {
         ? `<div class="acordes-resumo">${acordesUnicos.join(' ')}</div>`
         : '';
 
+      // ==== Layout da música ====
       div.innerHTML = `
         <div class="musica-header">
+          <div class="musica-foto">
+            <img src="${m.fotoBanda || '../img/placeholder-band.png'}" alt="Foto da banda">
+          </div>
           <div class="musica-info">
             <strong>${m.nome}</strong> - <em>${m.artista || ''}</em>
             ${acordesHtml}
           </div>
-          <div class="musica-youtube">
-            <a href="${m.LinkYoutube || '#'}" target="_blank" rel="noopener" title="Abrir no YouTube">
-              <i class="fa-brands fa-youtube"></i>
-            </a>
+          <div class="musica-links">
+            ${
+              m.LinkSpotify
+                ? `<a href="${m.LinkSpotify}" target="_blank" rel="noopener" title="Ouvir no Spotify">
+                     <i class="fa-brands fa-spotify"></i>
+                   </a>`
+                : ''
+            }
+            ${
+              m.LinkYoutube
+                ? `<a href="${m.LinkYoutube}" target="_blank" rel="noopener" title="Abrir no YouTube">
+                     <i class="fa-brands fa-youtube"></i>
+                   </a>`
+                : ''
+            }
           </div>
         </div>
         <div class="cifra-inline-area"></div>
       `;
 
+      // ==== Clique abre cifra ====
       div.addEventListener('click', (ev) => {
         if (ev.target.closest('a')) return;
         if (!ev.target.closest('.musica-header')) return;
@@ -72,7 +90,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         cifraArea.appendChild(wrapper);
 
         if (typeof renderCifraInline === 'function') {
-          // Passa uma flag para ocultar os botões
           renderCifraInline(wrapper, m, [m.idMusica], { hideNavButtons: true });
         } else {
           cifraArea.innerHTML = '<p>Erro: função renderCifraInline não encontrada.</p>';
@@ -82,6 +99,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       container.appendChild(div);
     }
 
+    // Nenhuma música encontrada
     if (musicasFiltradas.length === 0) {
       const msg = document.createElement('p');
       msg.textContent = 'Nenhuma música encontrada.';
@@ -90,6 +108,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
+  // ==== Inicialização ====
   renderLista();
-  if (filtroInput) filtroInput.addEventListener('input', () => renderLista(filtroInput.value));
+  if (filtroInput)
+    filtroInput.addEventListener('input', () => renderLista(filtroInput.value));
 });
