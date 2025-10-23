@@ -107,8 +107,8 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
         <br><br>`
           : ''
       }
-      <label id="vel-label">Velocidade:
-        <input class="scroll-speed" type="range" min="5" max="500" value="5">
+      <label id="vel-label">Velocidade:        
+        <input class="scroll-speed" type="range" min="5" max="150" value="5">
       </label>
     </div>
 
