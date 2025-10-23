@@ -402,10 +402,9 @@ function criarPlayerYoutube(musicEntry, area) {
   });
 
   btnStop?.addEventListener('click', () => {
-    if (ytPlayer && isReady) {
-      // Rebobina e toca novamente
-      ytPlayer.seekTo(0, true);
-      ytPlayer.playVideo();
+    if (ytPlayer && ytPlayer.seekTo) {
+    ytPlayer.seekTo(0, true);  // volta para o início
+    ytPlayer.stopVideo();      // apenas para, sem tocar novamente
     }
   });
 }
