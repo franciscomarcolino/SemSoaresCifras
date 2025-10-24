@@ -1,27 +1,44 @@
 /* ============================================================
-   🎸 SEM SOARES - STYLE.CSS (versão otimizada)
-   Mantém o layout atual, remove duplicatas e melhora a estrutura.
+   🎸 SEM SOARES - STYLE.CSS (versão otimizada e padronizada)
+   ------------------------------------------------------------
+   - Centraliza todas as cores no :root
+   - Remove estilos redundantes / duplicados
+   - Mantém compatibilidade total com o layout atual
    ============================================================ */
 
-/* === VARIÁVEIS DE TEMA (Modo escuro fixo) === */
+/* === VARIÁVEIS DE TEMA === */
 :root {
+  /* Cores principais */
   --bg: #111214;
   --panel: #1a1a1a;
   --card-bg: #1a1a1a;
-  --text-color: #e9e9e9;
+
+  /* Texto */
+  --text: #e9e9e9;
   --muted: #bdbdbd;
+
+  /* Acentos */
   --accent: #b39700;
   --accent-hover: #ffe86e;
-  --accent-spotify: #1db954;
-  --accent-youtube: #ff4444;
+
+  /* Serviços externos */
+  --spotify: #1db954;
+  --spotify-hover: #1ed760;
+  --youtube: #ff4444;
+  --youtube-hover: #ff7777;
+
+  /* Outros */
+  --success: #00c853;
+  --error: #d32f2f;
+  --border: #333;
 }
 
 /* === BODY GLOBAL === */
 body {
   margin: 0;
   font-family: 'Inter', system-ui, 'Segoe UI', Arial, sans-serif;
-  background-color: var(--bg);
-  color: var(--text-color);
+  background: var(--bg);
+  color: var(--text);
   text-align: center;
 }
 
@@ -86,12 +103,10 @@ nav a:hover { color: var(--accent-hover); }
 
 /* === CONTAINERS === */
 .container { max-width: 980px; margin: 20px auto; padding: 0 16px; }
-.list-container { display: block; gap: 10px; }
 
 /* === LIST ITEMS (Músicas / Eventos / Ensaios) === */
 .list-item {
   background: var(--panel);
-  color: var(--text-color);
   border-radius: 12px;
   padding: 1rem 1.2rem;
   margin: 0.5rem auto;
@@ -104,16 +119,22 @@ nav a:hover { color: var(--accent-hover); }
 
 .list-item:hover { background: #222; }
 
-.list-item strong { color: var(--text-color); }
+.list-item strong { color: var(--text); }
 .list-item em { color: var(--muted); font-style: italic; }
 
-.status {
-  background: #0b8a3f;
-  color: #fff;
-  padding: 4px 8px;
+/* === STATUS BADGES === */
+.status,
+.status-badge {
   border-radius: 6px;
   font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 4px 8px;
 }
+
+.status { background: #0b8a3f; color: #fff; }
+.status-badge.ativo { background: var(--success); color: #000; }
+.status-badge.cancelado { background: var(--error); color: #fff; }
 
 /* === INPUT DE FILTRO === */
 #filtro-container {
@@ -149,8 +170,7 @@ nav a:hover { color: var(--accent-hover); }
 
 #filtro-container input::placeholder { color: #aaa; }
 
-/* === MÚSICAS (lista_de_musica.html) === */
-.musica-item { transition: background 0.2s ease; }
+/* === MÚSICAS === */
 .musica-header {
   display: flex;
   align-items: center;
@@ -164,18 +184,14 @@ nav a:hover { color: var(--accent-hover); }
   height: 55px;
   border-radius: 8px;
   object-fit: cover;
-  border: 1px solid #333;
+  border: 1px solid var(--border);
 }
 
-.musica-info {
-  flex: 1;
-  text-align: left;
-}
-.musica-info strong { font-weight: 700; }
+.musica-info { flex: 1; text-align: left; }
 .musica-info em { color: #ccc; }
 
 .acordes-resumo {
-  color: #f1c40f;
+  color: var(--accent);
   font-family: monospace;
   font-size: 0.95rem;
   margin-top: 4px;
@@ -187,23 +203,22 @@ nav a:hover { color: var(--accent-hover); }
   gap: 10px;
   align-items: center;
 }
+
 .musica-links a {
   font-size: 1.3rem;
   transition: color 0.2s;
 }
-.musica-links a[href*="spotify"] { color: var(--accent-spotify); }
-.musica-links a[href*="spotify"]:hover { color: #1ed760; }
-.musica-links a[href*="youtube"] { color: var(--accent-youtube); }
-.musica-links a[href*="youtube"]:hover { color: #ff7777; }
+.musica-links a[href*="spotify"] { color: var(--spotify); }
+.musica-links a[href*="spotify"]:hover { color: var(--spotify-hover); }
+.musica-links a[href*="youtube"] { color: var(--youtube); }
+.musica-links a[href*="youtube"]:hover { color: var(--youtube-hover); }
 
 /* === CIFRAS === */
 .cifra-inline-wrapper { margin-top: 12px; }
 
-.cifra-controls {
-  text-align: center;
-  margin: 12px 0;
-}
+.cifra-controls { text-align: center; margin: 12px 0; }
 
+/* --- Botões Gerais --- */
 .btn {
   background: var(--accent);
   color: #000;
@@ -212,18 +227,34 @@ nav a:hover { color: var(--accent-hover); }
   padding: 8px 12px;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
-.btn:hover { background: var(--accent-hover); }
+.btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.btn:active { transform: scale(0.97); }
 
+/* --- Botão Auto Scroll --- */
+.btn-scroll-auto {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: var(--accent);
+  color: #000;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.btn-scroll-auto:hover { background: var(--accent-hover); }
+
+/* --- Slider de velocidade --- */
 .scroll-speed {
-  width: 350px;
+  width: 250px;
   height: 8px;
+  margin-top: 50px;
   margin-bottom: 25px;
   accent-color: var(--accent-hover);
   cursor: pointer;
 }
 
+/* --- Texto da cifra --- */
 .cifra-texto {
   background: #111;
   color: #e0e0e0;
@@ -237,31 +268,20 @@ nav a:hover { color: var(--accent-hover); }
   text-align: left;
 }
 
-.cifra-texto .chord { color: #b39700; font-weight: bold; }
+.cifra-texto .chord { color: var(--accent); font-weight: bold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size:large;}
 .cifra-texto .section { color: #7adfff; font-weight: bold; }
 .cifra-texto .tone { color: #ff9b9b; font-weight: bold; }
 .cifra-texto .tab { color: #9cdcfe; }
 
+/* Scrollbar */
 .cifra-texto::-webkit-scrollbar { width: 8px; }
 .cifra-texto::-webkit-scrollbar-thumb {
-  background: #333; border-radius: 4px;
+  background: #333;
+  border-radius: 4px;
 }
 .cifra-texto::-webkit-scrollbar-thumb:hover { background: #555; }
 
-.btn-scroll-auto {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #ffcc00;
-  color: #000;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-.btn-scroll-auto:active { transform: scale(0.97); }
-
-/* === EVENTOS E ENSAIOS === */
+/* === EVENTOS / ENSAIOS === */
 .setlist {
   font-weight: bold;
   font-size: 1.1em;
@@ -269,7 +289,11 @@ nav a:hover { color: var(--accent-hover); }
   color: var(--accent);
 }
 
-.setlist-ul { padding-left: 18px; margin: 8px 0; color: var(--muted); }
+.setlist-ul {
+  padding-left: 18px;
+  margin: 8px 0;
+  color: var(--muted);
+}
 
 .setlist-ul a {
   color: #fff;
@@ -277,35 +301,19 @@ nav a:hover { color: var(--accent-hover); }
   cursor: pointer;
   transition: color 0.2s, text-shadow 0.2s;
 }
-
 .setlist-ul a:hover {
   color: var(--accent-hover);
-  text-shadow: 0 0 6px rgba(255, 232, 110, 0.6); /* brilho suave */
+  text-shadow: 0 0 6px rgba(255, 232, 110, 0.6);
 }
+.setlist-ul a:visited { color: #ddd; }
 
-.setlist-ul a:visited {
-  color: #ddd; /* cinza claro em vez de roxo padrão */
+.ensaio-item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
 }
-
-.evento-item, .ensaio-item {
-  cursor: default;
-}
-
-.status-badge {
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 0.85em;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-.status-badge.ativo { background-color: #00c853; color: #000; }
-.status-badge.cancelado { background-color: #d32f2f; color: #fff; }
-
-.ensaio-item { border: 1px solid #333; border-radius: 10px; padding: 16px; }
 .ensaio-item.ensaio-ativo:hover { background-color: #202b20; }
 .ensaio-item.ensaio-cancelado:hover { background-color: #2a1d1d; }
-
-
 
 /* === HOME === */
 .home-container {
@@ -346,6 +354,36 @@ nav a:hover { color: var(--accent-hover); }
 .overlay i { width: 28px; height: 28px; color: var(--accent); }
 .overlay h2 { margin: 0; font-size: 1.5rem; }
 
+/* === YOUTUBE PLAYER === */
+.youtube-audio-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.youtube-label {
+  color: var(--accent);
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.youtube-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.youtube-controls .btn {
+  background: var(--accent);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-weight: bold;
+}
+.youtube-controls .btn:hover {
+  background: var(--accent-hover);
+}
+
 /* === FOOTER === */
 footer {
   margin-top: 2rem;
@@ -361,44 +399,5 @@ footer {
   .list-item { width: 95%; font-size: 0.95rem; }
   .musica-foto img { width: 45px; height: 45px; }
   .cifra-texto { font-size: 14px; min-height: 300px; }
-  .scroll-speed { width: 350px; margin-bottom: 25px; }
-}
-
-.youtube-audio-player {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.youtube-label {
-  color: #ffcc00;
-  font-weight: bold;
-  margin-bottom: 6px;
-}
-
-.youtube-controls {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
-.youtube-controls .btn {
-  background-color: #ffcc00;
-  border: none;
-  border-radius: 8px;
-  padding: 6px 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.youtube-controls .btn:hover {
-  background-color: #ffe676;
-}
-
-.yt-audio-iframe {
-  width: 0;
-  height: 0;
-  overflow: hidden;
+  .scroll-speed { width: 250px; margin-bottom: 25px; margin-top: 50px; }
 }

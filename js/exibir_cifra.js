@@ -68,19 +68,6 @@ function highlightChords(cifraText) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // -----------------------
 // Renderiza uma cifra inline
 // -----------------------
@@ -134,7 +121,7 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
   area.innerHTML = `
     <div class="cifra-controls">
       <button class="btn btn-close">Fechar cifra</button>
-      <br><br><br><br>
+      <br><br><br>
       ${
         !hideNavButtons
           ? `
@@ -144,7 +131,7 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
           : ''
       }
       <label id="vel-label">Velocidade:        
-        <input class="scroll-speed" type="range" min="5" max="150" value="5">
+        <input class="scroll-speed" type="range" min="5" max="50" value="5">
       </label>
     </div>
 
@@ -248,7 +235,7 @@ function habilitarScrollAutomatico(container, opts = {}) {
     display: 'block',
     width: '100%',
     padding: '10px',
-    backgroundColor: '#ffcc00',
+    backgroundColor: '#b39700',
     color: '#000',
     fontWeight: 'bold',
     border: 'none',
@@ -257,8 +244,18 @@ function habilitarScrollAutomatico(container, opts = {}) {
     transition: 'background-color 0.2s ease, transform 0.1s ease'
   });
 
-  if (btnContainer) btnContainer.appendChild(btnScroll);
-  else if (container.parentElement) container.parentElement.insertBefore(btnScroll, container);
+  if (btnContainer) {
+  const velLabel = btnContainer.querySelector('#vel-label');
+  if (velLabel) {
+    // Insere o botão antes do rótulo de velocidade
+    btnContainer.insertBefore(btnScroll, velLabel);
+  } else {
+    // Caso não encontre o vel-label, adiciona no final como fallback
+    btnContainer.appendChild(btnScroll);
+  }
+} else if (container.parentElement) {
+  container.parentElement.insertBefore(btnScroll, container);
+}
 
   if (speedInput)
     speedInput.addEventListener('input', (e) => {
@@ -338,6 +335,7 @@ function criarPlayerYoutube(musicEntry, area) {
 
   // === Cria o HTML do player (sem carregar nada do YouTube ainda) ===
   const playerHtml = `
+    <br><br>
     <div class="youtube-audio-player">
       <span class="youtube-label">🎧 Ouvir música</span>
       <div id="yt-player-container-${videoId}" class="yt-audio-iframe"></div>
@@ -347,10 +345,11 @@ function criarPlayerYoutube(musicEntry, area) {
         <button class="btn btn-youtube-stop" disabled>⏹️</button>
       </div>
     </div>
+    <br><br>
   `;
 
   const controls = area.querySelector('.cifra-controls');
-  controls?.insertAdjacentHTML('afterend', playerHtml);
+  controls?.insertAdjacentHTML('beforebegin', playerHtml);
 
   // === Lazy load ===
   let ytPlayer = null;
