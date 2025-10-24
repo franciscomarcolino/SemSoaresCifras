@@ -2,8 +2,7 @@
 // Lista músicas e exibe cifras inline com acordes destacados, foto e links (YouTube + Spotify)
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const listaPath = 'data/lista_de_musicas.json';
-  
+  const listaPath = '../data/lista_de_musicas.json';
   const container = document.getElementById('musicas-lista');
   if (!container) return;
 

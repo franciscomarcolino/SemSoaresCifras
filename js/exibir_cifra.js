@@ -24,15 +24,14 @@ function highlightChords(cifraText) {
   const escaped = escapeHtml(cifraText);
 
   // Regex final: suporta acordes complexos como A7(b13), F#m7(9), D7/9, C6/9, A7+, Cº etc.
-  const CHORD_RE =
-    /^(?:[A-G](?:#|b)?)(?:(?:m|M|maj|min|dim|aug|sus\d*|add\d*|maj7|M7|7M|7|9|11|13|6\/9|6|5|4|2|º|°|\+)|(?:\([^)]+\)))*(?:\/[A-G0-9](?:#|b)?)?$/;
+  const CHORD_RE = /^(?:[A-G](?:#|b)?)(?:(?:m|M|maj|min|dim|aug|sus\d*|add\d*|maj7|M7|7M|7|9|11|13|6\/9|6|5|4|2|º|°|\+)|(?:\([^)]+\)))*(?:\/[A-G0-9](?:#|b)?)?$/;
 
-  const isChordLike = (tok) => CHORD_RE.test(tok.replace(/[,:;.!?]+$/, ''));
-  const isBareRoot = (tok) => /^[A-G]$/.test(tok.replace(/[,:;.!?]+$/, ''));
+  const isChordLike = (tok) => CHORD_RE.test(tok.replace(/[,:;.!?]+$/,''));
+  const isBareRoot  = (tok) => /^[A-G]$/.test(tok.replace(/[,:;.!?]+$/,''));
 
   return escaped
     .split('\n')
-    .map((line) => {
+    .map(line => {
       const tokens = line.match(/[^\s]+/g) || [];
       const chordTokens = tokens.filter(isChordLike);
       const manyChordsInLine = chordTokens.length >= 2;
@@ -45,6 +44,8 @@ function highlightChords(cifraText) {
     .join('\n');
 }
 
+
+
 // -----------------------
 // Renderiza uma cifra inline
 // -----------------------
@@ -52,63 +53,32 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
   const { hideNavButtons = false } = options;
   container.innerHTML = '';
 
-  // === Detecção de ambiente e montagem do caminho da cifra ===
-  const hostname = window.location.hostname;
-  const isGithubPages = /\.github\.io$/i.test(hostname);
-  let basePath = '';
+  const cifraPath = musicEntry.cifra.startsWith('/')
+    ? musicEntry.cifra
+    : '/data/cifras/' + musicEntry.cifra;
 
-  if (isGithubPages) {
-    // Ex: https://usuario.github.io/SemSoaresCifras/
-    const parts = window.location.pathname.split('/').filter(Boolean);
-    const repo = parts[0] || '';
-    basePath = repo ? `/${repo}/` : '/';
-  }
-
-  let cifraPath = musicEntry.cifra || '';
-
-  if (cifraPath.startsWith('//')) {
-    cifraPath = cifraPath.replace(/^\/+/, '');
-  }
-
-  if (/^https?:\/\//i.test(cifraPath)) {
-    // URL completa (Spotify, etc.)
-  } else {
-    cifraPath = cifraPath.replace(/^\/+/, ''); // remove / inicial
-    cifraPath = isGithubPages ? `${basePath}${cifraPath}` : cifraPath;
-  }
-
-  console.log('[DEBUG] Cifra path final:', cifraPath);
-
-  // === Carrega o JSON da cifra ===
   let cifraText = '';
   try {
     const j = await fetchJson(cifraPath);
     cifraText = j.cifra || '';
   } catch (e) {
-    console.error('Erro ao carregar cifra:', e);
     cifraText = 'Não foi possível carregar a cifra.';
   }
 
-  // -----------------------
-  // Monta o HTML dinamicamente respeitando o modo hideNavButtons
-  // -----------------------
   const area = document.createElement('div');
   area.className = 'cifra-inline-wrapper';
 
+  // Monta o HTML dinamicamente respeitando o modo hideNavButtons
   area.innerHTML = `
     <div class="cifra-controls">
       <button class="btn btn-close">Fechar cifra</button>
       <br><br><br><br>
-      ${
-        !hideNavButtons
-          ? `
+      ${!hideNavButtons ? `
         <button class="btn btn-prev">◀ Anterior</button>
         <button class="btn btn-next">Próxima ▶</button>
-        <br><br>`
-          : ''
-      }
-      <label id="vel-label">Velocidade:        
-        <input class="scroll-speed" type="range" min="5" max="150" value="5">
+        <br><br>` : ''}
+      <label id="vel-label">Velocidade:
+        <input class="scroll-speed" type="range" min="5" max="500" value="5">
       </label>
     </div>
 
@@ -120,8 +90,6 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
   `;
 
   container.appendChild(area);
-  criarPlayerYoutube(musicEntry, area);
-
 
   // -----------------------
   // Configura área de rolagem
@@ -164,7 +132,9 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
 
       nextBtn.addEventListener('click', () => {
         const nextIndex =
-          currentIndex < contextIds.length - 1 ? currentIndex + 1 : contextIds.length - 1;
+          currentIndex < contextIds.length - 1
+            ? currentIndex + 1
+            : contextIds.length - 1;
         const idNext = contextIds[nextIndex];
         const evt = new CustomEvent('cifra:navigate', { detail: { id: idNext } });
         container.dispatchEvent(evt);
@@ -212,7 +182,7 @@ function habilitarScrollAutomatico(container, opts = {}) {
     display: 'block',
     width: '100%',
     padding: '10px',
-    backgroundColor: '#ffcc00',
+    backgroundColor: '#ffcc00', // 🔸 amarelo original restaurado
     color: '#000',
     fontWeight: 'bold',
     border: 'none',
@@ -221,23 +191,31 @@ function habilitarScrollAutomatico(container, opts = {}) {
     transition: 'background-color 0.2s ease, transform 0.1s ease'
   });
 
-  if (btnContainer) btnContainer.appendChild(btnScroll);
-  else if (container.parentElement) container.parentElement.insertBefore(btnScroll, container);
+  // Insere botão na área de controles
+  if (btnContainer) {
+    btnContainer.appendChild(btnScroll);
+  } else if (container.parentElement) {
+    container.parentElement.insertBefore(btnScroll, container);
+  }
 
-  if (speedInput)
+  // Ajusta velocidade conforme slider
+  if (speedInput) {
     speedInput.addEventListener('input', (e) => {
       const v = parseInt(e.target.value, 10);
       if (!Number.isNaN(v)) pxPorSegundo = v;
     });
+  }
 
   const estaNoFim = () =>
     container.scrollTop + container.clientHeight >= container.scrollHeight - 1;
 
+  // Função de rolagem animada
   function step(ts) {
     if (!running) return;
     if (lastTs == null) lastTs = ts;
     const delta = ts - lastTs;
     lastTs = ts;
+
     acumulado += (pxPorSegundo * delta) / 1000;
     const px = Math.floor(acumulado);
     if (px >= 1) {
@@ -252,6 +230,7 @@ function habilitarScrollAutomatico(container, opts = {}) {
     rafId = requestAnimationFrame(step);
   }
 
+  // Inicia ou pausa a rolagem
   function toggle(forceState) {
     const next = typeof forceState === 'boolean' ? forceState : !running;
     if (next === running) return;
@@ -274,137 +253,21 @@ function habilitarScrollAutomatico(container, opts = {}) {
     }
   }
 
+  // Clique alterna scroll
   btnScroll.addEventListener('click', () => toggle());
-  ['touchstart', 'touchmove', 'wheel', 'mousedown', 'keydown'].forEach((evt) =>
-    container.addEventListener(evt, () => running && toggle(false), { passive: true })
-  );
-  document.addEventListener('visibilitychange', () => document.hidden && toggle(false));
-}
 
-// -----------------------
-// Cria e inicializa player de áudio do YouTube sob demanda (lazy-load)
-// -----------------------
-function criarPlayerYoutube(musicEntry, area) {
-  if (!musicEntry || !musicEntry.LinkYoutube) {
-    console.warn('[YT] Nenhum link do YouTube encontrado para esta música:', musicEntry?.nome);
-    return;
-  }
-
-  const link = musicEntry.LinkYoutube.trim();
-  const match = link.match(/(?:v=|\/)([0-9A-Za-z_-]{11})(?:\?|&|$)/);
-  const videoId = match ? match[1] : null;
-  if (!videoId) {
-    console.warn('[YT] Link inválido, não foi possível extrair o ID do vídeo:', link);
-    return;
-  }
-
-  console.log('[YT] Player configurado (modo lazy) para vídeo:', videoId, 'de', musicEntry.nome);
-
-  // === Cria o HTML do player (sem carregar nada do YouTube ainda) ===
-  const playerHtml = `
-    <div class="youtube-audio-player">
-      <span class="youtube-label">🎧 Ouvir música</span>
-      <div id="yt-player-container-${videoId}" class="yt-audio-iframe"></div>
-      <div class="youtube-controls">
-        <button class="btn btn-youtube-play">▶️</button>
-        <button class="btn btn-youtube-pause" disabled>⏸️</button>
-        <button class="btn btn-youtube-stop" disabled>⏹️</button>
-      </div>
-    </div>
-  `;
-
-  const controls = area.querySelector('.cifra-controls');
-  controls?.insertAdjacentHTML('afterend', playerHtml);
-
-  // === Lazy load ===
-  let ytPlayer = null;
-  let apiLoaded = false;
-  let isReady = false;
-
-  const btnPlay = area.querySelector('.btn-youtube-play');
-  const btnPause = area.querySelector('.btn-youtube-pause');
-  const btnStop = area.querySelector('.btn-youtube-stop');
-  const containerId = `yt-player-container-${videoId}`;
-
-  // === Carrega API (apenas uma vez) ===
-  const loadYouTubeAPI = () =>
-    new Promise((resolve) => {
-      if (window.YT && window.YT.Player) {
-        apiLoaded = true;
-        resolve();
-      } else {
-        if (!document.querySelector("script[src*='youtube.com/iframe_api']")) {
-          const tag = document.createElement('script');
-          tag.src = 'https://www.youtube.com/iframe_api';
-          document.body.appendChild(tag);
-        }
-        const check = setInterval(() => {
-          if (window.YT && window.YT.Player) {
-            clearInterval(check);
-            apiLoaded = true;
-            resolve();
-          }
-        }, 300);
-      }
-    });
-
-  // === Cria o player sob demanda ===
-  const createPlayer = () => {
-    console.log('[YT] Criando YT.Player sob demanda...');
-
-    // Define parâmetros do player
-    const playerVars = {
-      autoplay: 0,
-      controls: 0,
-      modestbranding: 1,
-      rel: 0,
-    };
-
-    // Evita origem inválida em ambiente local
-    if (window.location.protocol === 'https:') {
-      playerVars.origin = window.location.origin;
-    }
-
-    ytPlayer = new YT.Player(containerId, {
-      height: '0',
-      width: '0',
-      videoId: videoId,
-      host: 'https://www.youtube.com',
-      playerVars,
-      events: {
-        onReady: (e) => {
-          console.log('[YT] Player pronto (lazy):', videoId);
-          isReady = true;
-          e.target.playVideo();
-          btnPause.disabled = false;
-          btnStop.disabled = false;
-        },
-        onError: (err) => {
-          console.error('[YT] Erro no player:', err);
-        },
-      },
-    });
+  // Pausa ao interagir manualmente
+  const pauseOnUser = (e) => {
+    if (e.target === btnScroll) return;
+    if (running) toggle(false);
   };
 
-  // === Eventos dos botões ===
-  btnPlay?.addEventListener('click', async () => {
-    if (!apiLoaded) await loadYouTubeAPI();
+  ['touchstart', 'touchmove', 'wheel', 'mousedown', 'keydown'].forEach((evt) =>
+    container.addEventListener(evt, pauseOnUser, { passive: true })
+  );
 
-    if (!ytPlayer) {
-      createPlayer();
-    } else if (isReady) {
-      ytPlayer.playVideo();
-    }
-  });
-
-  btnPause?.addEventListener('click', () => {
-    ytPlayer?.pauseVideo();
-  });
-
-  btnStop?.addEventListener('click', () => {
-    if (ytPlayer && ytPlayer.seekTo) {
-    ytPlayer.seekTo(0, true);  // volta para o início
-    ytPlayer.stopVideo();      // apenas para, sem tocar novamente
-    }
+  // Pausa ao sair da aba
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) toggle(false);
   });
 }
