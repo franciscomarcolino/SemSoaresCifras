@@ -268,7 +268,7 @@ nav a:hover { color: var(--accent-hover); }
   text-align: left;
 }
 
-.cifra-texto .chord { color: var(--accent); font-weight: bold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size:large;}
+.cifra-texto .chord { color: var(--accent); font-weight: bold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;}
 .cifra-texto .section { color: #7adfff; font-weight: bold; }
 .cifra-texto .tone { color: #ff9b9b; font-weight: bold; }
 .cifra-texto .tab { color: #9cdcfe; }
