@@ -217,8 +217,9 @@ nav a:hover { color: var(--accent-hover); }
 .btn:hover { background: var(--accent-hover); }
 
 .scroll-speed {
-  width: 300px;
+  width: 350px;
   height: 8px;
+  margin-bottom: 25px;
   accent-color: var(--accent-hover);
   cursor: pointer;
 }
@@ -359,6 +360,45 @@ footer {
   .container { padding: 0 8px; }
   .list-item { width: 95%; font-size: 0.95rem; }
   .musica-foto img { width: 45px; height: 45px; }
-  .cifra-texto { font-size: 14px; min-height: 150px; }
-  .scroll-speed { width: 240px; }
+  .cifra-texto { font-size: 14px; min-height: 300px; }
+  .scroll-speed { width: 350px; margin-bottom: 25px; }
+}
+
+.youtube-audio-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.youtube-label {
+  color: #ffcc00;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.youtube-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.youtube-controls .btn {
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.youtube-controls .btn:hover {
+  background-color: #ffe676;
+}
+
+.yt-audio-iframe {
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
