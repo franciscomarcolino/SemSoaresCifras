@@ -22,7 +22,7 @@
     "hora": "18:30",
     "local": "Estúdio central",
     "status": "ativo",
-    "musicas": [5,6,4,3]    
+    "musicas": [5,6,4,3,1]    
   },
   {
     "id": 4,
@@ -38,7 +38,7 @@
     "hora": "18:30",
     "local": "Estúdio central",
     "status": "ativo",
-    "musicas": [1,2]    
+    "musicas": []    
   },
   {
     "id": 6,
@@ -46,6 +46,6 @@
     "hora": "18:30",
     "local": "Estúdio central",
     "status": "ativo",
-    "musicas": [1,2]    
+    "musicas": []    
   }
 ]
