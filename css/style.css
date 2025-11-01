@@ -268,7 +268,7 @@ nav a:hover { color: var(--accent-hover); }
   text-align: left;
 }
 
-.cifra-texto .chord { color: var(--accent); font-weight: bold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;}
+.cifra-texto .chord { color: var(--accent); font-weight: bold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size:large;}
 .cifra-texto .section { color: #7adfff; font-weight: bold; }
 .cifra-texto .tone { color: #ff9b9b; font-weight: bold; }
 .cifra-texto .tab { color: #9cdcfe; }
@@ -400,4 +400,69 @@ footer {
   .musica-foto img { width: 45px; height: 45px; }
   .cifra-texto { font-size: 14px; min-height: 300px; }
   .scroll-speed { width: 250px; margin-bottom: 25px; margin-top: 50px; }
+}
+
+
+
+/* Estilos para cifras estruturadas (novo formato) */
+
+.cifra-tom {
+  color: var(--accent);
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.cifra-obs {
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.cifra-parte {
+  margin-top: 20px;
+  padding-bottom: 5px;
+}
+
+.cifra-parte-titulo {
+  color: var(--accent-hover);
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cifra-linha {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  white-space: pre;
+}
+
+.cifra-linha-acordes {
+  color: var(--accent);
+  font-weight: bold;
+  font-family: monospace;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.cifra-linha-letra {
+  color: var(--text-color);
+  line-height: 1.4;
+}
+
+/* Mantém compatibilidade com o formato antigo */
+.cifra-texto .chord {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Botão Auto Scroll ativo */
+.btn-scroll-auto.ativo {
+  background-color: #555 !important;
+  color: #fff !important;
 }

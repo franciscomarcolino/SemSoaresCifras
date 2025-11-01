@@ -18,27 +18,25 @@ function escapeHtml(s) {
 }
 
 // -----------------------
-// Realça acordes dentro do texto da cifra (versão final robusta)
+// Realça acordes dentro do texto da cifra (para o formato antigo)
 // -----------------------
 function highlightChords(cifraText) {
   const escaped = escapeHtml(cifraText);
 
-  // Regex abrangente para acordes válidos
   const CHORD_RE = new RegExp(
     '^' +
-      '(?:[A-G](?:#|b)?)' +                      // Tônica (A, Bb, F#)
+      '(?:[A-G](?:#|b)?)' +
       '(?:' +
-        '(?:maj|min|M|m|dim|aug|sus|add)?\\d*(?:\\+)?' +  // extensões tipo m7+, 7+, 13+
+        '(?:maj|min|M|m|dim|aug|sus|add)?\\d*(?:\\+)?' +
         '(?:maj|min|M|m|dim|aug|sus|add)?\\d*' +
       ')?' +
-      '(?:\\([^)]+\\))*' +                      // (b9), (#11)
-      '(?:\\/(?:(?:[A-G](?:#|b)?)|(?:\\d+)))?' + // /C ou /9
+      '(?:\\([^)]+\\))*' +
+      '(?:\\/(?:(?:[A-G](?:#|b)?)|(?:\\d+)))?' +
     '$'
   );
 
   const stripEndPunct = (s) => (s || '').replace(/[,:;.!?]+$/, '');
 
-  // Divide acordes colados (ex: A#m7C#/D# → A#m7 C#/D#)
   const splitMergedChords = (line) =>
     line.replace(
       /([A-G](?:#|b)?(?:maj|min|M|m|dim|aug|sus|add)?\d*(?:\+)?(?:\([^)]+\))?)(?=[A-G](?:#|b)?(?![a-z]))/g,
@@ -50,16 +48,14 @@ function highlightChords(cifraText) {
     .map((line) => {
       const processed = /[A-G](?:#|b)?[A-G]/.test(line) ? splitMergedChords(line) : line;
       const tokens = processed.match(/\S+/g) || [];
-
       const chordTokens = tokens.filter((t) => CHORD_RE.test(stripEndPunct(t)));
-      const manyChords = chordTokens.length >= 1; // <-- 1 já ativa realce para acordes isolados
+      const manyChords = chordTokens.length >= 1;
 
       return processed.replace(/(\S+)/g, (m) => {
         const clean = stripEndPunct(m);
         const looksLikeChord = CHORD_RE.test(clean);
         const isBareRoot = /^[A-G](?:#|b)?$/.test(clean);
-        const isAllLower = /^[a-zçáéíóúàèìòùâêîôûãõ]+$/.test(clean); // ignora palavras minúsculas
-
+        const isAllLower = /^[a-zçáéíóúàèìòùâêîôûãõ]+$/.test(clean);
         const ok = looksLikeChord && !isAllLower && (manyChords || isBareRoot);
         return ok ? `<span class="chord">${m}</span>` : m;
       });
@@ -67,21 +63,58 @@ function highlightChords(cifraText) {
     .join('\n');
 }
 
+// -----------------------
+// Renderiza cifra no novo formato estruturado
+// -----------------------
+function renderCifraEstruturada(cifraJson) {
+  let html = '';
+
+  if (cifraJson.tom) {
+    html += `<div class="cifra-tom">Tom: <strong>${escapeHtml(cifraJson.tom)}</strong></div>`;
+  }
+
+  if (cifraJson.observacao) {
+    html += `<div class="cifra-obs"><em>${escapeHtml(cifraJson.observacao)}</em></div>`;
+  }
+
+  if (Array.isArray(cifraJson.partes)) {
+    cifraJson.partes.forEach((parte) => {
+      const titulo = parte.tipo ? escapeHtml(parte.tipo) : '';
+      html += `<div class="cifra-parte">`;
+      if (titulo) html += `<div class="cifra-parte-titulo">[${titulo}]</div>`;
+
+      (parte.linhas || []).forEach((linha) => {
+        html += `<div class="cifra-linha">`;
+        if (linha.acordes?.length) {
+          html += `<div class="cifra-linha-acordes">${linha.acordes
+            .map((a) => `<span class="chord">${escapeHtml(a)}</span>`)
+            .join(' ')}</div>`;
+        }
+        if (linha.letra) {
+          html += `<div class="cifra-linha-letra">${escapeHtml(linha.letra)}</div>`;
+        }
+        html += `</div>`;
+      });
+
+      html += `</div>`;
+    });
+  }
+
+  return html;
+}
 
 // -----------------------
-// Renderiza uma cifra inline
+// Renderiza uma cifra inline (suporte híbrido: antiga + nova)
 // -----------------------
 async function renderCifraInline(container, musicEntry, contextIds, options = {}) {
   const { hideNavButtons = false } = options;
   container.innerHTML = '';
 
-  // === Detecção de ambiente e montagem do caminho da cifra ===
   const hostname = window.location.hostname;
   const isGithubPages = /\.github\.io$/i.test(hostname);
   let basePath = '';
 
   if (isGithubPages) {
-    // Ex: https://usuario.github.io/SemSoaresCifras/
     const parts = window.location.pathname.split('/').filter(Boolean);
     const repo = parts[0] || '';
     basePath = repo ? `/${repo}/` : '/';
@@ -89,27 +122,21 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
 
   let cifraPath = musicEntry.cifra || '';
 
-  if (cifraPath.startsWith('//')) {
+  if (cifraPath.startsWith('//')) cifraPath = cifraPath.replace(/^\/+/, '');
+  if (!/^https?:\/\//i.test(cifraPath)) {
     cifraPath = cifraPath.replace(/^\/+/, '');
-  }
-
-  if (/^https?:\/\//i.test(cifraPath)) {
-    // URL completa (Spotify, etc.)
-  } else {
-    cifraPath = cifraPath.replace(/^\/+/, ''); // remove / inicial
     cifraPath = isGithubPages ? `${basePath}${cifraPath}` : cifraPath;
   }
 
   console.log('[DEBUG] Cifra path final:', cifraPath);
 
   // === Carrega o JSON da cifra ===
-  let cifraText = '';
+  let cifraJson = null;
   try {
-    const j = await fetchJson(cifraPath);
-    cifraText = j.cifra || '';
+    cifraJson = await fetchJson(cifraPath);
   } catch (e) {
     console.error('Erro ao carregar cifra:', e);
-    cifraText = 'Não foi possível carregar a cifra.';
+    cifraJson = { cifra: 'Não foi possível carregar a cifra.' };
   }
 
   // -----------------------
@@ -117,6 +144,13 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
   // -----------------------
   const area = document.createElement('div');
   area.className = 'cifra-inline-wrapper';
+
+  // Detecta formato (novo ou antigo)
+  const isEstruturado = cifraJson.partes && Array.isArray(cifraJson.partes);
+
+  const cifraHtml = isEstruturado
+    ? renderCifraEstruturada(cifraJson)
+    : `<pre class="cifra-texto">${highlightChords(cifraJson.cifra || '')}</pre>`;
 
   area.innerHTML = `
     <div class="cifra-controls">
@@ -139,12 +173,11 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
       <h3>🎵 ${musicEntry.nome} <small><em>${musicEntry.artista}</em></small></h3>
     </div>
 
-    <pre class="cifra-texto">${highlightChords(cifraText)}</pre>
+    ${isEstruturado ? `<div class="cifra-texto">${cifraHtml}</div>` : cifraHtml}
   `;
 
   container.appendChild(area);
   criarPlayerYoutube(musicEntry, area);
-
 
   // -----------------------
   // Configura área de rolagem
@@ -152,17 +185,19 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
   const textoDiv = area.querySelector('.cifra-texto');
   const speedInput = area.querySelector('.scroll-speed');
 
-  Object.assign(textoDiv.style, {
-    maxHeight: '47vh',
-    overflowY: 'auto',
-    whiteSpace: 'pre-wrap',
-    padding: '10px',
-    border: '1px solid #222',
-    borderRadius: '8px'
-  });
+  if (textoDiv) {
+    Object.assign(textoDiv.style, {
+      maxHeight: '47vh',
+      overflowY: 'auto',
+      whiteSpace: 'pre-wrap',
+      padding: '10px',
+      border: '1px solid #222',
+      borderRadius: '8px'
+    });
+  }
 
   // -----------------------
-  // Habilita scroll automático com botão
+  // Scroll automático
   // -----------------------
   habilitarScrollAutomatico(textoDiv, {
     speedInput,
@@ -170,7 +205,7 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
   });
 
   // -----------------------
-  // Navegação entre músicas (somente se permitido)
+  // Navegação
   // -----------------------
   if (!hideNavButtons) {
     const currentIndex = contextIds.indexOf(musicEntry.idMusica);
@@ -181,30 +216,29 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
       prevBtn.addEventListener('click', () => {
         const prevIndex = currentIndex > 0 ? currentIndex - 1 : 0;
         const idPrev = contextIds[prevIndex];
-        const evt = new CustomEvent('cifra:navigate', { detail: { id: idPrev } });
-        container.dispatchEvent(evt);
+        container.dispatchEvent(
+          new CustomEvent('cifra:navigate', { detail: { id: idPrev } })
+        );
       });
 
       nextBtn.addEventListener('click', () => {
         const nextIndex =
           currentIndex < contextIds.length - 1 ? currentIndex + 1 : contextIds.length - 1;
         const idNext = contextIds[nextIndex];
-        const evt = new CustomEvent('cifra:navigate', { detail: { id: idNext } });
-        container.dispatchEvent(evt);
+        container.dispatchEvent(
+          new CustomEvent('cifra:navigate', { detail: { id: idNext } })
+        );
       });
     }
   }
 
   // -----------------------
-  // Fechar cifra (corrige bug do segundo clique)
+  // Fechar cifra
   // -----------------------
   const closeBtn = area.querySelector('.btn-close');
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
-      // Limpa o conteúdo da cifra
       container.innerHTML = '';
-
-      // ✅ Corrige o bug: redefine o estado da área pai (para funcionar no primeiro clique)
       const cifraArea = container.parentElement;
       if (cifraArea && cifraArea.classList.contains('cifra-inline-area')) {
         cifraArea.dataset.aberta = 'false';
@@ -217,6 +251,7 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
 // Scroll automático (com rAF + slider)
 // -----------------------
 function habilitarScrollAutomatico(container, opts = {}) {
+  if (!container) return;
   const { speedInput = null, btnContainer = null } = opts;
 
   let running = false;
@@ -225,7 +260,6 @@ function habilitarScrollAutomatico(container, opts = {}) {
   let pxPorSegundo = speedInput ? parseInt(speedInput.value, 10) : 40;
   let acumulado = 0;
 
-  // Botão amarelo de scroll
   const btnScroll = document.createElement('button');
   btnScroll.type = 'button';
   btnScroll.className = 'btn-scroll-auto';
@@ -245,17 +279,12 @@ function habilitarScrollAutomatico(container, opts = {}) {
   });
 
   if (btnContainer) {
-  const velLabel = btnContainer.querySelector('#vel-label');
-  if (velLabel) {
-    // Insere o botão antes do rótulo de velocidade
-    btnContainer.insertBefore(btnScroll, velLabel);
-  } else {
-    // Caso não encontre o vel-label, adiciona no final como fallback
-    btnContainer.appendChild(btnScroll);
+    const velLabel = btnContainer.querySelector('#vel-label');
+    if (velLabel) btnContainer.insertBefore(btnScroll, velLabel);
+    else btnContainer.appendChild(btnScroll);
+  } else if (container.parentElement) {
+    container.parentElement.insertBefore(btnScroll, container);
   }
-} else if (container.parentElement) {
-  container.parentElement.insertBefore(btnScroll, container);
-}
 
   if (speedInput)
     speedInput.addEventListener('input', (e) => {
@@ -277,7 +306,6 @@ function habilitarScrollAutomatico(container, opts = {}) {
       container.scrollTop += px;
       acumulado -= px;
     }
-
     if (estaNoFim()) {
       toggle(false);
       return;
@@ -288,7 +316,6 @@ function habilitarScrollAutomatico(container, opts = {}) {
   function toggle(forceState) {
     const next = typeof forceState === 'boolean' ? forceState : !running;
     if (next === running) return;
-
     running = next;
     if (running) {
       lastTs = null;
@@ -302,7 +329,7 @@ function habilitarScrollAutomatico(container, opts = {}) {
       lastTs = null;
       acumulado = 0;
       btnScroll.textContent = '🠗 Auto Scroll';
-      btnScroll.style.backgroundColor = '#ffcc00';
+      btnScroll.style.backgroundColor = '#b39700';
       btnScroll.style.color = '#000';
     }
   }
@@ -315,25 +342,16 @@ function habilitarScrollAutomatico(container, opts = {}) {
 }
 
 // -----------------------
-// Cria e inicializa player de áudio do YouTube sob demanda (lazy-load)
+// Cria e inicializa player de áudio do YouTube (lazy-load)
 // -----------------------
 function criarPlayerYoutube(musicEntry, area) {
-  if (!musicEntry || !musicEntry.LinkYoutube) {
-    console.warn('[YT] Nenhum link do YouTube encontrado para esta música:', musicEntry?.nome);
-    return;
-  }
+  if (!musicEntry || !musicEntry.LinkYoutube) return;
 
   const link = musicEntry.LinkYoutube.trim();
   const match = link.match(/(?:v=|\/)([0-9A-Za-z_-]{11})(?:\?|&|$)/);
   const videoId = match ? match[1] : null;
-  if (!videoId) {
-    console.warn('[YT] Link inválido, não foi possível extrair o ID do vídeo:', link);
-    return;
-  }
+  if (!videoId) return;
 
-  console.log('[YT] Player configurado (modo lazy) para vídeo:', videoId, 'de', musicEntry.nome);
-
-  // === Cria o HTML do player (sem carregar nada do YouTube ainda) ===
   const playerHtml = `
     <br><br>
     <div class="youtube-audio-player">
@@ -351,7 +369,6 @@ function criarPlayerYoutube(musicEntry, area) {
   const controls = area.querySelector('.cifra-controls');
   controls?.insertAdjacentHTML('beforebegin', playerHtml);
 
-  // === Lazy load ===
   let ytPlayer = null;
   let apiLoaded = false;
   let isReady = false;
@@ -361,7 +378,6 @@ function criarPlayerYoutube(musicEntry, area) {
   const btnStop = area.querySelector('.btn-youtube-stop');
   const containerId = `yt-player-container-${videoId}`;
 
-  // === Carrega API (apenas uma vez) ===
   const loadYouTubeAPI = () =>
     new Promise((resolve) => {
       if (window.YT && window.YT.Player) {
@@ -383,63 +399,36 @@ function criarPlayerYoutube(musicEntry, area) {
       }
     });
 
-  // === Cria o player sob demanda ===
   const createPlayer = () => {
-    console.log('[YT] Criando YT.Player sob demanda...');
-
-    // Define parâmetros do player
-    const playerVars = {
-      autoplay: 0,
-      controls: 0,
-      modestbranding: 1,
-      rel: 0,
-    };
-
-    // Evita origem inválida em ambiente local
-    if (window.location.protocol === 'https:') {
-      playerVars.origin = window.location.origin;
-    }
-
     ytPlayer = new YT.Player(containerId, {
       height: '0',
       width: '0',
       videoId: videoId,
       host: 'https://www.youtube.com',
-      playerVars,
+      playerVars: { autoplay: 0, controls: 0, modestbranding: 1, rel: 0 },
       events: {
         onReady: (e) => {
-          console.log('[YT] Player pronto (lazy):', videoId);
           isReady = true;
           e.target.playVideo();
           btnPause.disabled = false;
           btnStop.disabled = false;
         },
-        onError: (err) => {
-          console.error('[YT] Erro no player:', err);
-        },
+        onError: (err) => console.error('[YT] Erro no player:', err),
       },
     });
   };
 
-  // === Eventos dos botões ===
   btnPlay?.addEventListener('click', async () => {
     if (!apiLoaded) await loadYouTubeAPI();
-
-    if (!ytPlayer) {
-      createPlayer();
-    } else if (isReady) {
-      ytPlayer.playVideo();
-    }
+    if (!ytPlayer) createPlayer();
+    else if (isReady) ytPlayer.playVideo();
   });
 
-  btnPause?.addEventListener('click', () => {
-    ytPlayer?.pauseVideo();
-  });
-
+  btnPause?.addEventListener('click', () => ytPlayer?.pauseVideo());
   btnStop?.addEventListener('click', () => {
     if (ytPlayer && ytPlayer.seekTo) {
-    ytPlayer.seekTo(0, true);  // volta para o início
-    ytPlayer.stopVideo();      // apenas para, sem tocar novamente
+      ytPlayer.seekTo(0, true);
+      ytPlayer.stopVideo();
     }
   });
 }
