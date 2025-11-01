@@ -13,7 +13,7 @@
     "hora": "18:30",
     "local": "Estúdio central",
     "status": "ativo",
-    "musicas": [6,1,3,4,5]    
+    "musicas": [1,3,4,5]    
   }
   ,
   {
@@ -22,15 +22,15 @@
     "hora": "18:30",
     "local": "Estúdio central",
     "status": "ativo",
-    "musicas": [1,2]    
+    "musicas": [5,6,4,3]    
   },
   {
     "id": 4,
     "data": "09 Novembro 2025",
     "hora": "18:30",
     "local": "Estúdio central",
-    "status": "ativo",
-    "musicas": [1,2]    
+    "status": "cancelado",
+    "musicas": []    
   },
   {
     "id": 5,
@@ -49,4 +49,3 @@
     "musicas": [1,2]    
   }
 ]
-
