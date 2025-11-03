@@ -514,6 +514,16 @@
     "LinkYoutube": "https://www.youtube.com/watch?v=XFkzRNyygfk",
     "cifra": "/data/cifras/Creep-Radiohead.json"
   }
+  ,
+  {
+    "idMusica": 58,
+    "nome": "Torn",
+    "artista": "Fearless Records",
+    "fotoBanda": "https://i.scdn.co/image/ab6775700000ee85a155155b2cdeac430b16adf9",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/4mBJUbN4VLcpT36O4uf8t3?si=b84dfeb620a04d25",
+    "LinkYoutube": "https://www.youtube.com/watch?v=M58IJO7N32s",
+    "cifra": "/data/cifras/Torn-FearlessRecords.json"
+  }
 ]
 
 
