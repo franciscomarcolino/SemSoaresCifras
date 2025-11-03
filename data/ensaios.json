@@ -1,13 +1,4 @@
 [
-  
-  {
-    "id": 3,
-    "data": "02 Novembro 2025",
-    "hora": "18:30",
-    "local": "Estúdio central",
-    "status": "ativo",
-    "musicas": [5,6,4,3,1]    
-  },
   {
     "id": 4,
     "data": "09 Novembro 2025",
@@ -22,7 +13,25 @@
     "hora": "18:30",
     "local": "Estúdio central",
     "status": "ativo",
-    "musicas": [1,2]    
+    "musicas": 
+[
+7,
+8,
+9,
+10,
+11,
+12,
+13,
+14,
+15,
+16,
+17,
+18,
+19,
+20,
+21
+]
+
   },
   {
     "id": 6,
@@ -30,6 +39,51 @@
     "hora": "18:30",
     "local": "Estúdio central",
     "status": "ativo",
-    "musicas": [1,2]    
+    "musicas": 
+[
+1,
+2,
+3,
+4,
+5,
+6,
+22,
+23,
+24,
+25,
+26,
+27,
+28,
+29,
+30
+]
+  },
+  {
+    "id": 7,
+    "data": "16 Novembro 2025",
+    "hora": "18:30",
+    "local": "Estúdio central",
+    "status": "ativo",
+    "musicas": 
+[
+31,
+32,
+33,
+34,
+35,
+36,
+37,
+38,
+39,
+41,
+42,
+43,
+52,
+53,
+55,
+57
+
+]
+
   }
 ]

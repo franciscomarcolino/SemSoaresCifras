@@ -52,7 +52,473 @@
   "LinkSpotify": "https://open.spotify.com/intl-pt/track/2GBWPAsIXtC7NwULhUoHRf?si=1baf711cc9fd4fb0",
   "LinkYoutube": "https://www.youtube.com/watch?v=ijAYN9zVnwg",
   "cifra": "/data/cifras/WhatsOnYourMind-PureEnergy-InformationSociety.json"
- }
-
+ }, 
+  {
+    "idMusica": 7,
+    "nome": "The One I Love",
+    "artista": "R.E.M.",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273135322c78a93ff9b1f392c3a",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/2fdfsGuqb6SBX5ocoBWHUd?si=5f03b27713f34bff", 
+    "LinkYoutube": "https://www.youtube.com/watch?v=j7oQEPfe-O8",
+    "cifra": "/data/cifras/TheOneILove-REM.json"
+  },
+  {
+    "idMusica": 8,
+    "nome": "Follow You Down",
+    "artista": "Gin Blossoms",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d00001e029676eca0a9fa4927294ce88c",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/6rqkwoZu5oX5hugeyiJCM8?si=2610cc86d70a42ad",
+    "LinkYoutube": "https://www.youtube.com/watch?v=5LuH0ywYVQc",
+    "cifra": "/data/cifras/FollowYouDown-GinBlossoms.json"
+  },
+  {
+    "idMusica": 9,
+    "nome": "Born To Be Wild",
+    "artista": "Steppenwolf",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273ec7e2c5c7ecd29301f1c4b93",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/63OFKbMaZSDZ4wtesuuq6f?si=0bc1a37407f44ea6",
+    "LinkYoutube": "https://www.youtube.com/watch?v=igvP806798U",
+    "cifra": "/data/cifras/BornToBeWild-Steppenwolf.json"
+  },
+  {
+    "idMusica": 10,
+    "nome": "Learn to Fly",
+    "artista": "Foo Fighters",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273136d7250568820409f8fdd60",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/0mWiuXuLAJ3Brin3Or2x6v?si=e4f07e17f56f4fc7",
+    "LinkYoutube": "https://www.youtube.com/watch?v=MOQV__Z55eE",
+    "cifra": "/data/cifras/LearnToFly-FooFighters.json"
+  },  
+  {
+    "idMusica": 11,
+    "nome": "Closing Time",
+    "artista": "Semisonic",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273dec0d479b10bccff532074ed",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/1A5V1sxyCLpKJezp75tUXn?si=5bc24c8205d54d91",
+    "LinkYoutube": "https://www.youtube.com/watch?v=xGytDsqkQY8",
+    "cifra": "/data/cifras/ClosingTime-Semisonic.json"
+  },
+  {
+    "idMusica": 12,
+    "nome": "Suedehead",
+    "artista": "Morrissey",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273b7edad0ea25d4b0853cf9eb7",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/0kA5scXMiaO5Ms2GQ4pRWa?si=83042182feda4ec5",
+    "LinkYoutube": "https://www.youtube.com/watch?v=0AvuweztG4Q",
+    "cifra": "/data/cifras/Suedehead-Morrissey.json"
+  },
+  {
+    "idMusica": 13,
+    "nome": "This Charming Man",
+    "artista": "The Smiths",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2738c755b653e9d84e08004f881",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/1FvDJ9KGxcqwv1utyPL3JZ?si=16bcbc77a4d04a6f",
+    "LinkYoutube": "https://www.youtube.com/watch?v=cJRP3LRcUFg",
+    "cifra": "/data/cifras/ThisCharmingMan-TheSmiths.json"
+  },
+  {
+    "idMusica": 14,
+    "nome": "Proud Mary",
+    "artista": "Creedence Clearwater Revival",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2739ca0f28967cdf4a7da523935",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/6pxWv6GV35VGmcPf5dh6CH?si=2bcc6e85097a4304",
+    "LinkYoutube": "https://www.youtube.com/watch?v=5hid10EgMXE",
+    "cifra": "/data/cifras/ProudMary-CreedenceClearwaterRevival.json"
+  },
+  {
+    "idMusica": 15,
+    "nome": "Camila, Camila",
+    "artista": "Nenhum De Nós",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273c6eed2e91e26b2296391d8b2",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/7ue3vDtaxcToVyzbyloSyQ?si=10deb1117c4d4957",
+    "LinkYoutube": "https://www.youtube.com/watch?v=xzrYI2k8CP4",
+    "cifra": "/data/cifras/CamilaCamila-NenhumDeNos.json"
+  },
+  {
+    "idMusica": 16,
+    "nome": "Save Tonight",
+    "artista": "Eagle-Eye Cherry",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2730b85593f08d19d9036929e0f",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/0smyCrJiibi2uwCiq5R1vj?si=822a05eba8084972",
+    "LinkYoutube": "https://www.youtube.com/watch?v=mg-219buqe4",
+    "cifra": "/data/cifras/SaveTonight-EagleEyeCherry.json"
+  },
+  {
+    "idMusica": 17,
+    "nome": "À Sua Maneira",
+    "artista": "Capital Inicial",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273705d19dfb2182eb0b8504cd3",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/6ufP2MQuUZ2s3PFXVGE6Bd?si=b993c61791ed4fbb",
+    "LinkYoutube": "https://www.youtube.com/watch?v=_hFcPryB-nA",
+    "cifra": "/data/cifras/ASuaManeira-CapitalInicial.json"
+  },
+  {
+    "idMusica": 18,
+    "nome": "Use Somebody",
+    "artista": "Kings of Leon",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2732519d01c0cca06f134eeadd8",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/5VGlqQANWDKJFl0MBG3sg2?si=c4e55c96cba84875",
+    "LinkYoutube": "https://www.youtube.com/watch?v=gnhXHvRoUd0",
+    "cifra": "/data/cifras/UseSomebody-KingsOfLeon.json"
+  },
+  {
+    "idMusica": 19,
+    "nome": "Sex on Fire",
+    "artista": "Kings of Leon",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2732519d01c0cca06f134eeadd8",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/0ntQJM78wzOLVeCUAW7Y45?si=a519c6d5ed094715",
+    "LinkYoutube": "https://www.youtube.com/watch?v=RF0HhrwIwp0",
+    "cifra": "/data/cifras/SexOnFire-KingsOfLeon.json"
+  },
+  {
+    "idMusica": 20,
+    "nome": "The Promise",
+    "artista": "When In Rome",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273d12fd00a64529cff635a75f2",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/48p5E25cFPanxuwCTmTpuL?si=f4ac9f19e29b4174",
+    "LinkYoutube": "https://www.youtube.com/watch?v=5HI_xFQWiYU",
+    "cifra": "/data/cifras/ThePromise-WhenInRome.json"
+  },
+  {
+    "idMusica": 21,
+    "nome": "Baker Street",
+    "artista": "Gerry Rafferty",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273dc60cf9a010f86354e6735dd",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/5gOd6zDC8vhlYjqbQdJVWP?si=fabb8ba3cfb442e0",
+    "LinkYoutube": "https://www.youtube.com/watch?v=Fo6aKnRnBxM",
+    "cifra": "/data/cifras/BakerStreet-GerryRafferty.json"
+  },
+  {
+    "idMusica": 22,
+    "nome": "Big in Japan",
+    "artista": "Alphaville",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273b9c4979446c4d39bc08e9503",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/3BZGi1yUqQyCNC868AqUGG?si=a5a74aada9124b7d",
+    "LinkYoutube": "https://www.youtube.com/watch?v=E2HeDHkL9kg",
+    "cifra": "/data/cifras/BigInJapan-Alphaville.json"
+  },
+  {
+    "idMusica": 23,
+    "nome": "I Will Survive",
+    "artista": "Gloria Gaynor",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273611ab55903a08ea904e2754f",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/7rIovIsXE6kMn629b7kDig?si=fb2b9f13a57b4f95",
+    "LinkYoutube": "https://www.youtube.com/watch?v=6dYWe1c3OyU",
+    "cifra": "/data/cifras/IWillSurvive-GloriaGaynor.json"
+  },
+  {
+    "idMusica": 24,
+    "nome": "Friday I'm In Love",
+    "artista": "The Cure",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273e410fa31e3dfcc7521cde86d",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/4QlzkaRHtU8gAdwqjWmO8n?si=48867f133b594f9b",
+    "LinkYoutube": "https://www.youtube.com/watch?v=mGgMZpGYiy8",
+    "cifra": "/data/cifras/FridayImInLove-TheCure.json"
+  },
+  
+  {
+    "idMusica": 25,
+    "nome": "Carla",
+    "artista": "LS Jack",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273fdc178fc2741f36f4a3681e0",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/79f21uRzn79zWCxrsF17hj?si=c90bf8e1723f4951",
+    "LinkYoutube": "https://www.youtube.com/watch?v=CVgXaEXCNK8",
+    "cifra": "/data/cifras/Carla-LSJack.json"
+  },
+  {
+    "idMusica": 26,
+    "nome": "Bizarre Love Triangle",
+    "artista": "Frente!",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273983773fc32872588bab3b474",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/1ri9xlwv99u8jL1RZVjs1R?si=61766885f064481b",
+    "LinkYoutube": "https://www.youtube.com/watch?v=ISKQDCLpDSY",
+    "cifra": "/data/cifras/BizarreLoveTriangle-Frente.json"
+  },
+  {
+    "idMusica": 27,
+    "nome": "Inbetween Days",
+    "artista": "The Cure",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2735d7e2fd98c3befd5d7231d1d",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/4CRpOsjhvgxjF7rQufmyZ1?si=05093919b25f4df5",
+    "LinkYoutube": "https://www.youtube.com/watch?v=scif2vfg1ug",
+    "cifra": "/data/cifras/InbetweenDays-TheCure.json"
+  },
+  {
+    "idMusica": 28,
+    "nome": "Louras Geladas",
+    "artista": "RPM",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273589037de723d1763f13c7396",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/2zfkReKDo2ubvp49fIbkiJ?si=868ec2edc1bb4f3a",
+    "LinkYoutube": "https://www.youtube.com/watch?v=_KVpOP3vgxE",
+    "cifra": "/data/cifras/LourasGeladas-RPM.json"
+  },
+  {
+    "idMusica": 29,
+    "nome": "Meu Erro",
+    "artista": "Os Paralamas Do Sucesso",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b27372873400e78e0fcfeda19e07",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/7pn5QXr2LTeGsgHyCaJxDo?si=fea24ec175be4747",
+    "LinkYoutube": "https://www.youtube.com/watch?v=j_2wguCL_10",
+    "cifra": "/data/cifras/MeuErro-OsParalamasDoSucesso.json"
+  },
+  {
+    "idMusica": 30,
+    "nome": "Pro Dia Nascer Feliz",
+    "artista": "Barão Vermelho",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b27370fa35a4c2bb1d695fb5866f",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/44BxEH341a9zeJq2z1UDdc?si=4948a1d1d2544736",
+    "LinkYoutube": "https://www.youtube.com/watch?v=rninkFp4oEQ",
+    "cifra": "/data/cifras/ProDiaNascerFeliz-BaraoVermelho.json"
+  },
+  {
+    "idMusica": 31,
+    "nome": "Que País É Este",
+    "artista": "Legião Urbana",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d00001e023035f33101cf3c84a83e2db7",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/1bqRtNOcT1QiV1j87IoATA?si=0974c3fe2bab4e23",
+    "LinkYoutube": "https://www.youtube.com/watch?v=lCyd6nqfT3Y",
+    "cifra": "/data/cifras/QuePaisEEste-LegiaoUrbana.json"
+  },
+  {
+    "idMusica": 32,
+    "nome": "Sweet Child O' Mine",
+    "artista": "Guns N' Roses",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b27368384dd85fd5e95831252f60",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/7snQQk1zcKl8gZ92AnueZW?si=5d574cf731684da4",
+    "LinkYoutube": "https://www.youtube.com/watch?v=1w7OgIMMRc4",
+    "cifra": "/data/cifras/SweetChildOMine-GunsNRoses.json"
+  },
+  {
+    "idMusica": 33,
+    "nome": "Tempo Perdido",
+    "artista": "Legião Urbana",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d00001e023035f33101cf3c84a83e2db7",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/7MnT7msJZg3XBAS0OTfGrB?si=704cb8a8d8e84970",
+    "LinkYoutube": "https://www.youtube.com/watch?v=YPLQHeUSX2g",
+    "cifra": "/data/cifras/TempoPerdido-LegiaoUrbana.json"
+  },
+  {
+    "idMusica": 34,
+    "nome": "Valerie",
+    "artista": "Amy Winehouse",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2734c896e873306c17847c254e9",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/6kopmMZiyLmw7h66uXcXR7?si=9f19c9b67a8f4446",
+    "LinkYoutube": "https://www.youtube.com/watch?v=bazpt6moUMo",
+    "cifra": "/data/cifras/Valerie-AmyWinehouse.json"
+  },
+  {
+    "idMusica": 35,
+    "nome": "Wherever You Will Go",
+    "artista": "The Calling",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273dc4411a6a80379dd1a10d72d",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/5QpaGzWp0hwB5faV8dkbAz?si=9bf8a58261a64e37",
+    "LinkYoutube": "https://www.youtube.com/watch?v=iAP9AF6DCu4",
+    "cifra": "/data/cifras/WhereverYouWillGo-TheCalling.json"
+  },
+  {
+    "idMusica": 36,
+    "nome": "Primeiros Erros",
+    "artista": "Capital Inicial, Kiko Zambianchi",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d00001e02705d19dfb2182eb0b8504cd3",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/2IcsM3hXMRpN6ZGEvwdqxU?si=c4cd8e1750b3487d",
+    "LinkYoutube": "https://www.youtube.com/watch?v=qiU_XXucYBE",
+    "cifra": "/data/cifras/PrimeirosErros-CapitalInicial-KikoZambianchi.json"
+  },
+  {
+    "idMusica": 37,
+    "nome": "With Or Without You",
+    "artista": "U2",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273fe70efd45dc96f88f501eb60",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/1Og8U5KRel9D51h4bmznlE?si=68d3f2ee3bb1448c",
+    "LinkYoutube": "https://www.youtube.com/watch?v=ujNeHIo7oTE",
+    "cifra": "/data/cifras/WithOrWithoutYou-U2.json"
+  },
+  {
+    "idMusica": 38,
+    "nome": "Do Seu Lado - Ao Vivo",
+    "artista": "Jota Quest",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273da638e9c8205e8ad3f411bb4",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/30Q8BodSWrBwQifVwh2caQ?si=b5a4c761660a44e0",
+    "LinkYoutube": "https://www.youtube.com/watch?v=RT7bKaCIfRs",
+    "cifra": "/data/cifras/DoSeuLadoAoVivo-JotaQuest.json"
+  },
+  {
+    "idMusica": 39,
+    "nome": "Titanium (feat. Sia)",
+    "artista": "David Guetta, Sia",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273b234aeff6eedc8276fe0333a",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/0TDLuuLlV54CkRRUOahJb4?si=9360cc07e1344b40",
+    "LinkYoutube": "https://www.youtube.com/watch?v=JRfuAukYTKg",
+    "cifra": "/data/cifras/Titanium-DavidGuetta-Sia.json"
+  },
+  {
+    "idMusica": 40,
+    "nome": "Your Love",
+    "artista": "The Outfield",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b27301ed248b4ac01c868e688322",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/5dRQUolXAVX3BbCiIxmSsf?si=522bbcd575c34b50",
+    "LinkYoutube": "https://www.youtube.com/watch?v=Z0OXRP-B200",
+    "cifra": "/data/cifras/YourLove-TheOutfield.json"
+  },
+  {
+    "idMusica": 41,
+    "nome": "Strangelove",
+    "artista": "Depeche Mode",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2730a7d45a345534966a4ad2c39",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/6ZCyDN2ArlWB4GKAj644Cd?si=caa462e84ccb49b4",
+    "LinkYoutube": "https://www.youtube.com/watch?v=JIrm0dHbCDU",
+    "cifra": "/data/cifras/Strangelove-DepecheMode.json"
+  },
+  {
+    "idMusica": 42,
+    "nome": "Dias Atrás",
+    "artista": "CPM 22",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273881c8b007c6da4ed49e9a2e5",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/7hjAhjnMzpMT9vU54w0LYF?si=b8cba76790174d76",
+    "LinkYoutube": "https://www.youtube.com/watch?v=juM8luwwMoo",
+    "cifra": "/data/cifras/DiasAtras-CPM22.json"
+  },
+  {
+    "idMusica": 43,
+    "nome": "Outro Lugar",
+    "artista": "Detonautas",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2731b9e4b10c8b3cd46c0b2c544",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/0VuyAK8iEZkQxHfmBV6MMm?si=ee79cea24a97487f",
+    "LinkYoutube": "https://www.youtube.com/watch?v=ubChrvo9jWQ",
+    "cifra": "/data/cifras/OutroLugar-Detonautas.json"
+  },
+  {
+    "idMusica": 44,
+    "nome": "Just Like Heaven",
+    "artista": "The Cure",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d00001e02e410fa31e3dfcc7521cde86d",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/4P7UhffUpi9UnRM7fLNBe0?si=712aea0a6053427d",
+    "LinkYoutube": "https://www.youtube.com/watch?v=n3nPiBai66M",
+    "cifra": "/data/cifras/JustLikeHeaven-TheCure.json"
+  },
+  {
+    "idMusica": 45,
+    "nome": "Overkill",
+    "artista": "Men At Work",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273d6484fa762c216ccb6b0dd45",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/3iA4foXIFpekwHyma7pRs1?si=ec7e57a88df64695",
+    "LinkYoutube": "https://www.youtube.com/watch?v=RY7S6EgSlCI",
+    "cifra": "/data/cifras/Overkill-MenAtWork.json"
+  },
+  {
+    "idMusica": 46,
+    "nome": "Unchain My Heart",
+    "artista": "Joe Cocker",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b27320714a75aad942d4d695d618",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/6oyYKWTbYt5Zb8tIiLZbmH?si=9d1b06639ea74816",
+    "LinkYoutube": "https://www.youtube.com/watch?v=vYuhA1rQkaM",
+    "cifra": "/data/cifras/UnchainMyHeart-JoeCocker.json"
+  },
+  {
+    "idMusica": 47,
+    "nome": "Who Can It Be Now?",
+    "artista": "Men At Work",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273aa5e4c9da271951ac0b31fa2",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/5rfJ2Bq2PEL8yBjZLzouEu?si=e4d8109b1ed04317",
+    "LinkYoutube": "https://www.youtube.com/watch?v=XuFC6ud1cAQ",
+    "cifra": "/data/cifras/WhoCanItBeNow-MenAtWork.json"
+  },
+  {
+    "idMusica": 48,
+    "nome": "Everlong",
+    "artista": "Foo Fighters",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273136d7250568820409f8fdd60",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/5UWwZ5lm5PKu6eKsHAGxOk?si=11c66ee27759402c",
+    "LinkYoutube": "https://www.youtube.com/watch?v=hq0rZ3IiyWw",
+    "cifra": "/data/cifras/Everlong-FooFighters.json"
+  },
+  {
+    "idMusica": 49,
+    "nome": "Best of You",
+    "artista": "Foo Fighters",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273136d7250568820409f8fdd60",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/5FZxsHWIvUsmSK1IAvm2pp?si=3ed974cbdcf34a0e",
+    "LinkYoutube": "https://www.youtube.com/watch?v=h_L4Rixya64",
+    "cifra": "/data/cifras/BestOfYou-FooFighters.json"
+  },
+  {
+    "idMusica": 50,
+    "nome": "Don't Dream It's Over",
+    "artista": "Crowded House",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2733ce3e2272e25916844f10d86",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/7G7tgVYORlDuVprcYHuFJh?si=703b5c8e83134032",
+    "LinkYoutube": "https://www.youtube.com/watch?v=xwsaVHiiFQ8",
+    "cifra": "/data/cifras/DontDreamItsOver-CrowdedHouse.json"
+  },
+  {
+    "idMusica": 51,
+    "nome": "Locked out of Heaven",
+    "artista": "Bruno Mars",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d00001e02f6b55ca93bd33211227b502b",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/3w3y8KPTfNeOKPiqUTakBh?si=a5ed607533a64136",
+    "LinkYoutube": "https://www.youtube.com/watch?v=OK_b2-w0u60",
+    "cifra": "/data/cifras/LockedOutOfHeaven-BrunoMars.json"
+  },
+  {
+    "idMusica": 52,
+    "nome": "Accidentally In Love",
+    "artista": "Counting Crows",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273e19558a22f9dae46b89231e0",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/04j67XNNVu1HI7JrIlMM3S?si=e441f7d31dd845b5",
+    "LinkYoutube": "https://www.youtube.com/watch?v=vnBec1gpXSM",
+    "cifra": "/data/cifras/AccidentallyInLove-CountingCrows.json"
+  },
+  {
+    "idMusica": 53,
+    "nome": "Enjoy the Silence",
+    "artista": "Depeche Mode",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2730a7d45a345534966a4ad2c39",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/6WK9dVrRABMkUXFLNlgWFh?si=da80c763d7b54925",
+    "LinkYoutube": "https://www.youtube.com/watch?v=aGSKrC7dGcY",
+    "cifra": "/data/cifras/EnjoyTheSilence-DepecheMode.json"
+  },
+  {
+    "idMusica": 54,
+    "nome": "Dr. Jeckle and Hyde Park",
+    "artista": "Carnaby Street Pop Orchestra",
+    "fotoBanda": "https://3.bp.blogspot.com/-n-XGvwZBRUI/Ux0M-WKQukI/AAAAAAAAIpU/L9np-7vAQWk/s1600/capap.JPG",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/61x3KQDIqzjkiU8abQ2aeo?si=398f5a983b1e4ce1",
+    "LinkYoutube": "https://www.youtube.com/watch?v=ZOSBInHJovI",
+    "cifra": "/data/cifras/DrJeckleAndHydePark-CarnabyStreetPopOrchestra.json"
+  },
+  {
+    "idMusica": 55,
+    "nome": "Radio Pirata",
+    "artista": "RPM",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273589037de723d1763f13c7396",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/1u79zVC1XDJFywrIfCvLhN?si=2b639beb892347e3",
+    "LinkYoutube": "https://www.youtube.com/watch?v=uxSuI3HO-UA",
+    "cifra": "/data/cifras/RadioPirata-RPM.json"
+  },
+  {
+    "idMusica": 56,
+    "nome": "Don't You Forget About Me",
+    "artista": "Simple Minds",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2735695a657aef0e81bde0c6001",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/5Y8Rj0s6wuM5DlQdllYiWl?si=7ac132064d924b87",
+    "LinkYoutube": "https://www.youtube.com/watch?v=CdqoNKCCt7A",
+    "cifra": "/data/cifras/DontYouForgetAboutMe-SimpleMinds.json"
+  }
+  ,
+  {
+    "idMusica": 57,
+    "nome": "Creep",
+    "artista": "Radiohead",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273ec548c00d3ac2f10be73366d",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/70LcF31zb1H0PyJoS1Sx1r?si=e0eb966f89694c4b",
+    "LinkYoutube": "https://www.youtube.com/watch?v=XFkzRNyygfk",
+    "cifra": "/data/cifras/Creep-Radiohead.json"
+  }
 ]
+
+
+
+
+
+
 
