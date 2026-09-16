@@ -527,11 +527,11 @@
 ,
   {
     "idMusica": 59,
-    "nome": "Teste de Publicação",
-    "artista": "Sem Soares (teste)",
+    "nome": "This Love",
+    "artista": "Maroon 5",
     "fotoBanda": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0292f2d790c6a97b195f66d51e",
     "LinkSpotify": "https://open.spotify.com/track/6ECp64rv50XVz93WvxXMGF",
     "LinkYoutube": "https://www.youtube.com/watch?v=XPpTgCho5ZA",
-    "cifra": "/data/cifras/TesteDePublicacao-SemSoares.json"
+    "cifra": "/data/cifras/ThisLove-Maroon5.json"
   }
 ]
