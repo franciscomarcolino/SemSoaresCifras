@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const container = document.getElementById('musicas-lista');
   if (!container) return;
 
-  const lista = await fetch(listaPath).then(r => r.json()).catch(() => []);
+  const lista = await fetch(listaPath, { cache: 'no-cache' }).then(r => r.json()).catch(() => []);
   const filtroInput = document.getElementById('filtro-cifras');
 
   let renderAtual = 0;
