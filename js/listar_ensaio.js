@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const lista = await fetch(listaPath, { cache: 'no-cache' }).then(r => r.json()).catch(() => []);
   container.innerHTML = '';
 
-  ensaios.forEach(en => {
+  ordenarAgendaPorData(ensaios).forEach(en => {
     const evDiv = document.createElement('div');
     evDiv.className = 'list-item ensaio-item';
 

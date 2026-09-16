@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const eventos = await fetch(eventosPath, { cache: 'no-cache' }).then(r=>r.json()).catch(()=>[]);
   const lista = await fetch(listaPath, { cache: 'no-cache' }).then(r=>r.json()).catch(()=>[]);
   container.innerHTML = '';
-  eventos.forEach(ev=>{
+  ordenarAgendaPorData(eventos).forEach(ev=>{
     const evDiv = document.createElement('div');
     evDiv.className = 'list-item evento-item';
     evDiv.innerHTML = `
