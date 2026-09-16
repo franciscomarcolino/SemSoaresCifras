@@ -96,5 +96,16 @@
 
 ]
 
+  },
+  {
+    "id": 8,
+    "data": "18 Setembro 2026",
+    "hora": "18:30",
+    "local": "Estúdio central",
+    "status": "ativo",
+    "musicas": [
+      59,
+      60
+    ]
   }
 ]
