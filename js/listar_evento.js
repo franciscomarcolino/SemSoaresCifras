@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const listaPath = 'data/lista_de_musicas.json';
   const container = document.getElementById('eventos-lista');
   if(!container) return;
-  const eventos = await fetch(eventosPath).then(r=>r.json()).catch(()=>[]);
-  const lista = await fetch(listaPath).then(r=>r.json()).catch(()=>[]);
+  const eventos = await fetch(eventosPath, { cache: 'no-cache' }).then(r=>r.json()).catch(()=>[]);
+  const lista = await fetch(listaPath, { cache: 'no-cache' }).then(r=>r.json()).catch(()=>[]);
   container.innerHTML = '';
   eventos.forEach(ev=>{
     const evDiv = document.createElement('div');
