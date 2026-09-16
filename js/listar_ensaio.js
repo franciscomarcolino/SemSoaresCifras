@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const container = document.getElementById('ensaios-lista');
   if (!container) return;
 
-  const ensaios = await fetch(ensaiosPath).then(r => r.json()).catch(() => []);
-  const lista = await fetch(listaPath).then(r => r.json()).catch(() => []);
+  const ensaios = await fetch(ensaiosPath, { cache: 'no-cache' }).then(r => r.json()).catch(() => []);
+  const lista = await fetch(listaPath, { cache: 'no-cache' }).then(r => r.json()).catch(() => []);
   container.innerHTML = '';
 
   ensaios.forEach(en => {
