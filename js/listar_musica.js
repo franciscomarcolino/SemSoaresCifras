@@ -10,7 +10,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   const lista = await fetch(listaPath).then(r => r.json()).catch(() => []);
   const filtroInput = document.getElementById('filtro-cifras');
 
+  let renderAtual = 0;
+
   async function renderLista(filtro = '') {
+    const renderId = ++renderAtual;
     container.innerHTML = '';
     const termo = filtro.toLowerCase().trim();
     const musicasFiltradas = lista.filter(m =>
@@ -32,6 +35,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const encontrados = texto.match(regexAcorde) || [];
         acordesUnicos = [...new Set(encontrados)].slice(0, 12);
       } catch {}
+
+      // Uma busca mais recente pode ter começado enquanto a cifra carregava.
+      if (renderId !== renderAtual) return;
 
       const acordesHtml = acordesUnicos.length
         ? `<div class="acordes-resumo">${acordesUnicos.join(' ')}</div>`
@@ -109,7 +115,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // ==== Inicialização ====
-  renderLista();
+  renderLista(filtroInput?.value || '');
   if (filtroInput)
     filtroInput.addEventListener('input', () => renderLista(filtroInput.value));
 });
