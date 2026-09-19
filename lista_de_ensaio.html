@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .filtros-ensaios, .ensaio-item { box-sizing: border-box; width: 100%; max-width: 634px; }
+    .filtros-ensaios { min-width: 0; border: 1px solid #444; border-radius: 8px; margin: 0 auto 20px; padding: 14px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; }
+    .filtros-ensaios label { white-space: nowrap; }
+  </style>
 </head>
 <body class="theme-dark">
   <header>
@@ -25,7 +30,7 @@
     </nav>
 </header>
   <main class="container">
-    <fieldset style="border: 1px solid #444; border-radius: 8px; margin: 0 0 20px; padding: 14px; display: flex; flex-wrap: wrap; gap: 24px;">
+    <fieldset class="filtros-ensaios">
       <legend>Filtrar ensaios</legend>
       <label><input type="checkbox" id="filtro-proximo" checked> Próximo ensaio</label>
       <label><input type="checkbox" id="filtro-futuros"> Futuros</label>
