@@ -8,13 +8,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const ensaios = await fetch(ensaiosPath, { cache: 'no-cache' }).then(r => r.json()).catch(() => []);
   const lista = await fetch(listaPath, { cache: 'no-cache' }).then(r => r.json()).catch(() => []);
-  configurarFiltrosAgenda((futuros, passados) => {
+  configurarFiltrosEnsaios((futuros, passados, proximo) => {
   container.innerHTML = '';
-  const selecionados = filtrarAgenda(ensaios, futuros, passados);
+  const selecionados = proximo
+    ? filtrarAgenda(ensaios, true, false).filter(en => en.status !== 'cancelado')
+        .sort((a, b) => dataHoraAgenda(a).localeCompare(dataHoraAgenda(b))).slice(0, 1)
+    : filtrarAgenda(ensaios, futuros, passados);
   if (!selecionados.length) {
     const aviso = document.createElement('p');
     aviso.setAttribute('role', 'status');
-    aviso.textContent = !futuros && !passados ? 'Selecione Futuros ou Passados para visualizar.' : 'Nenhum ensaio para os filtros selecionados.';
+    aviso.textContent = proximo ? 'Nenhum próximo ensaio agendado.' : !futuros && !passados ? 'Selecione Futuros ou Passados para visualizar.' : 'Nenhum ensaio para os filtros selecionados.';
     container.appendChild(aviso);
   }
 
@@ -85,3 +88,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   });
 });
+
+function configurarFiltrosEnsaios(renderizar) {
+  const proximo = document.getElementById('filtro-proximo');
+  const futuros = document.getElementById('filtro-futuros');
+  const passados = document.getElementById('filtro-passados');
+  proximo.checked = true;
+  futuros.checked = passados.checked = false;
+  const atualizar = () => renderizar(futuros.checked, passados.checked, proximo.checked);
+  proximo.addEventListener('change', () => {
+    if (proximo.checked) futuros.checked = passados.checked = false;
+    atualizar();
+  });
+  [futuros, passados].forEach(input => input.addEventListener('change', () => {
+    if (input.checked) proximo.checked = false;
+    atualizar();
+  }));
+  atualizar();
+}
