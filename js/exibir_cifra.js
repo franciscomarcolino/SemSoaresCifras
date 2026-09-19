@@ -133,10 +133,10 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
   // === Carrega o JSON da cifra ===
   let cifraJson = null;
   try {
-    cifraJson = await fetchJson(cifraPath);
+    cifraJson = musicEntry.cifra ? await fetchJson(cifraPath) : { cifra: 'Cifra indisponível' };
   } catch (e) {
     console.error('Erro ao carregar cifra:', e);
-    cifraJson = { cifra: 'Não foi possível carregar a cifra.' };
+    cifraJson = { cifra: 'Cifra indisponível' };
   }
 
   // -----------------------

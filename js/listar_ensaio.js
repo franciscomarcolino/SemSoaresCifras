@@ -47,8 +47,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const ul = evDiv.querySelector('.setlist-ul');
     const ids = Array.isArray(en.musicas) ? en.musicas : [];
+    const resolver = id => lista.find(x => String(x.idMusica) === String(typeof id === 'object' ? id.idMusica : id)) || (typeof id === 'object' ? id : ids.find(x => typeof x === 'object' && String(x.idMusica) === String(id)));
     ids.forEach(id => {
-      const m = lista.find(x => x.idMusica === (typeof id === 'number' ? id : id.idMusica));
+      const m = resolver(id);
       const li = document.createElement('li');
       if (m) {
         li.innerHTML = `<a href="#" class="ensaio-musica" data-id="${m.idMusica}"><strong>${m.nome}</strong> - <em>${m.artista}</em></a>`;
@@ -62,8 +63,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       const a = e.target.closest('.ensaio-musica');
       if (!a) return;
       e.preventDefault();
-      const id = parseInt(a.dataset.id, 10);
-      const musicEntry = lista.find(x => x.idMusica === id);
+      const id = a.dataset.id;
+      const musicEntry = resolver(id);
       const cifraArea = evDiv.querySelector('.cifra-inline-area');
       const contextIds = ids.map(x => (typeof x === 'number' ? x : x.idMusica));
       cifraArea.innerHTML = '';
@@ -73,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderCifraInline(wrapper, musicEntry, contextIds);
         wrapper.addEventListener('cifra:navigate', (evNav) => {
           const newId = evNav.detail.id;
-          const newMusic = lista.find(x => x.idMusica === newId);
+          const newMusic = resolver(newId);
           wrapper.innerHTML = '';
           renderCifraInline(wrapper, newMusic, contextIds);
         });
