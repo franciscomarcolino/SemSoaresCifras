@@ -31,7 +31,7 @@
     "nome": "Take On Me",
     "artista": "a-ha",
     "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273e8dd4db47e7177c63b0b7d53",
-    "LinkSpotify": "https://open.spotify.com/intl-pt/track/2WfaOiMkCvy7F5fcp2zZ8L?si=01309cffd2e64c3a", 
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/2WfaOiMkCvy7F5fcp2zZ8L?si=01309cffd2e64c3a",
     "LinkYoutube": "https://www.youtube.com/watch?v=djV11Xbc914",
     "cifra": "/data/cifras/TakeOnMe-a-ha.json"
   },
@@ -45,20 +45,20 @@
     "cifra": "/data/cifras/Easy-TheCommodores.json"
   },
   {
-  "idMusica": 6,
-  "nome": "What's On Your Mind (Pure Energy)",
-  "artista": "Information Society",
-  "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273e4263dbad5243053ec4a8470",
-  "LinkSpotify": "https://open.spotify.com/intl-pt/track/2GBWPAsIXtC7NwULhUoHRf?si=1baf711cc9fd4fb0",
-  "LinkYoutube": "https://www.youtube.com/watch?v=ijAYN9zVnwg",
-  "cifra": "/data/cifras/WhatsOnYourMind-PureEnergy-InformationSociety.json"
- }, 
+    "idMusica": 6,
+    "nome": "What's On Your Mind (Pure Energy)",
+    "artista": "Information Society",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273e4263dbad5243053ec4a8470",
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/2GBWPAsIXtC7NwULhUoHRf?si=1baf711cc9fd4fb0",
+    "LinkYoutube": "https://www.youtube.com/watch?v=ijAYN9zVnwg",
+    "cifra": "/data/cifras/WhatsOnYourMind-PureEnergy-InformationSociety.json"
+  },
   {
     "idMusica": 7,
     "nome": "The One I Love",
     "artista": "R.E.M.",
     "fotoBanda": "https://i.scdn.co/image/ab67616d0000b273135322c78a93ff9b1f392c3a",
-    "LinkSpotify": "https://open.spotify.com/intl-pt/track/2fdfsGuqb6SBX5ocoBWHUd?si=5f03b27713f34bff", 
+    "LinkSpotify": "https://open.spotify.com/intl-pt/track/2fdfsGuqb6SBX5ocoBWHUd?si=5f03b27713f34bff",
     "LinkYoutube": "https://www.youtube.com/watch?v=j7oQEPfe-O8",
     "cifra": "/data/cifras/TheOneILove-REM.json"
   },
@@ -88,7 +88,7 @@
     "LinkSpotify": "https://open.spotify.com/intl-pt/track/0mWiuXuLAJ3Brin3Or2x6v?si=e4f07e17f56f4fc7",
     "LinkYoutube": "https://www.youtube.com/watch?v=MOQV__Z55eE",
     "cifra": "/data/cifras/LearnToFly-FooFighters.json"
-  },  
+  },
   {
     "idMusica": 11,
     "nome": "Closing Time",
@@ -215,7 +215,6 @@
     "LinkYoutube": "https://www.youtube.com/watch?v=mGgMZpGYiy8",
     "cifra": "/data/cifras/FridayImInLove-TheCure.json"
   },
-  
   {
     "idMusica": 25,
     "nome": "Carla",
@@ -503,8 +502,7 @@
     "LinkSpotify": "https://open.spotify.com/intl-pt/track/5Y8Rj0s6wuM5DlQdllYiWl?si=7ac132064d924b87",
     "LinkYoutube": "https://www.youtube.com/watch?v=CdqoNKCCt7A",
     "cifra": "/data/cifras/DontYouForgetAboutMe-SimpleMinds.json"
-  }
-  ,
+  },
   {
     "idMusica": 57,
     "nome": "Creep",
@@ -513,8 +511,7 @@
     "LinkSpotify": "https://open.spotify.com/intl-pt/track/70LcF31zb1H0PyJoS1Sx1r?si=e0eb966f89694c4b",
     "LinkYoutube": "https://www.youtube.com/watch?v=XFkzRNyygfk",
     "cifra": "/data/cifras/Creep-Radiohead.json"
-  }
-  ,
+  },
   {
     "idMusica": 58,
     "nome": "Torn",
@@ -523,8 +520,7 @@
     "LinkSpotify": "https://open.spotify.com/intl-pt/track/4mBJUbN4VLcpT36O4uf8t3?si=b84dfeb620a04d25",
     "LinkYoutube": "https://www.youtube.com/watch?v=M58IJO7N32s",
     "cifra": "/data/cifras/Torn-FearlessRecords.json"
-  }
-,
+  },
   {
     "idMusica": 59,
     "nome": "This Love",
@@ -533,8 +529,7 @@
     "LinkSpotify": "https://open.spotify.com/intl-pt/track/6ECp64rv50XVz93WvxXMGF?si=ef69188df3d5497e",
     "LinkYoutube": "https://www.youtube.com/watch?v=XPpTgCho5ZA",
     "cifra": "/data/cifras/ThisLove-Maroon5.json"
-  }
-,
+  },
   {
     "idMusica": 60,
     "nome": "Livin’ on a Prayer",
@@ -543,5 +538,14 @@
     "LinkSpotify": "https://open.spotify.com/intl-pt/track/37ZJ0p5Jm13JPevGcx4SkF?si=782d96bd5c174430",
     "LinkYoutube": "https://www.youtube.com/watch?v=lDK9QqIzhwk",
     "cifra": "/data/cifras/LivinOnAPrayer-BonJovi.json"
+  },
+  {
+    "idMusica": 61,
+    "nome": "Your Song",
+    "artista": "Elton John",
+    "fotoBanda": "https://i.scdn.co/image/ab67616d0000b2733b264b1e2a9b32466fbcea91",
+    "LinkSpotify": "https://open.spotify.com/track/6tLRHIMOLCwSk7e7R0CtqL",
+    "LinkYoutube": "https://www.youtube.com/watch?v=lwBEqupVOdc",
+    "cifra": "/data/cifras/YourSong-EltonJohn.json"
   }
 ]
