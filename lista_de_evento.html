@@ -24,6 +24,11 @@
   </nav>
 </header>
   <main class="container">
+    <fieldset style="border: 1px solid #444; border-radius: 8px; margin: 0 0 20px; padding: 14px; display: flex; flex-wrap: wrap; gap: 24px;">
+      <legend>Filtrar eventos</legend>
+      <label><input type="checkbox" id="filtro-futuros" checked> Futuros</label>
+      <label><input type="checkbox" id="filtro-passados"> Passados</label>
+    </fieldset>
     <section id="eventos-lista" class="list-container">
       <!-- Eventos serão inseridos aqui -->
     </section>
@@ -34,8 +39,8 @@
 
   <script>lucide.createIcons();</script>  
   <script src="js/exibir_cifra.js"></script>
-  <script src="js/ordenar_agenda.js?v=20260916"></script>
-  <script src="js/listar_evento.js?v=ordem-20260916"></script>
+  <script src="js/ordenar_agenda.js?v=filtros-20260919"></script>
+  <script src="js/listar_evento.js?v=filtros-20260919"></script>
   
 </body>
 </html>

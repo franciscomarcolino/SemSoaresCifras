@@ -8,9 +8,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const ensaios = await fetch(ensaiosPath, { cache: 'no-cache' }).then(r => r.json()).catch(() => []);
   const lista = await fetch(listaPath, { cache: 'no-cache' }).then(r => r.json()).catch(() => []);
+  configurarFiltrosAgenda((futuros, passados) => {
   container.innerHTML = '';
+  const selecionados = filtrarAgenda(ensaios, futuros, passados);
+  if (!selecionados.length) {
+    const aviso = document.createElement('p');
+    aviso.setAttribute('role', 'status');
+    aviso.textContent = !futuros && !passados ? 'Selecione Futuros ou Passados para visualizar.' : 'Nenhum ensaio para os filtros selecionados.';
+    container.appendChild(aviso);
+  }
 
-  ordenarAgendaPorData(ensaios).forEach(en => {
+  ordenarAgendaPorData(selecionados).forEach(en => {
     const evDiv = document.createElement('div');
     evDiv.className = 'list-item ensaio-item';
 
@@ -73,5 +81,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     container.appendChild(evDiv);
+  });
   });
 });

@@ -8,8 +8,16 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   if(!container) return;
   const eventos = await fetch(eventosPath, { cache: 'no-cache' }).then(r=>r.json()).catch(()=>[]);
   const lista = await fetch(listaPath, { cache: 'no-cache' }).then(r=>r.json()).catch(()=>[]);
+  configurarFiltrosAgenda((futuros, passados) => {
   container.innerHTML = '';
-  ordenarAgendaPorData(eventos).forEach(ev=>{
+  const selecionados = filtrarAgenda(eventos, futuros, passados);
+  if (!selecionados.length) {
+    const aviso = document.createElement('p');
+    aviso.setAttribute('role', 'status');
+    aviso.textContent = !futuros && !passados ? 'Selecione Futuros ou Passados para visualizar.' : 'Nenhum evento para os filtros selecionados.';
+    container.appendChild(aviso);
+  }
+  ordenarAgendaPorData(selecionados).forEach(ev=>{
     const evDiv = document.createElement('div');
     evDiv.className = 'list-item evento-item';
     evDiv.innerHTML = `
@@ -76,5 +84,6 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     });
 
     container.appendChild(evDiv);
+  });
   });
 });
