@@ -3,12 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sem Soares - Cifras</title>
+  <title>Sem Soares - Gravações</title>
   <link rel="icon" href="img/Icone_Sem_Soares.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="css/style.css" />
-</head>
+<style>
+.gravacao-card { cursor: default; box-sizing: border-box; width: 100%; }
+.gravacao-faixas { padding: 0 10px; }
+.gravacao-linha { border-top: 1px solid #333; padding: 12px 0; }
+.gravacao-linha-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.gravacao-play { color: #fff; background: #1767ba; border: 0; border-radius: 6px; min-width: 44px; min-height: 44px; cursor: pointer; }
+.gravacao-play:focus-visible { outline: 2px solid #ffe86e; outline-offset: 3px; }
+.gravacao-linha audio { width: 100%; margin-top: 10px; }
+.gravacao-vazia { color: #999; font-size: .9rem; padding: 0 10px; }
+</style></head>
 <body class="theme-dark">
   <header>
     <div class="logo-group">
@@ -26,15 +35,16 @@
   </header>
 
   <main class="container">
+    <h2>Gravações</h2>
     <section id="lista-principal">
       <!-- 🔍 Filtro -->
       <div id="filtro-container">
         <i class="fa fa-search"></i>
-        <input type="text" id="filtro-cifras" placeholder="Buscar música ou artista..." />
+        <input type="text" id="filtro-gravacoes" aria-label="Buscar música ou artista" placeholder="Buscar música ou artista..." />
       </div>
 
       <!-- Lista -->
-      <div id="musicas-lista" class="list-container"></div>
+      <div id="gravacoes-lista" class="list-container"></div>
     </section>
   </main>
 
@@ -44,8 +54,7 @@
 
   <script>lucide.createIcons();</script>
   <!-- Usa o mesmo renderizador de cifra de eventos/ensaios -->  
-  <script src="js/exibir_cifra.js"></script>
-  <script src="js/listar_musica.js?v=catalogo-20260916"></script>
+  <script src="js/gravacoes.js?v=1"></script>
   
 </body>
 </html>
