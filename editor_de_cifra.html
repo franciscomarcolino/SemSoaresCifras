@@ -71,12 +71,12 @@
     <a href="index.html"><i data-lucide="home"></i> Home</a>    
   </nav>
   <h1>🎵 Editor de Cifra (modo local)</h1>
-  <p>Carregue um arquivo de cifra em JSON, edite o conteúdo e salve novamente.</p>
+  <p>Cole ou digite uma cifra abaixo, ou carregue um arquivo JSON, e salve como JSON.</p>
 
   <div class="editor-container">
     <input type="file" id="fileInput" accept=".json"><br>
     <div class="file-info" id="fileInfo">Nenhum arquivo carregado.</div>
-    <textarea id="editorArea" placeholder="O conteúdo da cifra aparecerá aqui..."></textarea><br>
+    <textarea id="editorArea" placeholder="Cole ou digite sua cifra aqui..."></textarea><br>
     <button id="saveBtn" disabled>💾 Salvar como JSON</button>
   </div>
 
@@ -87,6 +87,11 @@
     const fileInfo = document.getElementById('fileInfo');
 
     let currentFileName = 'cifra_editada.json';
+
+    // Permite criar uma cifra sem abrir um arquivo primeiro.
+    editor.addEventListener('input', () => {
+      saveBtn.disabled = editor.value.length === 0;
+    });
 
     // Lê arquivo local
     fileInput.addEventListener('change', (e) => {
