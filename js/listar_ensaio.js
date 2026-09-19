@@ -55,6 +55,32 @@ document.addEventListener('DOMContentLoaded', async () => {
       } else {
         li.textContent = 'Música não encontrada';
       }
+      if (m) {
+        li.classList.add('ensaio-faixa');
+        const caminho = en.audios && en.audios[String(m.idMusica)];
+        let url = null;
+        if (typeof caminho === 'string' && caminho.trim()) {
+          try {
+            const candidata = new URL(caminho, document.baseURI);
+            if (['https:', 'http:'].includes(candidata.protocol)) url = candidata.href;
+          } catch (_) { /* Referência inválida: manter indisponível. */ }
+        }
+        const audio = document.createElement(url ? 'a' : 'span');
+        audio.className = 'ensaio-audio';
+        audio.textContent = 'Áudio do ensaio ▶';
+        if (url) {
+          audio.href = url;
+          audio.target = '_blank';
+          audio.rel = 'noopener';
+          audio.setAttribute('aria-label', 'Ouvir áudio do ensaio: ' + m.nome + ' (abre em nova aba)');
+        } else {
+          audio.classList.add('indisponivel');
+          audio.setAttribute('aria-disabled', 'true');
+          audio.title = 'Gravação ainda não disponível';
+          audio.setAttribute('aria-label', 'Áudio do ensaio de ' + m.nome + ': gravação ainda não disponível');
+        }
+        li.appendChild(audio);
+      }
       ul.appendChild(li);
     });
 
