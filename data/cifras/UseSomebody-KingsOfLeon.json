@@ -39,7 +39,7 @@
       "tempo": "** Tempo 005 **",
       "instrumentos": "[G.Base] - [Vocal]",
       "acordes": "                                           C                                            C/E                     F",
-      "vocal": "I've been roaming around always looking down at all I see",
+      "vocal": "I've been roaming around always looking down at all I see [Vocal]",
       "backingVocal": "",
       "solo": ""
     },
@@ -47,7 +47,7 @@
       "tempo": "** Tempo 006 **",
       "instrumentos": "[G.Base] - [Vocal]",
       "acordes": "                  C                      C/E                        F",
-      "vocal": "Painted faces fill the places I can't reach",
+      "vocal": "Painted faces fill the places I can't reach [Vocal]",
       "backingVocal": "",
       "solo": ""
     },
@@ -55,7 +55,7 @@
       "tempo": "** Tempo 007 **",
       "instrumentos": "[G.Base] - [Vocal]",
       "acordes": "                                            Am                      C                        F",
-      "vocal": "You know that I could use somebody",
+      "vocal": "You know that I could use somebody [Vocal]",
       "backingVocal": "",
       "solo": ""
     },
@@ -63,7 +63,7 @@
       "tempo": "** Tempo 008 **",
       "instrumentos": "[G.Base] - [Vocal]",
       "acordes": "                                            Am                      C                        F",
-      "vocal": "You know that I could use somebody",
+      "vocal": "You know that I could use somebody [Vocal]",
       "backingVocal": "",
       "solo": ""
     },
@@ -71,7 +71,7 @@
       "tempo": "** Tempo 009 **",
       "instrumentos": "[Bateria] - [Teclado] - [G.Base] - [G.Solo] - [Baixo] - [Vocal]",
       "acordes": "                                   C                                  C/E                                 F",
-      "vocal": "Someone like you and all you know and how you speak",
+      "vocal": "Someone like you and all you know and how you speak [Vocal]",
       "backingVocal": "",
       "solo": ""
     },
@@ -79,7 +79,7 @@
       "tempo": "** Tempo 010 **",
       "instrumentos": "[Bateria] - [Teclado] - [G.Base] - [G.Solo] - [Baixo] - [Vocal]",
       "acordes": "                                   C                                  C/E                                 F",
-      "vocal": "Countless lovers under cover of the street",
+      "vocal": "Countless lovers under cover of the street [Vocal]",
       "backingVocal": "",
       "solo": ""
     },
@@ -87,7 +87,7 @@
       "tempo": "** Tempo 011 **",
       "instrumentos": "[Bateria] - [Teclado] - [G.Base] - [G.Solo] - [Baixo] - [Vocal]",
       "acordes": "                                             Am                    C                         F",
-      "vocal": "You know that I could use somebody",
+      "vocal": "You know that I could use somebody [Vocal]",
       "backingVocal": "",
       "solo": ""
     },
@@ -95,7 +95,7 @@
       "tempo": "** Tempo 012 **",
       "instrumentos": "[Bateria] - [Teclado] - [G.Base] - [G.Solo] - [Baixo] - [Vocal]",
       "acordes": "                                             Am                    C                         F",
-      "vocal": "You know that I could use somebody...                           Someone like you",
+      "vocal": "You know that I could use somebody...[Vocal]      Someone like you [Vocal]",
       "backingVocal": "",
       "solo": "                                                                                                            [Virada bateria]"
     },
@@ -127,7 +127,7 @@
       "tempo": "** Tempo 016 **",
       "instrumentos": "[Bateria] - [Teclado] - [G.Base] - [G.Solo] - [Baixo] - [Vocal] - [B.Vocal]",
       "acordes": "Am                   C            F",
-      "vocal": "Oh Oh Oh Oh Oh Ohhhhhhhh [Vocal]",
+      "vocal": "",
       "backingVocal": "Oh Oh Oh Oh Oh Ohhhhhhhh [B.Vocal]",
       "solo": ""
     },
@@ -135,7 +135,7 @@
       "tempo": "** Tempo 017 **",
       "instrumentos": "[Bateria] - [Baixo] - [Vocal]",
       "acordes": "C                                                      C/E                                   F",
-      "vocal": "Off in the night while you live it up I'm off to sleep",
+      "vocal": "Off in the night while you live it up I'm off to sleep [Vocal]",
       "backingVocal": "",
       "solo": ""
     },
@@ -143,7 +143,7 @@
       "tempo": "** Tempo 018 **",
       "instrumentos": "[Bateria] - [Baixo] - [Vocal]",
       "acordes": "C                                                      C/E                 F",
-      "vocal": "Waging wars to shape the poet And the beat",
+      "vocal": "Waging wars to shape the poet And the beat [Vocal]",
       "backingVocal": "",
       "solo": ""
     },
@@ -151,7 +151,7 @@
       "tempo": "** Tempo 019 **",
       "instrumentos": "[Bateria] - [Teclado] - [G.Base] - [G.Solo] - [Baixo] - [Vocal]",
       "acordes": "C                                                      C/E                 F",
-      "vocal": "I hope it's gonna make you notice",
+      "vocal": "I hope it's gonna make you notice [Vocal]",
       "backingVocal": "",
       "solo": "                                  [Bateria crescente]"
     },
@@ -200,7 +200,7 @@
       "instrumentos": "[Bateria] - [Teclado] - [G.Base] - [G.Solo] - [Baixo] - [B.Vocal]",
       "acordes": "D5                         F#5",
       "vocal": "",
-      "backingVocal": "   I'm ready I'm ready  I'm ready",
+      "backingVocal": "   I'm ready I'm ready  I'm ready [B.Vocal]",
       "solo": ""
     },
     {
@@ -208,7 +208,7 @@
       "instrumentos": "[Bateria] - [Teclado] - [G.Base] - [G.Solo] - [Baixo]",
       "acordes": "D5                         F#5                         B5",
       "vocal": "",
-      "backingVocal": "   I'm ready I'm ready  I'm ready",
+      "backingVocal": "   I'm ready I'm ready  I'm ready [B.Vocal]",
       "solo": ""
     },
     {
@@ -247,7 +247,7 @@
       "tempo": "** Tempo 031 **",
       "instrumentos": "[Bateria] - [Teclado] - [G.Base] - [G.Solo] - [Baixo]",
       "acordes": "Am                                     C                        F",
-      "vocal": "...Somebody [Vocal]                                  Someone like you... [Vocal]",
+      "vocal": "...Somebody [Vocal]",
       "backingVocal": "Oh Oh Oh Oh Oh Ohhhhhhhh [B.Vocal]",
       "solo": "Solo [G.Solo]"
     },
@@ -255,7 +255,7 @@
       "tempo": "** Tempo 032 **",
       "instrumentos": "[G.Base] - [Vocal]",
       "acordes": "                                      C                                             C/E                           F",
-      "vocal": "I've been roaming around Always looking down at all I see",
+      "vocal": "I've been roaming around Always looking down at all I see [Vocal]",
       "backingVocal": "",
       "solo": ""
     }
