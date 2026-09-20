@@ -109,15 +109,16 @@ function renderCifraEstruturada(cifraJson) {
 
 function renderCifraTabela(dados) {
   const cell = (valor) => escapeHtml(String(valor ?? ''));
+  const anotacoes = (valor) => cell(valor).replace(/\[[^\]\r\n]+\]/g, (texto) => '<span style="color:#FFA500">' + texto + '</span>');
   return dados.tempos.map((tempo) => {
     const instrumentos = cell(tempo.instrumentos).replace(/\[[^\]\r\n]+\]/g, (texto) => '<span style="color:#00B0F0">' + texto + '</span>');
     return '<div class="cifra-tempo" style="margin-bottom:1em;white-space:pre-wrap;overflow-wrap:anywhere">' +
       '<div style="color:#ff6060;font-weight:bold">' + cell(tempo.tempo) + '</div>' +
       '<div>' + instrumentos + '</div>' +
       '<div>' + highlightChords(String(tempo.acordes ?? '')) + '</div>' +
-      '<div>' + cell(tempo.vocal) + '</div>' +
-      '<div>' + cell(tempo.backingVocal) + '</div>' +
-      (tempo.solo ? '<div>' + cell(tempo.solo) + '</div>' : '') + '</div>';
+      '<div>' + anotacoes(tempo.vocal) + '</div>' +
+      '<div>' + anotacoes(tempo.backingVocal) + '</div>' +
+      (tempo.solo ? '<div>' + anotacoes(tempo.solo) + '</div>' : '') + '</div>';
   }).join('');
 }
 
