@@ -5,7 +5,7 @@
 // Utilitários
 // -----------------------
 async function fetchJson(path) {
-  const res = await fetch(path);
+  const res = await fetch(path, { cache: 'no-cache' });
   if (!res.ok) throw new Error('Erro ao carregar ' + path);
   return await res.json();
 }
