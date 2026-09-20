@@ -1,21 +1,71 @@
 {
   "formato": "tabela-tempos",
-  "musica": "Use Somebody",
   "artista": "Kings of Leon",
+  "musica": "Use Somebody",
   "tempos": [
     {
-      "tempo": 1,
-      "instrumentos": "[Bateria] - [Teclado]   - [G.Base] - [G.Solo] - [Baixo] - [Vocal] - [Backing Vocal]",
-      "acordes": "C                  C/E                   F",
-      "backingVocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh",
-      "vocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh"
+      "tempo": "** Tempo 001 **",
+      "instrumentos": "[Bateria] - [Teclado]   - [G.Base] - [G.Solo] - [Baixo] - [Vocal] - [B.Vocal]",
+      "acordes": "C  C/E    F",
+      "vocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [Vocal]",
+      "backingVocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [B.Vocal]",
+      "solo": "Solo [Guitarra]"
     },
     {
-      "tempo": 2,
-      "instrumentos": "[Bateria] - [Teclado]   - [G.Base] - [G.Solo] - [Baixo] - [Vocal] - [Backing Vocal]",
-      "acordes": "C                  C/E                   F",
-      "backingVocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh",
-      "vocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh"
+      "tempo": "** Tempo 002 **",
+      "instrumentos": "[Bateria] - [Teclado]   - [G.Base] - [G.Solo] - [Baixo] - [Vocal] - [B.Vocal]",
+      "acordes": "C  C/E    F",
+      "vocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [Vocal]",
+      "backingVocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [B.Vocal]",
+      "solo": "Solo [Guitarra]"
+    },
+    {
+      "tempo": "** Tempo 003 **",
+      "instrumentos": "[Bateria] - [Teclado]   - [G.Base] - [G.Solo] - [Baixo] - [Vocal] - [B.Vocal]",
+      "acordes": "C  C/E    F",
+      "vocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [Vocal]",
+      "backingVocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [B.Vocal]",
+      "solo": "Solo [Guitarra]"
+    },
+    {
+      "tempo": "** Tempo 004 **",
+      "instrumentos": "[Bateria] - [Teclado]   - [G.Base] - [G.Solo] - [Baixo] - [Vocal] - [B.Vocal]",
+      "acordes": "C  C/E    F",
+      "vocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [Vocal]",
+      "backingVocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [B.Vocal]",
+      "solo": "Solo [Guitarra]"
+    },
+    {
+      "tempo": "** Tempo 005 **",
+      "instrumentos": "[Bateria] - [Teclado]   - [G.Base] - [G.Solo] - [Baixo] - [Vocal] - [B.Vocal]",
+      "acordes": "C  C/E    F",
+      "vocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [Vocal]",
+      "backingVocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [B.Vocal]",
+      "solo": "Solo [Guitarra]"
+    },
+    {
+      "tempo": "** Tempo 006 **",
+      "instrumentos": "[Bateria] - [Teclado]   - [G.Base] - [G.Solo] - [Baixo] - [Vocal] - [B.Vocal]",
+      "acordes": "C  C/E    F",
+      "vocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [Vocal]",
+      "backingVocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [B.Vocal]",
+      "solo": "Solo [Guitarra]"
+    },
+    {
+      "tempo": "** Tempo 007 **",
+      "instrumentos": "[Bateria] - [Teclado]   - [G.Base] - [G.Solo] - [Baixo] - [Vocal] - [B.Vocal]",
+      "acordes": "C  C/E    F",
+      "vocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [Vocal]",
+      "backingVocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [B.Vocal]",
+      "solo": "Solo [Guitarra]"
+    },
+    {
+      "tempo": "** Tempo 008 **",
+      "instrumentos": "[Bateria] - [Teclado]   - [G.Base] - [G.Solo] - [Baixo] - [Vocal] - [B.Vocal]",
+      "acordes": "C  C/E    F",
+      "vocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [Vocal]",
+      "backingVocal": "Oh Oh Oh Oh Oh   Ohhhhhhhh [B.Vocal]",
+      "solo": "Solo [Guitarra]"
     }
   ]
 }

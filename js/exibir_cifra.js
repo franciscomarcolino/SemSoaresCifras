@@ -115,8 +115,9 @@ function renderCifraTabela(dados) {
       '<div style="color:#ff6060;font-weight:bold">' + cell(tempo.tempo) + '</div>' +
       '<div>' + instrumentos + '</div>' +
       '<div>' + highlightChords(String(tempo.acordes ?? '')) + '</div>' +
+      '<div>' + cell(tempo.vocal) + '</div>' +
       '<div>' + cell(tempo.backingVocal) + '</div>' +
-      '<div>' + cell(tempo.vocal) + '</div></div>';
+      (tempo.solo ? '<div>' + cell(tempo.solo) + '</div>' : '') + '</div>';
   }).join('');
 }
 
