@@ -109,14 +109,12 @@ function renderCifraEstruturada(cifraJson) {
 
 function renderCifraTabela(dados) {
   const cell = (valor) => escapeHtml(String(valor ?? ''));
-  const row = (rotulo, valor) => '<tr><th scope="row" style="text-align:left;vertical-align:top;padding:8px;border:1px solid #555;width:120px">' + cell(rotulo) + '</th><td style="padding:8px;border:1px solid #555;white-space:pre-wrap;overflow-wrap:anywhere">' + cell(valor) + '</td></tr>';
-  let html = '<table aria-label="Cifra por tempo" style="width:100%;border-collapse:collapse;table-layout:fixed"><tbody>';
-  html += row('Música', dados.musica) + row('Artista', dados.artista);
-  for (const tempo of dados.tempos) {
-    html += '<tr aria-hidden="true"><td colspan="2" style="height:16px"></td></tr>';
-    html += row('Tempo', tempo.tempo) + row('Instrumentos', tempo.instrumentos) + row('Acordes', tempo.acordes) + row('Backing Vocal', tempo.backingVocal) + row('Vocal', tempo.vocal);
-  }
-  return html + '</tbody></table>';
+  return dados.tempos.map((tempo) =>
+    '<div class="cifra-tempo" style="margin-bottom:1em;white-space:pre-wrap;overflow-wrap:anywhere">' +
+    [tempo.tempo, tempo.instrumentos, tempo.acordes, tempo.backingVocal, tempo.vocal]
+      .map((valor) => '<div>' + cell(valor) + '</div>').join('') +
+    '</div>'
+  ).join('');
 }
 
 async function renderCifraInline(container, musicEntry, contextIds, options = {}) {
