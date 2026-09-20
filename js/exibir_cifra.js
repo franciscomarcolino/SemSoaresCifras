@@ -112,7 +112,7 @@ function renderCifraTabela(dados) {
   return dados.tempos.map((tempo) =>
     '<div class="cifra-tempo" style="margin-bottom:1em;white-space:pre-wrap;overflow-wrap:anywhere">' +
     [tempo.tempo, tempo.instrumentos, tempo.acordes, tempo.backingVocal, tempo.vocal]
-      .map((valor) => '<div>' + cell(valor) + '</div>').join('') +
+      .map((valor, indice) => '<div>' + (indice === 2 ? highlightChords(String(valor ?? '')) : cell(valor)) + '</div>').join('') +
     '</div>'
   ).join('');
 }
