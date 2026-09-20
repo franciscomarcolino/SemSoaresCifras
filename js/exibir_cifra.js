@@ -106,6 +106,19 @@ function renderCifraEstruturada(cifraJson) {
 // -----------------------
 // Renderiza uma cifra inline (suporte híbrido: antiga + nova)
 // -----------------------
+
+function renderCifraTabela(dados) {
+  const cell = (valor) => escapeHtml(String(valor ?? ''));
+  const row = (rotulo, valor) => '<tr><th scope="row" style="text-align:left;vertical-align:top;padding:8px;border:1px solid #555;width:120px">' + cell(rotulo) + '</th><td style="padding:8px;border:1px solid #555;white-space:pre-wrap;overflow-wrap:anywhere">' + cell(valor) + '</td></tr>';
+  let html = '<table aria-label="Cifra por tempo" style="width:100%;border-collapse:collapse;table-layout:fixed"><tbody>';
+  html += row('Música', dados.musica) + row('Artista', dados.artista);
+  for (const tempo of dados.tempos) {
+    html += '<tr aria-hidden="true"><td colspan="2" style="height:16px"></td></tr>';
+    html += row('Tempo', tempo.tempo) + row('Instrumentos', tempo.instrumentos) + row('Acordes', tempo.acordes) + row('Backing Vocal', tempo.backingVocal) + row('Vocal', tempo.vocal);
+  }
+  return html + '</tbody></table>';
+}
+
 async function renderCifraInline(container, musicEntry, contextIds, options = {}) {
   const { hideNavButtons = false } = options;
   container.innerHTML = '';
@@ -146,9 +159,10 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
   area.className = 'cifra-inline-wrapper';
 
   // Detecta formato (novo ou antigo)
+  const isTabela = cifraJson.formato === 'tabela-tempos' && Array.isArray(cifraJson.tempos);
   const isEstruturado = cifraJson.partes && Array.isArray(cifraJson.partes);
 
-  const cifraHtml = isEstruturado
+  const cifraHtml = isTabela ? renderCifraTabela(cifraJson) : isEstruturado
     ? renderCifraEstruturada(cifraJson)
     : `<pre class="cifra-texto">${highlightChords(cifraJson.cifra || '')}</pre>`;
 
@@ -173,7 +187,7 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
       <h3>🎵 ${musicEntry.nome} <small><em>${musicEntry.artista}</em></small></h3>
     </div>
 
-    ${isEstruturado ? `<div class="cifra-texto">${cifraHtml}</div>` : cifraHtml}
+    ${(isTabela || isEstruturado) ? `<div class="cifra-texto">${cifraHtml}</div>` : cifraHtml}
   `;
 
   container.appendChild(area);
@@ -189,7 +203,7 @@ async function renderCifraInline(container, musicEntry, contextIds, options = {}
     Object.assign(textoDiv.style, {
       maxHeight: '47vh',
       overflowY: 'auto',
-      whiteSpace: 'pre-wrap',
+      whiteSpace: isTabela ? 'normal' : 'pre-wrap',
       padding: '10px',
       border: '1px solid #222',
       borderRadius: '8px'
