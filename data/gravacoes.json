@@ -16,5 +16,11 @@
     "data": "2026-09-20",
     "tipo": "Ensaio",
     "arquivo": "data/audios/gravacoes/ThePromise-WhenInRome-20260920.mp3"
+  },
+  {
+    "idMusica": 24,
+    "data": "2026-09-20",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/FridayImInLove-TheCure-20260920.mp3"
   }
 ]
