@@ -17,6 +17,9 @@
 .gravacao-play:focus-visible { outline: 2px solid #ffe86e; outline-offset: 3px; }
 .gravacao-linha audio { width: 100%; margin-top: 10px; }
 .gravacao-vazia { color: #999; font-size: .9rem; padding: 0 10px; }
+.filtros-gravacoes { box-sizing: border-box; min-width: 0; width: 100%; border: 1px solid #444; border-radius: 8px; margin: 0 auto 20px; padding: 14px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; }
+.filtros-gravacoes label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.filtros-gravacoes legend { text-align: center; padding: 0 8px; }
 </style></head>
 <body class="theme-dark">
   <header>
@@ -37,6 +40,12 @@
   <main class="container">
     <h2>Gravações</h2>
     <section id="lista-principal">
+      <fieldset id="filtros-disponibilidade" class="filtros-gravacoes">
+        <legend>Gravações disponíveis</legend>
+        <label><input type="radio" name="disponibilidade" value="todas" checked> Todas</label>
+        <label><input type="radio" name="disponibilidade" value="com"> Com gravação disponível</label>
+        <label><input type="radio" name="disponibilidade" value="sem"> Sem gravação disponível</label>
+      </fieldset>
       <!-- 🔍 Filtro -->
       <div id="filtro-container">
         <i class="fa fa-search"></i>
@@ -54,7 +63,7 @@
 
   <script>lucide.createIcons();</script>
   <!-- Usa o mesmo renderizador de cifra de eventos/ensaios -->  
-  <script src="js/gravacoes.js?v=controles-20260923"></script>
+  <script src="js/gravacoes.js?v=filtros-20260923"></script>
   
 </body>
 </html>

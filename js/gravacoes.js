@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
   const lista = document.getElementById('gravacoes-lista');
+  const filtros = document.getElementById('filtros-disponibilidade');
   const busca = document.getElementById('filtro-gravacoes');
   const normalizar = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   let ativo = null;
@@ -15,7 +16,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (ativo) { ativo.pause(); ativo = null; }
       lista.replaceChildren();
       const termo = normalizar(busca.value);
-      const filtradas = musicas.filter(m => normalizar(m.nome + ' ' + m.artista).includes(termo));
+      const disponibilidade = filtros.querySelector('input:checked').value;
+      const filtradas = musicas.filter(m => {
+        const temGravacao = gravacoes.some(g => g.idMusica === m.idMusica && String(g.arquivo || '').trim());
+        return normalizar(m.nome + ' ' + m.artista).includes(termo) &&
+          (disponibilidade === 'todas' || (disponibilidade === 'com' ? temGravacao : !temGravacao));
+      });
       if (!filtradas.length) { lista.textContent = 'Nenhuma música encontrada.'; return; }
       filtradas.forEach(m => {
         const card = document.createElement('article');
@@ -62,6 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         card.appendChild(grupo); lista.appendChild(card);
       });
     }
-    busca.addEventListener('input', renderizar); renderizar();
+    busca.addEventListener('input', renderizar);
+    filtros.addEventListener('change', renderizar); renderizar();
   } catch (_) { lista.textContent = 'Não foi possível carregar as gravações. Atualize a página para tentar novamente.'; }
 });
