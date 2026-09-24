@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           titulo.textContent = (g.tipo || 'Ensaio') + ' de ' + data + (g.local ? ' — ' + g.local : '');
           const botao = document.createElement('button'); botao.type = 'button'; botao.className = 'gravacao-play';
           botao.textContent = '▶'; botao.setAttribute('aria-label', 'Ouvir ' + m.nome + ': ' + titulo.textContent);
-          const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'none'; audio.hidden = true;
+          const audio = document.createElement('audio'); audio.controls = true; audio.setAttribute('controlsList', 'nodownload noplaybackrate'); audio.preload = 'none'; audio.hidden = true;
           try { const url = new URL(g.arquivo, document.baseURI); if (!g.arquivo || !['https:', 'http:'].includes(url.protocol)) throw new Error(); audio.src = url.href; }
           catch (_) { botao.disabled = true; botao.title = 'Gravação indisponível'; }
           const erro = document.createElement('p'); erro.hidden = true; erro.setAttribute('role','status');
