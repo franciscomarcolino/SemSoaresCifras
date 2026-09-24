@@ -4,5 +4,17 @@
     "data": "2026-03-22",
     "tipo": "Ensaio",
     "arquivo": "data/audios/gravacoes/WhatsOnYourMind-PureEnergy-InformationSociety-20260322.mp3"
+  },
+  {
+    "idMusica": 44,
+    "data": "2026-09-20",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/JustLikeHeaven-TheCure-20260920.mp3"
+  },
+  {
+    "idMusica": 20,
+    "data": "2026-09-20",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/ThePromise-WhenInRome-20260920.mp3"
   }
 ]
