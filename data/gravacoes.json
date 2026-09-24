@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "idMusica": 6,
+    "data": "2026-03-22",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/WhatsOnYourMind-PureEnergy-InformationSociety-20260322.mp3"
+  }
+]
