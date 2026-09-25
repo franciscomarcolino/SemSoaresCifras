@@ -22,5 +22,65 @@
     "data": "2026-09-20",
     "tipo": "Ensaio",
     "arquivo": "data/audios/gravacoes/FridayImInLove-TheCure-20260920.mp3"
+  },
+  {
+    "idMusica": 9,
+    "data": "2026-09-13",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/BornToBeWild-Steppenwolf-20260913.mp3"
+  },
+  {
+    "idMusica": 13,
+    "data": "2026-09-13",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/ThisCharmingMan-TheSmiths-20260913.mp3"
+  },
+  {
+    "idMusica": 24,
+    "data": "2026-09-13",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/FridayImInLove-TheCure-20260913.mp3"
+  },
+  {
+    "idMusica": 27,
+    "data": "2026-09-13",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/InbetweenDays-TheCure-20260913.mp3"
+  },
+  {
+    "idMusica": 10,
+    "data": "2026-09-13",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/LearnToFly-FooFighters-20260913.mp3"
+  },
+  {
+    "idMusica": 7,
+    "data": "2026-09-13",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/TheOneILove-REM-20260913.mp3"
+  },
+  {
+    "idMusica": 34,
+    "data": "2026-09-13",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/Valerie-AmyWinehouse-20260913.mp3"
+  },
+  {
+    "idMusica": 13,
+    "data": "2026-09-20",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/ThisCharmingMan-TheSmiths-20260920.mp3"
+  },
+  {
+    "idMusica": 11,
+    "data": "2026-09-20",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/ClosingTime-Semisonic-20260920.mp3"
+  },
+  {
+    "idMusica": 12,
+    "data": "2026-09-20",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/Suedehead-Morrissey-20260920.mp3"
   }
 ]
