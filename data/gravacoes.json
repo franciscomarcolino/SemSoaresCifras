@@ -82,5 +82,11 @@
     "data": "2026-09-20",
     "tipo": "Ensaio",
     "arquivo": "data/audios/gravacoes/Suedehead-Morrissey-20260920.mp3"
+  },
+  {
+    "idMusica": 30,
+    "data": "2026-09-27",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/ProDiaNascerFeliz-BaraoVermelho-20260927.mp3"
   }
 ]
