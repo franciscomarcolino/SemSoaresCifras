@@ -88,5 +88,41 @@
     "data": "2026-09-27",
     "tipo": "Ensaio",
     "arquivo": "data/audios/gravacoes/ProDiaNascerFeliz-BaraoVermelho-20260927.mp3"
+  },
+  {
+    "idMusica": 13,
+    "data": "2026-09-27",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/ThisCharmingMan-TheSmiths-20260927.mp3"
+  },
+  {
+    "idMusica": 56,
+    "data": "2026-09-27",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/DontYouForgetAboutMe-SimpleMinds-20260927.mp3"
+  },
+  {
+    "idMusica": 38,
+    "data": "2026-09-27",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/DoSeuLadoAoVivo-JotaQuest-20260927.mp3"
+  },
+  {
+    "idMusica": 10,
+    "data": "2026-09-27",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/LearnToFly-FooFighters-20260927.mp3"
+  },
+  {
+    "idMusica": 31,
+    "data": "2026-09-27",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/QuePaisEEste-LegiaoUrbana-20260927.mp3"
+  },
+  {
+    "idMusica": 33,
+    "data": "2026-09-27",
+    "tipo": "Ensaio",
+    "arquivo": "data/audios/gravacoes/TempoPerdido-LegiaoUrbana-20260927.mp3"
   }
 ]
