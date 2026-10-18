@@ -39,7 +39,18 @@ document.addEventListener('DOMContentLoaded', async ()=>{
       if (m) {
         li.innerHTML = `<a href="#" class="evento-musica" data-id="${m.idMusica}"><strong>${m.nome}</strong> - <em>${m.artista}</em></a>`;
       } else {
-        li.textContent = 'Música não encontrada';
+        if (id && typeof id === 'object' && id.nome) {
+          const a = document.createElement('a');
+          a.href = '#';
+          a.textContent = id.nome + (id.artista ? ' - ' + id.artista : '');
+          a.addEventListener('click', e => {
+            e.preventDefault();
+            evDiv.querySelector('.cifra-inline-area').textContent = 'Cifra indisponível';
+          });
+          li.appendChild(a);
+        } else {
+          li.textContent = 'Música não encontrada';
+        }
       }
       ul.appendChild(li);
     });
